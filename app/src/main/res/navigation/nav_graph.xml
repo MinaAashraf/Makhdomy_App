@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/basicDataMakhdomFragment">
+
+    <fragment
+        android:id="@+id/basicDataMakhdomFragment"
+        android:name="com.khedma.makhdomy.presentation.makhdommen_screen.BasicDataMakhdomFragment"
+        android:label="fragment_basic_data_makhdom"
+        tools:layout="@layout/fragment_basic_data_makhdom">
+        <action
+            android:id="@+id/action_basicDataMakhdomFragment_to_addressMakhdomFragment2"
+            app:destination="@id/addressMakhdomFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/familyMakhdomFragment"
+        android:name="com.khedma.makhdomy.presentation.makhdommen_screen.FamilyMakhdomFragment"
+        android:label="fragment_family_makhdom"
+        tools:layout="@layout/fragment_family_makhdom">
+        <action
+            android:id="@+id/action_familyMakhdomFragment_to_spiritualMakhdomFragment"
+            app:destination="@id/spiritualMakhdomFragment" />
+        <action
+            android:id="@+id/action_familyMakhdomFragment_to_addressMakhdomFragment2"
+            app:destination="@id/addressMakhdomFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/spiritualMakhdomFragment"
+        android:name="com.khedma.makhdomy.presentation.makhdommen_screen.SpiritualMakhdomFragment"
+        android:label="fragment_spiritual_makhdom"
+        tools:layout="@layout/fragment_spiritual_makhdom">
+        <action
+            android:id="@+id/action_spiritualMakhdomFragment_to_mediaAndHobbiesMakhdomFragment"
+            app:destination="@id/mediaAndHobbiesMakhdomFragment" />
+        <action
+            android:id="@+id/action_spiritualMakhdomFragment_to_familyMakhdomFragment"
+            app:destination="@id/familyMakhdomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mediaAndHobbiesMakhdomFragment"
+        android:name="com.khedma.makhdomy.presentation.makhdommen_screen.MediaAndHobbiesMakhdomFragment"
+        android:label="fragment_media_and_hobbies_makhdom"
+        tools:layout="@layout/fragment_media_and_hobbies_makhdom">
+        <action
+            android:id="@+id/action_mediaAndHobbiesMakhdomFragment_to_healthAndCharacterMakhdomFragment"
+            app:destination="@id/healthAndCharacterMakhdomFragment" />
+        <action
+            android:id="@+id/action_mediaAndHobbiesMakhdomFragment_to_spiritualMakhdomFragment"
+            app:destination="@id/spiritualMakhdomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/healthAndCharacterMakhdomFragment"
+        android:name="com.khedma.makhdomy.presentation.makhdommen_screen.HealthAndCharacterMakhdomFragment"
+        android:label="fragment_health_and_character_makhdom"
+        tools:layout="@layout/fragment_health_and_character_makhdom" >
+        <action
+            android:id="@+id/action_healthAndCharacterMakhdomFragment_to_mediaAndHobbiesMakhdomFragment"
+            app:destination="@id/mediaAndHobbiesMakhdomFragment" />
+        <action
+            android:id="@+id/action_healthAndCharacterMakhdomFragment_to_makhdomDetailsFragment"
+            app:destination="@id/makhdomDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addressMakhdomFragment2"
+        android:name="com.khedma.makhdomy.presentation.makhdommen_screen.AddressMakhdomFragment"
+        android:label="AddressMakhdomFragment">
+        <action
+            android:id="@+id/action_addressMakhdomFragment2_to_familyMakhdomFragment"
+            app:destination="@id/familyMakhdomFragment" />
+        <action
+            android:id="@+id/action_addressMakhdomFragment2_to_basicDataMakhdomFragment"
+            app:destination="@id/basicDataMakhdomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/makhdomDetailsFragment"
+        android:name="com.khedma.makhdomy.presentation.makhdommen_screen.MakhdomDetailsFragment"
+        android:label="fragment_makhdom_details"
+        tools:layout="@layout/fragment_makhdom_details" >
+        <action
+            android:id="@+id/action_makhdomDetailsFragment_to_healthAndCharacterMakhdomFragment"
+            app:destination="@id/healthAndCharacterMakhdomFragment" />
+    </fragment>
+</navigation>

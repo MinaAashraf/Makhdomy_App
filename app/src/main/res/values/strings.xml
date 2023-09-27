@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Makhdomy</string>
+    <string name="class_adding_label">إضافة فصل</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_label">الاسم*</string>
+    <string name="name_err">يجب ادخال اسم المخدوم</string>
+    <string name="birth_address">محل الميلاد</string>
+    <string name="birth_date_label">تاريخ الميلاد</string>
+    <string name="birth_location_label">محل الميلاد</string>
+    <string name="next_page_label">الصفحة التالية</string>
+    <string name="home_num_label">رقم المنزل</string>
+    <string name="floor_num_label">رقم الطابق</string>
+    <string name="apartment_num_label">رقم الشقة</string>
+    <string name="area_name_label">اسم المنطقة</string>
+    <string name="street_name_label">اسم الشارع</string>
+    <string name="motafre3_from_label">متفرع من</string>
+    <string name="another_details_label">تفاصيل أخري</string>
+    <string name="father_job_label">وظيفة الأب</string>
+    <string name="mother_job_label">وظيفة الأم</string>
+    <string name="spiritual_father">اب الاعتراف</string>
+    <string name="church_label">اسم كنيسة اب الاعتراف</string>
+    <string name="is_computer_exist_label">هل يوجد كمبيوتر أو انترنت في المنزل؟</string>
+    <string name="positive_radioBtn_label">نعم</string>
+    <string name="negative_radioBtn_label">لا</string>
+    <string name="hobbies_label">الهدايا و الهوايات المحببة له..</string>
+    <string name="health_problems">مشاكله الطبية (اذا وجدت)</string>
+    <string name="child_notes_label">ملاحظات علي الطفل و طباعه</string>
+    <string name="save_label">حــــــــــفـــــــظ</string>
+    <string name="last_page_label">الصفحة السابقة</string>
+</resources>
