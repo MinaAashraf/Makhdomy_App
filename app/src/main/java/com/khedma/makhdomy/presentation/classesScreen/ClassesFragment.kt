@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.khedma.makhdomy.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ClassesFragment : Fragment() {
 
     override fun onCreateView(

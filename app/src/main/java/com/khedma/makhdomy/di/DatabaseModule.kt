@@ -9,6 +9,7 @@ import com.khedma.makhdomy.data.local.MakhdomyDao
 import com.khedma.makhdomy.data.local.MakhdomyDb
 import com.khedma.makhdomy.data.repository.MakhdomRepositoryImpl
 import com.khedma.makhdomy.domain.repository.MakhdomRepository
+import com.khedma.makhdomy.domain.usecases.ReadAllMakhdomeenUseCase
 import com.khedma.makhdomy.domain.utils.Makhdom_Local_Database_Name
 import dagger.Binds
 import dagger.Module
@@ -20,7 +21,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DatabaseModule {
+object DatabaseModule {
 
     @Singleton
     @Provides
@@ -34,6 +35,7 @@ class DatabaseModule {
     @Singleton
     @Provides
     fun provideMakhdomDao(makhdomyDb: MakhdomyDb): MakhdomyDao = makhdomyDb.getDao()
+
 
 
 

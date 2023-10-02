@@ -40,13 +40,13 @@ class HealthAndCharacterMakhdomFragment : Fragment() {
                 this.childCharacterNotes = childCharachterNotes
             }
 
-            findNavController().navigate(R.id.healthAndCharacterMakhdomFragment)
+            findNavController().navigate(R.id.action_healthAndCharacterMakhdomFragment_to_makhdomDetailsFragment)
         }
     }
 
     private fun setUpLastBtn() {
         binding.lastPageBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_healthAndCharacterMakhdomFragment_to_mediaAndHobbiesMakhdomFragment)
+           findNavController().navigate(R.id.action_healthAndCharacterMakhdomFragment_to_mediaAndHobbiesMakhdomFragment)
         }
     }
 

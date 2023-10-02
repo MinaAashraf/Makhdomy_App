@@ -26,7 +26,7 @@ class FamilyMakhdomFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpNextBtn()
-        setUpLastBtn()
+       // setUpLastBtn()
     }
 
 
@@ -41,13 +41,13 @@ class FamilyMakhdomFragment : Fragment() {
                 this.motherJob = motherJob
             }
 
-            findNavController().navigate(R.id.action_familyMakhdomFragment_to_spiritualMakhdomFragment)
+           findNavController().navigate(R.id.action_familyMakhdomFragment_to_spiritualMakhdomFragment)
         }
     }
 
     private fun setUpLastBtn() {
         binding.lastPageBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_familyMakhdomFragment_to_addressMakhdomFragment2)
+            findNavController().navigate(R.id.action_familyMakhdomFragment_to_addressMakhdomFragment)
         }
     }
 

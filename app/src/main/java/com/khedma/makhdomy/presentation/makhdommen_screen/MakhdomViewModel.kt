@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.khedma.makhdomy.domain.model.Makhdom
+import com.khedma.makhdomy.domain.repository.MakhdomRepository
 import com.khedma.makhdomy.domain.usecases.AddMakhdomUseCase
 import com.khedma.makhdomy.domain.usecases.ReadAllMakhdomeenUseCase
 import com.khedma.makhdomy.domain.usecases.ReadMakhdomByIdUseCase
@@ -15,12 +16,15 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MakhdomViewModel constructor(
-
+class MakhdomViewModel @Inject constructor(
+    private val readAllMakhdomeenUseCase: ReadAllMakhdomeenUseCase,
+    private val readMakhdomByIdUseCase: ReadMakhdomByIdUseCase,
+    private val addMakhdomUseCase: AddMakhdomUseCase,
+    private val updateMakhdomUseCase: UpdateMakhdomUseCase
 ) : ViewModel() {
 
     val preparedMakhdom: Makhdom = Makhdom()
-/*
+
 
     val makhdommen: LiveData<List<Makhdom>> = readAllMakhdomeenUseCase.execute()
 
@@ -28,9 +32,9 @@ class MakhdomViewModel constructor(
         readMakhdomByIdUseCase.execute(id)
     }
 
-    fun addMakhdom(makhdom: Makhdom) {
+    fun addMakhdom() {
         viewModelScope.launch {
-            addMakhdomUseCase.execute(makhdom)
+            addMakhdomUseCase.execute(preparedMakhdom)
         }
     }
 
@@ -39,7 +43,6 @@ class MakhdomViewModel constructor(
             updateMakhdomUseCase.execute(makhdom)
         }
     }
-*/
 
 
 }

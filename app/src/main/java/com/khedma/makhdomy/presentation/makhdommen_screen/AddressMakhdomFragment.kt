@@ -29,7 +29,7 @@ class AddressMakhdomFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpNextBtn()
-        setUpLastBtn()
+       // setUpLastBtn()
     }
 
     private fun setUpNextBtn() {
@@ -44,9 +44,9 @@ class AddressMakhdomFragment : Fragment() {
             val anotherAddressData = binding.otherAddressDetailsField.editText!!.text.toString()
 
             val address = Address(
-                homeNum = homeNum.toInt(),
-                floorNum = floorNum.toInt(),
-                apartmentNum = apartmentNum.toInt(),
+                homeNum = homeNum,
+                floorNum = floorNum,
+                apartmentNum = apartmentNum,
                 areaName = areaName,
                 streetName = streetName,
                 motafre3From = motfare3From,
@@ -54,12 +54,12 @@ class AddressMakhdomFragment : Fragment() {
             )
 
             viewModel.preparedMakhdom.address = address
-            findNavController().navigate(R.id.action_addressMakhdomFragment2_to_familyMakhdomFragment)
+             findNavController().navigate(R.id.action_addressMakhdomFragment_to_familyMakhdomFragment)
         }
     }
 
     private fun setUpLastBtn() {
-       findNavController().navigate(R.id.action_addressMakhdomFragment2_to_basicDataMakhdomFragment)
+       findNavController().navigate(R.id.action_addressMakhdomFragment_to_basicDataMakhdomFragment)
     }
 
 

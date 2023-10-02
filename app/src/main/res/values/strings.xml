@@ -28,4 +28,5 @@
     <string name="child_notes_label">ملاحظات علي الطفل و طباعه</string>
     <string name="save_label">حــــــــــفـــــــظ</string>
     <string name="last_page_label">الصفحة السابقة</string>
+    <string name="adding_makhdom_label">اضافة مخدوم</string>
 </resources>

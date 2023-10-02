@@ -26,12 +26,16 @@
                 android:layout_marginTop="@dimen/_20sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="top"
+                    android:textSize="@dimen/medium"
                     android:hint="@string/health_problems"
                     android:inputType="textMultiLine" />
 
@@ -45,12 +49,15 @@
                 android:layout_marginTop="@dimen/_20sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+
                 app:layout_constraintTop_toBottomOf="@id/health_problems_field">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="top"
+                    android:textSize="@dimen/medium"
                     android:hint="@string/child_notes_label"
                     android:inputType="textMultiLine" />
 

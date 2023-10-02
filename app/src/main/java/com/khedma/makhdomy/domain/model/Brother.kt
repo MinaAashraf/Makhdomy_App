@@ -1,7 +1,7 @@
 package com.khedma.makhdomy.domain.model
 
 data class Brother(
-    val name: String,
-    val age : String,
-    val study : String
+    val name: String?=null,
+    val age : String?=null,
+    val study : String?=null
 )
