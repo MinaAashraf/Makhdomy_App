@@ -70,15 +70,25 @@
                     android:padding="@dimen/_15sdp">
 
                     <TextView
+                        android:id="@+id/basic_data_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/basic_data_label"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/very_small"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
                         android:id="@+id/birth_date_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/birth_date_label2"
                         android:textColor="@color/black"
                         android:textSize="@dimen/small"
-                        android:textStyle="bold"
+                        app:layout_constraintTop_toBottomOf="@id/basic_data_label"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:layout_marginTop="@dimen/_10sdp"/>
 
                     <TextView
                         android:id="@+id/birth_date_value"
@@ -100,7 +110,6 @@
                         android:text="@string/birth_location_label2"
                         android:textColor="@color/black"
                         android:textSize="@dimen/small"
-                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/birth_date_value" />
 
@@ -124,7 +133,6 @@
                         android:text="@string/phone_label"
                         android:textColor="@color/black"
                         android:textSize="@dimen/small"
-                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/birth_location_value" />
 
@@ -136,7 +144,7 @@
                         android:textColor="@color/grey"
                         android:textSize="@dimen/medium"
                         android:layout_marginTop="@dimen/_10sdp"
-                        app:layout_constraintStart_toEndOf="@id/birth_location_label"
+                        app:layout_constraintStart_toStartOf="@id/phone_label"
                         app:layout_constraintTop_toBottomOf="@+id/phone_label" />
 
                     <View
@@ -155,8 +163,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:text="@string/address_label"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/small"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/very_small"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/seperator1"
 
@@ -201,8 +210,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:text="@string/family_label"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/small"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/very_small"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/seperator2" />
@@ -264,6 +273,19 @@
                         app:layout_constraintTop_toBottomOf="@id/mother_job_data" />
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spirit_label"
+                        android:text="@string/spirit_label"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/very_small"
+                        android:textStyle="bold"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/seperator3"
+                        />
+
+                    <TextView
                         android:id="@+id/spiritual_father_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -273,7 +295,9 @@
                         android:textSize="@dimen/small"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/seperator3" />
+                        app:layout_constraintTop_toBottomOf="@id/spirit_label"
+
+                        />
 
                     <TextView
                         android:id="@+id/spiritual_father_name"
@@ -327,8 +351,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:text="@string/hobbies_prizes_label"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/small"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/very_small"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/seperator4" />
@@ -342,6 +366,27 @@
                         app:layout_constraintStart_toStartOf="@id/hobbies_label"
                         app:layout_constraintTop_toBottomOf="@id/hobbies_label" />
 
+                    <View
+                        android:id="@+id/seperator6"
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@color/grey"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/hobbies_prizes_value" />
+
+                    <TextView
+                        android:id="@+id/media_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/media_label"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/very_small"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/seperator6" />
+
 
                     <TextView
                         android:id="@+id/has_computer_label"
@@ -352,7 +397,7 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/small"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/hobbies_prizes_value" />
+                        app:layout_constraintTop_toBottomOf="@id/media_label" />
 
                     <TextView
                         android:id="@+id/has_computer_value"
@@ -365,6 +410,30 @@
                         app:layout_constraintStart_toEndOf="@id/has_computer_label"
                         app:layout_constraintTop_toTopOf="@+id/has_computer_label" />
 
+                    <TextView
+                        android:id="@+id/computer_dealing_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/computer_fields_label"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/small"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/has_computer_value" />
+
+                    <TextView
+                        android:id="@+id/computer_dealing_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:textSize="@dimen/medium"
+                        android:text="@{makhdom.computerDealing}"
+                        app:layout_constraintBottom_toBottomOf="@+id/computer_dealing_label"
+                        app:layout_constraintStart_toEndOf="@id/computer_dealing_label"
+                        app:layout_constraintTop_toTopOf="@+id/computer_dealing_label" />
+
+
+
 
                     <View
                         android:id="@+id/seperator5"
@@ -374,7 +443,21 @@
                         android:background="@color/grey"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/has_computer_value"
+                        app:layout_constraintTop_toBottomOf="@id/computer_dealing_value"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/health_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/health_label"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/very_small"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/seperator5"
 
                         />
 
@@ -388,7 +471,7 @@
                         android:textSize="@dimen/small"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/seperator5" />
+                        app:layout_constraintTop_toBottomOf="@id/health_label" />
 
                     <TextView
                         android:id="@+id/health_problems_value"

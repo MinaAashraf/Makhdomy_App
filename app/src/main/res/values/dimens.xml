@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="very_small">@dimen/_9ssp</dimen>
     <dimen name="small">@dimen/_11ssp</dimen>
     <dimen name="medium">@dimen/_13ssp</dimen>
     <dimen name="large">@dimen/_15ssp</dimen>

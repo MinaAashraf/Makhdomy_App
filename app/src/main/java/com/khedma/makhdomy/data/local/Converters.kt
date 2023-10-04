@@ -28,11 +28,11 @@ class Converters {
     }
 
     @TypeConverter
-    fun toHashMap(value: String): Map<String, String>? =
+    fun toHashMap(value: String): MutableMap<String, String>? =
         Gson().fromJson(value, object : TypeToken<Map<String, String>>() {}.type)
 
     @TypeConverter
-    fun fromHashMap(map: Map<String, String>): String = Gson().toJson(map)
+    fun fromHashMap(map: MutableMap<String, String>): String = Gson().toJson(map)
 
     @TypeConverter
     fun toListOfBrothers(value: String): List<Brother> =

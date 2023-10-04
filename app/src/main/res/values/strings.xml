@@ -49,4 +49,9 @@
     <string name="phone_empty_error_msg">ادخل رقم الموبايل، من فضلك.</string>
     <string name="phone_wrong_err_msg">رقم الموبايل خاطيء.</string>
     <string name="phone_label">الموبايل:</string>
+    <string name="basic_data_label">المعلومات الأساسية:</string>
+    <string name="spirit_label">الإعتراف:</string>
+    <string name="media_label">الميديا:</string>
+    <string name="computer_fields_label">مجالات استخدام الطفل له:</string>
+    <string name="health_label">الصحة:</string>
 </resources>
