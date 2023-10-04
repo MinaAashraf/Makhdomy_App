@@ -28,8 +28,9 @@ class AddressMakhdomFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.address = viewModel.preparedMakhdom.address
         setUpNextBtn()
-       // setUpLastBtn()
+        setUpLastBtn()
     }
 
     private fun setUpNextBtn() {
@@ -54,14 +55,15 @@ class AddressMakhdomFragment : Fragment() {
             )
 
             viewModel.preparedMakhdom.address = address
-             findNavController().navigate(R.id.action_addressMakhdomFragment_to_familyMakhdomFragment)
+            findNavController().navigate(R.id.action_addressMakhdomFragment_to_familyMakhdomFragment)
         }
     }
 
     private fun setUpLastBtn() {
-       findNavController().navigate(R.id.action_addressMakhdomFragment_to_basicDataMakhdomFragment)
+        binding.lastPageBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_addressMakhdomFragment_to_basicDataMakhdomFragment)
+        }
     }
-
 
 
 }

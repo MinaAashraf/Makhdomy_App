@@ -26,21 +26,19 @@ class SpiritualMakhdomFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.makhdom = viewModel.preparedMakhdom
         setUpNextBtn()
         setUpLastBtn()
     }
 
     private fun setUpNextBtn() {
-
         binding.nextPageBtn.setOnClickListener {
             val spiritualFatherName = binding.spiritualFatherField.editText!!.text.toString()
             val churchName = binding.spiritualFatherChurchField.editText!!.text.toString()
-
             viewModel.preparedMakhdom.apply {
                 this.spiritualFatherName = spiritualFatherName
                 this.churchName = churchName
             }
-
             findNavController().navigate(R.id.action_spiritualMakhdomFragment_to_mediaAndHobbiesMakhdomFragment)
         }
     }

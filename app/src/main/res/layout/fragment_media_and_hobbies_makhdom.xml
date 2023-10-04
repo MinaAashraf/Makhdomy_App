@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="makhdom"
+            type="com.khedma.makhdomy.domain.model.Makhdom" />
     </data>
 
     <ScrollView
@@ -43,6 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/positive_radioBtn_label"
+                    android:checked="@{makhdom.hasComputer}"
                     android:textStyle="bold" />
 
                 <RadioButton
@@ -51,23 +54,47 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_40sdp"
                     android:text="@string/negative_radioBtn_label"
+                    android:checked="@{!makhdom.hasComputer}"
                     android:textStyle="bold" />
 
             </RadioGroup>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/hobbies_field"
+                android:id="@+id/computer_dealing_field"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_100sdp"
-                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/radio_group">
+                app:layout_constraintTop_toBottomOf="@id/radio_group"
+                app:initial_visibility_depend_on_radio_btn="@{makhdom.hasComputer}"
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="top"
+                    android:hint="@string/computer_dealing_label"
+                    android:inputType="textMultiLine" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/hobbies_field"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/computer_dealing_field">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="top"
+                    android:text="@{makhdom.hobbiesAndPrizes}"
                     android:hint="@string/hobbies_label"
                     android:inputType="textMultiLine" />
 
@@ -86,7 +113,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@id/last_page_btn"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/health_problems_field" />
+                app:layout_constraintTop_toBottomOf="@+id/hobbies_field" />
 
             <Button
                 android:id="@+id/last_page_btn"

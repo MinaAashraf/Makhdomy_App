@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="makhdom"
+            type="com.khedma.makhdomy.domain.model.Makhdom" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/father_job_label"
                 android:inputType="text"
+                android:text="@{makhdom.fatherJob}"
                 android:textSize="@dimen/medium" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -54,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/mother_job_label"
                 android:inputType="text"
+                android:text="@{makhdom.motherJob}"
                 android:textSize="@dimen/medium" />
 
         </com.google.android.material.textfield.TextInputLayout>

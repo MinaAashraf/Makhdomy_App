@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="makhdom"
+            type="com.khedma.makhdomy.domain.model.Makhdom" />
     </data>
 
     <ScrollView
@@ -37,6 +39,7 @@
                     android:gravity="top"
                     android:textSize="@dimen/medium"
                     android:hint="@string/health_problems"
+                    android:text="@{makhdom.healthProblems}"
                     android:inputType="textMultiLine" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -50,12 +53,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
-
                 app:layout_constraintTop_toBottomOf="@id/health_problems_field">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:text="@{makhdom.childCharacterNotes}"
                     android:gravity="top"
                     android:textSize="@dimen/medium"
                     android:hint="@string/child_notes_label"
@@ -81,7 +84,6 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_10sdp"
-
                 android:layout_marginTop="@dimen/_20sdp"
                 android:backgroundTint="@color/grey"
                 android:text="@string/last_page_label"

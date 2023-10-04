@@ -29,4 +29,24 @@
     <string name="save_label">حــــــــــفـــــــظ</string>
     <string name="last_page_label">الصفحة السابقة</string>
     <string name="adding_makhdom_label">اضافة مخدوم</string>
+    <string name="birth_date_label2">تاريخ الميلاد:</string>
+    <string name="birth_location_label2">محل الميلاد:</string>
+    <string name="address_label">العنوان:</string>
+    <string name="family_label">الأسـرة:</string>
+    <string name="father_job_label2">وظيفة الأب:</string>
+    <string name="mother_job_label2">وظيفة الأم:</string>
+    <string name="spiritual_father_label2">أب الاعتراف:</string>
+    <string name="church_label2">كــنيــسته:</string>
+    <string name="hobbies_prizes_label">الهوايات و الهدايا المفضلة:</string>
+    <string name="health_problems_label2">مشاكله الصحية ان وجدت:</string>
+    <string name="child_notes_label1">ملاحظات علي الطفل و طباعه:</string>
+    <string name="computer_dealing_label">مجالات استخدام الطفل له</string>
+    <string name="details_update_label">تعــــديـــــل البيــــــانـــــــات</string>
+    <string name="phone_num_label">رقم الموبايل</string>
+    <string name="phone_owner_label">اسم صاحب الموبايل</string>
+    <string name="adding_another_phone_label">اضافة رقم اخر</string>
+    <string name="save_phone_label">حفظ الرقم</string>
+    <string name="phone_empty_error_msg">ادخل رقم الموبايل، من فضلك.</string>
+    <string name="phone_wrong_err_msg">رقم الموبايل خاطيء.</string>
+    <string name="phone_label">الموبايل:</string>
 </resources>

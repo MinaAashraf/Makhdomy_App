@@ -1,5 +1,9 @@
 package com.khedma.makhdomy.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+
 data class Address (
     var homeNum : String? = null,
     var floorNum : String? = null,

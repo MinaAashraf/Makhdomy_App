@@ -23,14 +23,13 @@ class MakhdomViewModel @Inject constructor(
     private val updateMakhdomUseCase: UpdateMakhdomUseCase
 ) : ViewModel() {
 
-    val preparedMakhdom: Makhdom = Makhdom()
+    var preparedMakhdom: Makhdom = Makhdom()
 
 
     val makhdommen: LiveData<List<Makhdom>> = readAllMakhdomeenUseCase.execute()
 
-    fun readMakhdomById(id: Int) {
-        readMakhdomByIdUseCase.execute(id)
-    }
+    fun readMakhdomById(id: Int) : LiveData<Makhdom> = readMakhdomByIdUseCase.execute(id)
+
 
     fun addMakhdom() {
         viewModelScope.launch {
@@ -42,6 +41,10 @@ class MakhdomViewModel @Inject constructor(
         viewModelScope.launch {
             updateMakhdomUseCase.execute(makhdom)
         }
+    }
+
+    fun clearPreparedMakhdomData (){
+        preparedMakhdom = Makhdom()
     }
 
 

@@ -15,8 +15,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.khedma.makhdomy.R
 import com.khedma.makhdomy.databinding.FragmentBasicDataMakhdomBinding
+import com.khedma.makhdomy.domain.model.Makhdom
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -27,11 +29,13 @@ class BasicDataMakhdomFragment : Fragment() {
 
     private val viewModel: MakhdomViewModel by activityViewModels()
 
+    private val args: BasicDataMakhdomFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
 
     ): View {
+        handleMakhdomInitialValueIFExist()
         return binding.root
     }
 
@@ -69,7 +73,7 @@ class BasicDataMakhdomFragment : Fragment() {
             }
         }
 
-    private fun getBitmapFromUri (imageUri:  Uri): Bitmap? {
+    private fun getBitmapFromUri(imageUri: Uri): Bitmap? {
         var bitmap: Bitmap? = null
         val contentResolver: ContentResolver = requireActivity().contentResolver
         try {
@@ -83,6 +87,20 @@ class BasicDataMakhdomFragment : Fragment() {
             e.printStackTrace()
         }
         return bitmap
+    }
+
+    private fun handleMakhdomInitialValueIFExist() {
+        if (args.makhdomId != -1) {
+            viewModel.readMakhdomById(args.makhdomId).observe(requireActivity()) {
+                it?.let {
+                    viewModel.preparedMakhdom = it
+                    binding.makhdom = viewModel.preparedMakhdom
+                }
+            }
+        } else{
+            viewModel.clearPreparedMakhdomData()
+            binding.makhdom = viewModel.preparedMakhdom
+        }
     }
 
 }

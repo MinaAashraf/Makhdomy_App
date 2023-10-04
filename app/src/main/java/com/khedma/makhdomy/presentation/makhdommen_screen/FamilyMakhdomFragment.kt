@@ -25,8 +25,9 @@ class FamilyMakhdomFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.makhdom = viewModel.preparedMakhdom
         setUpNextBtn()
-       // setUpLastBtn()
+        setUpLastBtn()
     }
 
 

@@ -11,6 +11,10 @@
         <action
             android:id="@+id/action_basicDataMakhdomFragment_to_addressMakhdomFragment"
             app:destination="@id/addressMakhdomFragment" />
+        <argument
+            android:name="makhdom_id"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
     <fragment
         android:id="@+id/addressMakhdomFragment"
@@ -84,6 +88,22 @@
         android:label="MakhdommenListFragment" >
         <action
             android:id="@+id/action_makhdommenListFragment_to_basicDataMakhdomFragment"
+            app:destination="@id/basicDataMakhdomFragment" />
+        <action
+            android:id="@+id/action_makhdommenListFragment_to_makhdomDetailsFragment"
+            app:destination="@id/makhdomDetailsFragment"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/makhdomDetailsFragment"
+        android:name="com.khedma.makhdomy.presentation.makhdommen_screen.MakhdomDetailsFragment"
+        android:label="MakhdomDetailsFragment" >
+        <argument
+            android:name="makhdom_id"
+            app:argType="integer"
+            android:defaultValue="1" />
+        <action
+            android:id="@+id/action_makhdomDetailsFragment_to_basicDataMakhdomFragment"
             app:destination="@id/basicDataMakhdomFragment" />
     </fragment>
 

@@ -4,6 +4,9 @@ plugins {
     id("com.google.devtools.ksp")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-parcelize")
+
 }
 
 android {
@@ -81,6 +84,7 @@ dependencies {
 
     // circular image
     implementation ("de.hdodenhof:circleimageview:3.1.0")
+
 
 }
 kapt {

@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="address"
+            type="com.khedma.makhdomy.domain.model.Address" />
     </data>
 
     <ScrollView
@@ -22,12 +25,12 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/home_num_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
 
                 >
 
@@ -36,6 +39,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/home_num_label"
                     android:inputType="number"
+                    android:paddingTop="@dimen/_20sdp"
+                    android:text="@{address.homeNum}"
                     android:textSize="@dimen/medium" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -43,13 +48,13 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/floor_num_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/home_num_field"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
 
                 >
 
@@ -58,6 +63,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/floor_num_label"
                     android:inputType="number"
+                    android:paddingTop="@dimen/_20sdp"
+                    android:text="@{address.floorNum}"
                     android:textSize="@dimen/medium" />
 
 
@@ -66,13 +73,13 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/apartment_num_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/floor_num_field"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
 
                 >
 
@@ -81,6 +88,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/apartment_num_label"
                     android:inputType="number"
+                    android:paddingTop="@dimen/_20sdp"
+                    android:text="@{address.apartmentNum}"
                     android:textSize="@dimen/medium" />
 
 
@@ -89,13 +98,13 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/area_name_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/apartment_num_field"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
 
                 >
 
@@ -104,6 +113,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/area_name_label"
                     android:inputType="text"
+                    android:paddingTop="@dimen/_20sdp"
+                    android:text="@{address.areaName}"
                     android:textSize="@dimen/medium" />
 
 
@@ -111,13 +122,13 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/street_name_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/area_name_field"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
 
                 >
 
@@ -126,6 +137,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/street_name_label"
                     android:inputType="text"
+                    android:paddingTop="@dimen/_20sdp"
+                    android:text="@{address.streetName}"
                     android:textSize="@dimen/medium" />
 
 
@@ -133,13 +146,13 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/motfare3_street_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/street_name_field"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
 
                 >
 
@@ -148,6 +161,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/motafre3_from_label"
                     android:inputType="text"
+                    android:paddingTop="@dimen/_20sdp"
+                    android:text="@{address.motafre3From}"
                     android:textSize="@dimen/medium" />
 
 
@@ -155,13 +170,13 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/other_address_details_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/motfare3_street_field"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
 
                 >
 
@@ -171,6 +186,8 @@
                     android:hint="@string/another_details_label"
                     android:inputType="text"
                     android:maxLines="2"
+                    android:paddingTop="@dimen/_20sdp"
+                    android:text="@{address.anotherAddressData}"
                     android:textSize="@dimen/medium" />
 
 
@@ -201,8 +218,8 @@
                 android:text="@string/last_page_label"
                 android:textSize="@dimen/small"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/next_page_btn"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/next_page_btn"
                 app:layout_constraintTop_toBottomOf="@+id/other_address_details_field" />
 
 

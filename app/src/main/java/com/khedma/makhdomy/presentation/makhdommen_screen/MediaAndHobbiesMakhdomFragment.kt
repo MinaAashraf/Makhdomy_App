@@ -26,8 +26,10 @@ class MediaAndHobbiesMakhdomFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.makhdom = viewModel.preparedMakhdom
         setUpNextBtn()
         setUpLastBtn()
+        handleComputerDealingFieldVisibility()
     }
 
     private fun setUpNextBtn() {
@@ -48,6 +50,12 @@ class MediaAndHobbiesMakhdomFragment : Fragment() {
     private fun setUpLastBtn() {
         binding.lastPageBtn.setOnClickListener {
             findNavController().navigate(R.id.action_mediaAndHobbiesMakhdomFragment_to_spiritualMakhdomFragment)
+        }
+    }
+
+    private fun handleComputerDealingFieldVisibility() {
+        binding.positiveRadioBtn.setOnCheckedChangeListener { compoundButton, isChecked ->
+            binding.computerDealingField.visibility = if (isChecked) View.VISIBLE else View.GONE
         }
     }
 

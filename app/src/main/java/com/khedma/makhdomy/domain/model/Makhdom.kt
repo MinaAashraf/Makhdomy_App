@@ -1,8 +1,10 @@
 package com.khedma.makhdomy.domain.model
 
 import android.graphics.Bitmap
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "makhdom_table")
 data class Makhdom(
@@ -15,7 +17,7 @@ data class Makhdom(
     var address: Address? = null,
     // phone data
     var homePhoneNum: String? = null,
-    var mobilePhones: Map<String, String>? = null,
+    var mobilePhones: MutableMap<String, String>? = null,
     // school data
     var schoolPhase: String? = null,
     var schoolName: String? = null,
@@ -37,7 +39,7 @@ data class Makhdom(
 
     var childCharacterNotes: String? = null,
 
-    ) {
+    )  {
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
 }
