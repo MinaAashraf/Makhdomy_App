@@ -19,6 +19,8 @@ import androidx.navigation.fragment.navArgs
 import com.khedma.makhdomy.R
 import com.khedma.makhdomy.databinding.FragmentBasicDataMakhdomBinding
 import com.khedma.makhdomy.domain.model.Makhdom
+import com.khedma.makhdomy.presentation.hide
+import com.khedma.makhdomy.presentation.show
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -43,19 +45,30 @@ class BasicDataMakhdomFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpPictureImage()
         setUpNextBtn()
+        setUpUi()
+    }
+
+    private fun setUpUi() {
+        setUpPictureImage()
+        setUpNextBtn()
+        handleSaveExitBtn()
     }
 
     private fun setUpNextBtn() {
         binding.nextPageBtn.setOnClickListener {
-            val name = binding.nameTextField.editText!!.text.toString()
-            val date = binding.birthDateField.editText!!.text.toString()
-            val birthLocation = binding.birthLocationField.editText!!.text.toString()
-            viewModel.preparedMakhdom.apply {
-                this.name = name
-                this.birthDate = date
-                this.birthLocation = birthLocation
-            }
+            saveBasicData()
             findNavController().navigate(R.id.action_basicDataMakhdomFragment_to_addressMakhdomFragment)
+        }
+    }
+
+    private fun saveBasicData() {
+        val name = binding.nameTextField.editText!!.text.toString()
+        val date = binding.birthDateField.editText!!.text.toString()
+        val birthLocation = binding.birthLocationField.editText!!.text.toString()
+        viewModel.preparedMakhdom.apply {
+            this.name = name
+            this.birthDate = date
+            this.birthLocation = birthLocation
         }
     }
 
@@ -90,17 +103,31 @@ class BasicDataMakhdomFragment : Fragment() {
     }
 
     private fun handleMakhdomInitialValueIFExist() {
+        if (viewModel.updatingState) {
+            binding.makhdom = viewModel.preparedMakhdom
+            return
+        }
         if (args.makhdomId != -1) {
             viewModel.readMakhdomById(args.makhdomId).observe(requireActivity()) {
                 it?.let {
+                    viewModel.updatingState = true
                     viewModel.preparedMakhdom = it
                     binding.makhdom = viewModel.preparedMakhdom
+                    binding.saveExitBtn.show()
                 }
             }
-        } else{
-            viewModel.clearPreparedMakhdomData()
-            binding.makhdom = viewModel.preparedMakhdom
+        } else {
+            binding.saveExitBtn.hide()
         }
     }
+
+    private fun handleSaveExitBtn() {
+        binding.saveExitBtn.setOnClickListener {
+            saveBasicData()
+            viewModel.updateMakhdom()
+            findNavController().popBackStack()
+        }
+    }
+
 
 }

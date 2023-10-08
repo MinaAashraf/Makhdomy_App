@@ -15,19 +15,20 @@
         android:layout_height="match_parent"
         android:fillViewport="true"
         android:orientation="vertical"
+        android:layoutDirection="rtl"
         tools:context=".presentation.makhdommen_screen.PhoneDataFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:padding="@dimen/_40sdp">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/phone_field"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_40sdp"
+                app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -37,7 +38,6 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/phone_num_label"
                     android:inputType="phone"
-                    android:paddingTop="@dimen/_25sdp"
                     android:textSize="@dimen/medium" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -45,7 +45,6 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/phone_owner_field"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -57,8 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/phone_owner_label"
-                    android:inputType="phone"
-                    android:paddingTop="@dimen/_25sdp"
+                    android:inputType="textPersonName"
                     android:textSize="@dimen/medium" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -67,12 +65,10 @@
                 android:id="@+id/save_phone_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:background="@drawable/border_background"
                 android:paddingTop="@dimen/_5sdp"
                 android:paddingBottom="@dimen/_5sdp"
-                android:layout_marginStart="@dimen/_40sdp"
-                android:layout_marginEnd="@dimen/_40sdp"
                 android:gravity="center"
                 android:text="@string/save_phone_label"
                 android:textColor="@color/blue"
@@ -82,6 +78,35 @@
                 app:layout_constraintTop_toBottomOf="@id/phone_owner_field"
 
                 />
+
+
+            <Button
+                android:id="@+id/next_page_btn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text="@string/next_page_label"
+                android:textSize="@dimen/small"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_40sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/last_page_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/save_phone_btn" />
+
+            <Button
+                android:id="@+id/last_page_btn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:backgroundTint="@color/grey"
+                android:text="@string/last_page_label"
+                android:textSize="@dimen/small"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/next_page_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/next_page_btn" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

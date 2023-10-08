@@ -21,19 +21,13 @@
         android:name="com.khedma.makhdomy.presentation.makhdommen_screen.AddressMakhdomFragment"
         android:label="AddressMakhdomFragment">
         <action
-            android:id="@+id/action_addressMakhdomFragment_to_basicDataMakhdomFragment"
-            app:destination="@id/basicDataMakhdomFragment" />
-        <action
-            android:id="@+id/action_addressMakhdomFragment_to_familyMakhdomFragment"
-            app:destination="@id/familyMakhdomFragment" />
+            android:id="@+id/action_addressMakhdomFragment_to_phoneDataFragment"
+            app:destination="@id/phoneDataFragment" />
     </fragment>
     <fragment
         android:id="@+id/familyMakhdomFragment"
         android:name="com.khedma.makhdomy.presentation.makhdommen_screen.FamilyMakhdomFragment"
         android:label="FamilyMakhdomFragment">
-        <action
-            android:id="@+id/action_familyMakhdomFragment_to_addressMakhdomFragment"
-            app:destination="@id/addressMakhdomFragment" />
         <action
             android:id="@+id/action_familyMakhdomFragment_to_spiritualMakhdomFragment"
             app:destination="@id/spiritualMakhdomFragment" />
@@ -43,9 +37,6 @@
         android:name="com.khedma.makhdomy.presentation.makhdommen_screen.SpiritualMakhdomFragment"
         android:label="SpiritualMakhdomFragment">
         <action
-            android:id="@+id/action_spiritualMakhdomFragment_to_familyMakhdomFragment"
-            app:destination="@id/familyMakhdomFragment" />
-        <action
             android:id="@+id/action_spiritualMakhdomFragment_to_mediaAndHobbiesMakhdomFragment"
             app:destination="@id/mediaAndHobbiesMakhdomFragment" />
     </fragment>
@@ -53,9 +44,6 @@
         android:id="@+id/mediaAndHobbiesMakhdomFragment"
         android:name="com.khedma.makhdomy.presentation.makhdommen_screen.MediaAndHobbiesMakhdomFragment"
         android:label="MediaAndHobbiesMakhdomFragment">
-        <action
-            android:id="@+id/action_mediaAndHobbiesMakhdomFragment_to_spiritualMakhdomFragment"
-            app:destination="@id/spiritualMakhdomFragment" />
         <action
             android:id="@+id/action_mediaAndHobbiesMakhdomFragment_to_healthAndCharacterMakhdomFragment"
             app:destination="@id/healthAndCharacterMakhdomFragment" />
@@ -65,23 +53,13 @@
         android:name="com.khedma.makhdomy.presentation.makhdommen_screen.HealthAndCharacterMakhdomFragment"
         android:label="HealthAndCharacterMakhdomFragment">
         <action
-            android:id="@+id/action_healthAndCharacterMakhdomFragment_to_mediaAndHobbiesMakhdomFragment"
-            app:destination="@id/mediaAndHobbiesMakhdomFragment" />
-        <action
             android:id="@+id/action_healthAndCharacterMakhdomFragment_to_makhdomDetailsFragment"
             app:destination="@id/makhdomReviewsFragment" />
     </fragment>
     <fragment
         android:id="@+id/makhdomReviewsFragment"
         android:name="com.khedma.makhdomy.presentation.makhdommen_screen.MakhdomReviewFragment"
-        android:label="MakhdomDetailsFragment">
-        <action
-            android:id="@+id/action_makhdomReviewFragment_to_healthAndCharacterMakhdomFragment"
-            app:destination="@id/healthAndCharacterMakhdomFragment" />
-        <action
-            android:id="@+id/action_makhdomReviewsFragment_to_makhdommenListFragment"
-            app:destination="@id/makhdommenListFragment" />
-    </fragment>
+        android:label="MakhdomDetailsFragment"/>
     <fragment
         android:id="@+id/makhdommenListFragment"
         android:name="com.khedma.makhdomy.presentation.makhdommen_screen.MakhdommenListFragment"
@@ -105,6 +83,14 @@
         <action
             android:id="@+id/action_makhdomDetailsFragment_to_basicDataMakhdomFragment"
             app:destination="@id/basicDataMakhdomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/phoneDataFragment"
+        android:name="com.khedma.makhdomy.presentation.makhdommen_screen.PhoneDataFragment"
+        android:label="PhoneDataFragment" >
+        <action
+            android:id="@+id/action_phoneDataFragment_to_familyMakhdomFragment"
+            app:destination="@id/familyMakhdomFragment" />
     </fragment>
 
 

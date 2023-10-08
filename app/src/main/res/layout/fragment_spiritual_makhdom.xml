@@ -47,7 +47,7 @@
                 android:id="@+id/spiritual_father_church_field"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/spiritual_father_field">
@@ -89,6 +89,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/next_page_btn"
                 app:layout_constraintTop_toTopOf="@+id/next_page_btn" />
+
+            <Button
+                android:id="@+id/save_exit_btn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="@string/save_exit_label"
+                android:textSize="@dimen/medium"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/next_page_btn" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

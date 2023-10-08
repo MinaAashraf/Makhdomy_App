@@ -32,15 +32,15 @@ class MakhdomReviewFragment : Fragment() {
     private fun setUpSaveBtn() {
 
         binding.saveBtn.setOnClickListener {
-           viewModel.addMakhdom()
-           findNavController().navigate(R.id.action_makhdomReviewsFragment_to_makhdommenListFragment)
+            viewModel.addMakhdom()
+            findNavController().popBackStack(R.id.makhdommenListFragment, false)
             Log.d("makhdom : ", viewModel.preparedMakhdom.toString())
         }
     }
 
     private fun setUpLastBtn() {
         binding.lastPageBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_makhdomReviewFragment_to_healthAndCharacterMakhdomFragment)
+            findNavController().popBackStack()
         }
     }
 

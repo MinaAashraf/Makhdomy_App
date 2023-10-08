@@ -11,6 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.khedma.makhdomy.R
 import com.khedma.makhdomy.databinding.FragmentMediaAndHobbiesMakhdomBinding
 import com.khedma.makhdomy.databinding.FragmentSpiritualMakhdomBinding
+import com.khedma.makhdomy.presentation.hide
+import com.khedma.makhdomy.presentation.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,29 +29,37 @@ class MediaAndHobbiesMakhdomFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.makhdom = viewModel.preparedMakhdom
+        setUpUi()
+    }
+
+    private fun setUpUi() {
         setUpNextBtn()
         setUpLastBtn()
+        handleSaveExitBtn()
         handleComputerDealingFieldVisibility()
     }
 
     private fun setUpNextBtn() {
-
         binding.nextPageBtn.setOnClickListener {
-            val hasComputerOrInternet = binding.positiveRadioBtn.isActivated
-            val favouriteHobbiesAndPrizes = binding.hobbiesField.editText!!.text.toString()
-
-            viewModel.preparedMakhdom.apply {
-                this.hasComputer = hasComputerOrInternet
-                this.hobbiesAndPrizes = favouriteHobbiesAndPrizes
-            }
-
+            saveMediaData()
             findNavController().navigate(R.id.action_mediaAndHobbiesMakhdomFragment_to_healthAndCharacterMakhdomFragment)
+        }
+    }
+
+
+    private fun saveMediaData() {
+        val hasComputerOrInternet = binding.positiveRadioBtn.isChecked
+        val favouriteHobbiesAndPrizes = binding.hobbiesField.editText!!.text.toString()
+
+        viewModel.preparedMakhdom.apply {
+            this.hasComputer = hasComputerOrInternet
+            this.hobbiesAndPrizes = favouriteHobbiesAndPrizes
         }
     }
 
     private fun setUpLastBtn() {
         binding.lastPageBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_mediaAndHobbiesMakhdomFragment_to_spiritualMakhdomFragment)
+            findNavController().popBackStack()
         }
     }
 
@@ -59,5 +69,18 @@ class MediaAndHobbiesMakhdomFragment : Fragment() {
         }
     }
 
+    private fun handleSaveExitBtn() {
+
+        if (viewModel.updatingState)
+            binding.saveExitBtn.show()
+        else
+            binding.saveExitBtn.hide()
+
+        binding.saveExitBtn.setOnClickListener {
+            saveMediaData()
+            viewModel.updateMakhdom()
+            findNavController().popBackStack(R.id.makhdomDetailsFragment, false)
+        }
+    }
 
 }

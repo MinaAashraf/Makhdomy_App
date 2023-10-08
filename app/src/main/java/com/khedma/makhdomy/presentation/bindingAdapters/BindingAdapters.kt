@@ -42,3 +42,5 @@ fun bindComputerDealingInitialVisibilityDependingOnRadioBtn (inputLayout: TextIn
      inputLayout.visibility = if (hasComputer) View.VISIBLE else View.GONE
 }
 
+
+

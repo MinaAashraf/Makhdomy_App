@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.khedma.makhdomy.R
 import com.khedma.makhdomy.databinding.FragmentMediaAndHobbiesMakhdomBinding
 import com.khedma.makhdomy.databinding.FragmentPhoneDataBinding
@@ -29,6 +30,8 @@ class PhoneDataFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpSavingPhoneBtn()
+        setUpNextBtn()
+        setUpLastBtn()
     }
 
     private fun setUpSavingPhoneBtn() {
@@ -50,6 +53,18 @@ class PhoneDataFragment : Fragment() {
         }
     }
 
+
+    private fun setUpNextBtn (){
+        binding.nextPageBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_phoneDataFragment_to_familyMakhdomFragment)
+        }
+    }
+
+    private fun setUpLastBtn (){
+        binding.lastPageBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
 
     private fun validatePhoneNum(phoneNum: String): Boolean {
         var isValid = true

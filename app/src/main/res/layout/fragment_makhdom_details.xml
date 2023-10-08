@@ -140,7 +140,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/phone_value"
-                        android:text="@{makhdom.birthLocation}"
+                        android:text="@{makhdom.mobilePhones.toString()}"
                         android:textColor="@color/grey"
                         android:textSize="@dimen/medium"
                         android:layout_marginTop="@dimen/_10sdp"

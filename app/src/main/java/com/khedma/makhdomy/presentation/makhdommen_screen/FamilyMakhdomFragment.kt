@@ -10,6 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.khedma.makhdomy.R
 import com.khedma.makhdomy.databinding.FragmentFamilyMakhdomBinding
+import com.khedma.makhdomy.presentation.hide
+import com.khedma.makhdomy.presentation.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,30 +28,51 @@ class FamilyMakhdomFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.makhdom = viewModel.preparedMakhdom
+        setUpUi()
+    }
+
+    private fun setUpUi() {
         setUpNextBtn()
         setUpLastBtn()
+        handleSaveExitBtn()
     }
-
 
     private fun setUpNextBtn() {
-
         binding.nextPageBtn.setOnClickListener {
-            val fatherJob = binding.fatherJobField.editText!!.text.toString()
-            val motherJob = binding.motherJobField.editText!!.text.toString()
-
-            viewModel.preparedMakhdom.apply {
-                this.fatherJob = fatherJob
-                this.motherJob = motherJob
-            }
-
-           findNavController().navigate(R.id.action_familyMakhdomFragment_to_spiritualMakhdomFragment)
+            saveFamilyData()
+            findNavController().navigate(R.id.action_familyMakhdomFragment_to_spiritualMakhdomFragment)
         }
     }
+
+    private fun saveFamilyData() {
+        val fatherJob = binding.fatherJobField.editText!!.text.toString()
+        val motherJob = binding.motherJobField.editText!!.text.toString()
+
+        viewModel.preparedMakhdom.apply {
+            this.fatherJob = fatherJob
+            this.motherJob = motherJob
+        }
+    }
+
 
     private fun setUpLastBtn() {
         binding.lastPageBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_familyMakhdomFragment_to_addressMakhdomFragment)
+            findNavController().popBackStack()
         }
     }
+
+    private fun handleSaveExitBtn() {
+        if (viewModel.updatingState)
+            binding.saveExitBtn.show()
+        else
+            binding.saveExitBtn.hide()
+
+        binding.saveExitBtn.setOnClickListener {
+            saveFamilyData()
+            viewModel.updateMakhdom()
+            findNavController().popBackStack(R.id.makhdomDetailsFragment, false)
+        }
+    }
+
 
 }

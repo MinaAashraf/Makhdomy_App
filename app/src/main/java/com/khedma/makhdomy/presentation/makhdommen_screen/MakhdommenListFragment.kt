@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
+import androidx.recyclerview.widget.RecyclerView
 import com.khedma.makhdomy.R
 import com.khedma.makhdomy.databinding.FragmentMakhdommenListBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +22,9 @@ class MakhdommenListFragment : Fragment(), MakhdommenAdapter.OnItemClick {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = binding.root
+    ): View {
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,7 +35,6 @@ class MakhdommenListFragment : Fragment(), MakhdommenAdapter.OnItemClick {
     private fun observeMakhdommen() {
         viewModel.makhdommen.observe(requireActivity()) {
             it?.let {
-                Log.d("servants", it.map { it.id!!.toString() }.toString())
                 adapter.submitList(it)
             }
         }
@@ -41,26 +43,42 @@ class MakhdommenListFragment : Fragment(), MakhdommenAdapter.OnItemClick {
     private fun setUpUi() {
         setUpRecyclerView()
         setUpAddMakhdomBtn()
+        handleRecyclerViewScrolling()
     }
 
     private fun setUpRecyclerView() {
         binding.makhdommedRecyclerView.adapter = adapter
     }
 
-    private fun setUpAddMakhdomBtn(){
+    private fun setUpAddMakhdomBtn() {
         binding.addingMakhdomBtn.setOnClickListener {
             findNavController().navigate(R.id.action_makhdommenListFragment_to_basicDataMakhdomFragment)
         }
     }
 
     override fun onItemClick(id: Int) {
-         findNavController().navigate(MakhdommenListFragmentDirections.actionMakhdommenListFragmentToMakhdomDetailsFragment(id)
-             /*navOptions {
-                 anim {
-                     enter = android.R.animator.fade_out
-                     exit = android.R.animator.fade_out
-                 }
-             }*/)
+        findNavController().navigate(
+            MakhdommenListFragmentDirections.actionMakhdommenListFragmentToMakhdomDetailsFragment(id)
+            /*navOptions {
+                anim {
+                    enter = android.R.animator.fade_out
+                    exit = android.R.animator.fade_out
+                }
+            }*/
+        )
+    }
+
+    private fun handleRecyclerViewScrolling() {
+        binding.makhdommedRecyclerView.addOnScrollListener(object :
+            RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0 && binding.addingMakhdomBtn.visibility == View.VISIBLE)
+                    binding.addingMakhdomBtn.visibility = View.GONE
+                else if (dy <= 0 && binding.addingMakhdomBtn.visibility == View.GONE)
+                    binding.addingMakhdomBtn.visibility = View.VISIBLE
+            }
+        })
     }
 
 }

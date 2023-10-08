@@ -25,8 +25,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
-
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -48,7 +46,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/father_job_field"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
 
             >
 
@@ -92,6 +89,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mother_job_field" />
 
+
+        <Button
+            android:id="@+id/save_exit_btn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:text="@string/save_exit_label"
+            android:textSize="@dimen/medium"
+            android:visibility="gone"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/next_page_btn" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

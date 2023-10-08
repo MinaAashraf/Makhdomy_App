@@ -25,6 +25,7 @@ class MakhdomViewModel @Inject constructor(
 
     var preparedMakhdom: Makhdom = Makhdom()
 
+    var updatingState : Boolean = false
 
     val makhdommen: LiveData<List<Makhdom>> = readAllMakhdomeenUseCase.execute()
 
@@ -37,9 +38,9 @@ class MakhdomViewModel @Inject constructor(
         }
     }
 
-    fun updateMakhdom(makhdom: Makhdom) {
+    fun updateMakhdom() {
         viewModelScope.launch {
-            updateMakhdomUseCase.execute(makhdom)
+            updateMakhdomUseCase.execute(preparedMakhdom)
         }
     }
 
@@ -47,5 +48,8 @@ class MakhdomViewModel @Inject constructor(
         preparedMakhdom = Makhdom()
     }
 
+    fun isMakhdomHasNoData () : Boolean{
+         return preparedMakhdom == Makhdom()
+    }
 
 }

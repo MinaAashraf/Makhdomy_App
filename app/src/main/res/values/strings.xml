@@ -54,4 +54,5 @@
     <string name="media_label">الميديا:</string>
     <string name="computer_fields_label">مجالات استخدام الطفل له:</string>
     <string name="health_label">الصحة:</string>
+    <string name="save_exit_label">حفظ و خروج</string>
 </resources>
