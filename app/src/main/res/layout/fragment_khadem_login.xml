@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/_45sdp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_45sdp"
+            android:layoutDirection="rtl"
+            android:paddingBottom="@dimen/_15sdp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/khadem_name_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:helperTextEnabled="true"
+                app:helperTextTextColor="@color/red"
+                android:layout_marginTop="@dimen/_20sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/khadem_name"
+                    android:inputType="textPersonName"
+                    android:textSize="@dimen/medium" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phone_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:helperTextEnabled="true"
+                app:helperTextTextColor="@color/red"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/khadem_name_field">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/phone_num"
+                    android:inputType="phone"
+                    android:textSize="@dimen/medium" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/className_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:helperTextEnabled="true"
+                app:helperTextTextColor="@color/red"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/phone_field">
+
+                <AutoCompleteTextView
+                    android:id="@+id/class_name_auto_complete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:hint="@string/class_label"
+                    android:inputType="none"
+                    android:textSize="@dimen/medium" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/save_btn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/save_label"
+                android:textSize="@dimen/medium"
+                android:textStyle="bold"
+                app:backgroundTint="@color/blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/className_field" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

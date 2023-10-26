@@ -3,94 +3,177 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/makhdommenListFragment">
+    app:startDestination="@id/splashFragment">
     <fragment
         android:id="@+id/basicDataMakhdomFragment"
         android:name="com.khedma.makhdomy.presentation.makhdommen_screen.BasicDataMakhdomFragment"
-        android:label="BasicDataMakhdomFragment">
+        android:label="البيانات الأساسية">
         <action
             android:id="@+id/action_basicDataMakhdomFragment_to_addressMakhdomFragment"
-            app:destination="@id/addressMakhdomFragment" />
+            app:destination="@id/addressMakhdomFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/fade_out" />
         <argument
             android:name="makhdom_id"
-            app:argType="integer"
-            android:defaultValue="-1" />
+            android:defaultValue="-1"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/addressMakhdomFragment"
         android:name="com.khedma.makhdomy.presentation.makhdommen_screen.AddressMakhdomFragment"
-        android:label="AddressMakhdomFragment">
+        android:label="العنوان">
         <action
             android:id="@+id/action_addressMakhdomFragment_to_phoneDataFragment"
-            app:destination="@id/phoneDataFragment" />
+            app:destination="@id/phoneDataFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/fade_out" />
+        />
     </fragment>
     <fragment
         android:id="@+id/familyMakhdomFragment"
         android:name="com.khedma.makhdomy.presentation.makhdommen_screen.FamilyMakhdomFragment"
-        android:label="FamilyMakhdomFragment">
+        android:label="بيانات الأسرة">
         <action
             android:id="@+id/action_familyMakhdomFragment_to_spiritualMakhdomFragment"
-            app:destination="@id/spiritualMakhdomFragment" />
+            app:destination="@id/spiritualMakhdomFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/fade_out" />
+        />
     </fragment>
     <fragment
         android:id="@+id/spiritualMakhdomFragment"
         android:name="com.khedma.makhdomy.presentation.makhdommen_screen.SpiritualMakhdomFragment"
-        android:label="SpiritualMakhdomFragment">
+        android:label="البيانات الروحية">
         <action
             android:id="@+id/action_spiritualMakhdomFragment_to_mediaAndHobbiesMakhdomFragment"
-            app:destination="@id/mediaAndHobbiesMakhdomFragment" />
+            app:destination="@id/mediaAndHobbiesMakhdomFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/fade_out" />
+        />
     </fragment>
     <fragment
         android:id="@+id/mediaAndHobbiesMakhdomFragment"
         android:name="com.khedma.makhdomy.presentation.makhdommen_screen.MediaAndHobbiesMakhdomFragment"
-        android:label="MediaAndHobbiesMakhdomFragment">
+        android:label="بيانات الميديا">
         <action
             android:id="@+id/action_mediaAndHobbiesMakhdomFragment_to_healthAndCharacterMakhdomFragment"
-            app:destination="@id/healthAndCharacterMakhdomFragment" />
+            app:destination="@id/healthAndCharacterMakhdomFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/fade_out" />
+        />
     </fragment>
     <fragment
         android:id="@+id/healthAndCharacterMakhdomFragment"
         android:name="com.khedma.makhdomy.presentation.makhdommen_screen.HealthAndCharacterMakhdomFragment"
-        android:label="HealthAndCharacterMakhdomFragment">
+        android:label="البيانات الصحية">
         <action
             android:id="@+id/action_healthAndCharacterMakhdomFragment_to_makhdomDetailsFragment"
-            app:destination="@id/makhdomReviewsFragment" />
+            app:destination="@id/makhdomReviewsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/fade_out" />
+        />
     </fragment>
     <fragment
         android:id="@+id/makhdomReviewsFragment"
         android:name="com.khedma.makhdomy.presentation.makhdommen_screen.MakhdomReviewFragment"
-        android:label="MakhdomDetailsFragment"/>
+        android:label="MakhdomDetailsFragment" />
     <fragment
         android:id="@+id/makhdommenListFragment"
         android:name="com.khedma.makhdomy.presentation.makhdommen_screen.MakhdommenListFragment"
-        android:label="MakhdommenListFragment" >
+        android:label="مخـدومي">
         <action
             android:id="@+id/action_makhdommenListFragment_to_basicDataMakhdomFragment"
-            app:destination="@id/basicDataMakhdomFragment" />
+            app:destination="@id/basicDataMakhdomFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/fade_out" />
+        />
         <action
             android:id="@+id/action_makhdommenListFragment_to_makhdomDetailsFragment"
             app:destination="@id/makhdomDetailsFragment"
-            />
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/fade_out" />
+        />
     </fragment>
     <fragment
         android:id="@+id/makhdomDetailsFragment"
         android:name="com.khedma.makhdomy.presentation.makhdommen_screen.MakhdomDetailsFragment"
-        android:label="MakhdomDetailsFragment" >
+        android:label="بيانات المخدوم">
         <argument
             android:name="makhdom_id"
-            app:argType="integer"
-            android:defaultValue="1" />
+            android:defaultValue="1"
+            app:argType="integer" />
         <action
             android:id="@+id/action_makhdomDetailsFragment_to_basicDataMakhdomFragment"
-            app:destination="@id/basicDataMakhdomFragment" />
+            app:destination="@id/basicDataMakhdomFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/fade_out" />
+        />
     </fragment>
     <fragment
         android:id="@+id/phoneDataFragment"
         android:name="com.khedma.makhdomy.presentation.makhdommen_screen.PhoneDataFragment"
-        android:label="PhoneDataFragment" >
+        android:label="رقم الموبايل">
         <action
             android:id="@+id/action_phoneDataFragment_to_familyMakhdomFragment"
-            app:destination="@id/familyMakhdomFragment" />
+            app:destination="@id/familyMakhdomFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/fade_out" />
+        />
+    </fragment>
+    <fragment
+        android:id="@+id/khademLoginFragment"
+        android:name="com.khedma.makhdomy.presentation.khadem.KhademLoginFragment"
+        android:label="KhademLoginFragment">
+        <action
+            android:id="@+id/action_khademLoginFragment_to_phoneVerificationFragment"
+            app:destination="@id/phoneVerificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/phoneVerificationFragment"
+        android:name="com.khedma.makhdomy.presentation.khadem.PhoneVerificationFragment"
+        android:label="PhoneVerificationFragment">
+        <action
+            android:id="@+id/action_phoneVerificationFragment_to_makhdommenListFragment"
+            app:destination="@id/makhdommenListFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.khedma.makhdomy.presentation.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_khademLoginFragment"
+            app:destination="@id/khademLoginFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_makhdommenListFragment"
+            app:destination="@id/makhdommenListFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
 
 

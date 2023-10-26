@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import com.khedma.makhdomy.domain.model.Makhdom
 import javax.inject.Inject
-import kotlin.math.log
 
 class MakhdomLocalDataSourceImpl @Inject constructor(private val dao: MakhdomyDao) :
     MakhdomLocalDataSource {
@@ -22,9 +21,9 @@ class MakhdomLocalDataSourceImpl @Inject constructor(private val dao: MakhdomyDa
        return dao.readAll()
     }
 
-
     override fun readById(id: Int): LiveData<Makhdom> = dao.readById(id)
 
+    override fun searchByKeyWord(keyWord: String): LiveData<List<Makhdom>> = dao.searchByKeyWord("%$keyWord%")
 
     override suspend fun updateMakhdom(makhdom: Makhdom) = dao.updateMakhdom(makhdom)
 

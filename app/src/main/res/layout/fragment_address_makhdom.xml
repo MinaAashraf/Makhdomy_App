@@ -20,7 +20,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layoutDirection="rtl"
-            android:padding="@dimen/_40sdp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingBottom="@dimen/_15sdp"
+            android:paddingStart="@dimen/_45sdp"
+            android:paddingEnd="@dimen/_45sdp"
+            android:background="@color/light_blue"
             tools:context=".presentation.makhdommen_screen.AddressMakhdomFragment">
 
             <com.google.android.material.textfield.TextInputLayout
@@ -30,6 +34,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                 >
 
@@ -48,10 +53,11 @@
                 android:id="@+id/floor_num_field"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_17sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/home_num_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                 >
 
@@ -71,10 +77,11 @@
                 android:id="@+id/apartment_num_field"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_17sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/floor_num_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                 >
 
@@ -94,10 +101,11 @@
                 android:id="@+id/area_name_field"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_17sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/apartment_num_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                 >
 
@@ -116,10 +124,11 @@
                 android:id="@+id/street_name_field"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_17sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/area_name_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                 >
 
@@ -138,10 +147,11 @@
                 android:id="@+id/motfare3_street_field"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_17sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/street_name_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                 >
 
@@ -160,10 +170,11 @@
                 android:id="@+id/other_address_details_field"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_17sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/motfare3_street_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                 >
 
@@ -180,33 +191,45 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
+                android:id="@+id/get_location_axis_btn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginTop="@dimen/_17sdp"
+                android:text="@string/map_axis_label"
+                android:textSize="@dimen/medium"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:backgroundTint="@color/light_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/other_address_details_field" />
+
+
+            <Button
                 android:id="@+id/next_page_btn"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginTop="@dimen/_14sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:text="@string/next_page_label"
                 android:textSize="@dimen/small"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@id/last_page_btn"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/other_address_details_field" />
+                app:layout_constraintTop_toBottomOf="@+id/get_location_axis_btn" />
 
             <Button
                 android:id="@+id/last_page_btn"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:backgroundTint="@color/grey"
                 android:text="@string/last_page_label"
                 android:textSize="@dimen/small"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/next_page_btn"
-                app:layout_constraintTop_toBottomOf="@+id/other_address_details_field" />
+                app:layout_constraintTop_toTopOf="@+id/next_page_btn" />
             <Button
                 android:id="@+id/save_exit_btn"
                 android:layout_width="0dp"

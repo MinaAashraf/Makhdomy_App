@@ -5,7 +5,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.TypeConverter
 import androidx.room.Update
 import com.khedma.makhdomy.domain.model.Makhdom
 
@@ -20,9 +19,15 @@ interface MakhdomyDao {
 
     @Query("select * from makhdom_table where id = :id")
     fun readById(id: Int): LiveData<Makhdom>
+    @Query("Select * from makhdom_table" +
+            " where name like :keyWord or className like :keyWord or addressArea like :keyWord " +
+            "or streetName like :keyWord or motafare3From like :keyWord")
+    fun searchByKeyWord(keyWord: String): LiveData<List<Makhdom>>
 
     @Update
     suspend fun updateMakhdom(makhdom: Makhdom)
+
+
 
 
 }

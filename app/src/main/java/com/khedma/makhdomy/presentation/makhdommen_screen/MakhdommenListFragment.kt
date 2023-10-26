@@ -1,17 +1,18 @@
 package com.khedma.makhdomy.presentation.makhdommen_screen
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
 import com.khedma.makhdomy.R
 import com.khedma.makhdomy.databinding.FragmentMakhdommenListBinding
+import com.khedma.makhdomy.presentation.utils.hide
+import com.khedma.makhdomy.presentation.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,12 +37,17 @@ class MakhdommenListFragment : Fragment(), MakhdommenAdapter.OnItemClick {
         viewModel.makhdommen.observe(requireActivity()) {
             it?.let {
                 adapter.submitList(it)
+                if (it.isEmpty())
+                    binding.emptyIcon.show()
+                else
+                    binding.emptyIcon.hide()
             }
         }
     }
 
     private fun setUpUi() {
         setUpRecyclerView()
+        setUpSearchView()
         setUpAddMakhdomBtn()
         handleRecyclerViewScrolling()
     }
@@ -78,6 +84,22 @@ class MakhdommenListFragment : Fragment(), MakhdommenAdapter.OnItemClick {
                 else if (dy <= 0 && binding.addingMakhdomBtn.visibility == View.GONE)
                     binding.addingMakhdomBtn.visibility = View.VISIBLE
             }
+        })
+    }
+
+    private fun setUpSearchView() {
+        binding.searchView.onActionViewExpanded()
+        binding.searchView.clearFocus()
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean = false
+
+            override fun onQueryTextChange(keyWord: String?): Boolean {
+                keyWord?.let {
+                    viewModel.search(it)
+                }
+                return true
+            }
+
         })
     }
 

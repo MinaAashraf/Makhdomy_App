@@ -21,6 +21,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/light_blue"
             android:padding="@dimen/_40sdp">
 
             <com.google.android.material.textfield.TextInputLayout
@@ -29,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_40sdp"
                 app:errorEnabled="true"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -49,6 +51,8 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 app:layout_constraintTop_toBottomOf="@id/phone_field">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -57,6 +61,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/phone_owner_label"
                     android:inputType="textPersonName"
+
                     android:textSize="@dimen/medium" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -64,7 +69,7 @@
             <TextView
                 android:id="@+id/save_phone_btn"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:background="@drawable/border_background"
                 android:paddingTop="@dimen/_5sdp"
@@ -83,7 +88,7 @@
             <Button
                 android:id="@+id/next_page_btn"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:text="@string/next_page_label"
                 android:textSize="@dimen/small"
@@ -97,7 +102,7 @@
             <Button
                 android:id="@+id/last_page_btn"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:backgroundTint="@color/grey"

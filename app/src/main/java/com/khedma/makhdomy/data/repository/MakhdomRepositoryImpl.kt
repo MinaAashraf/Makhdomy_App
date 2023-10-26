@@ -1,23 +1,59 @@
 package com.khedma.makhdomy.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.khedma.makhdomy.data.local.MakhdomLocalDataSource
+import com.khedma.makhdomy.data.remote.KhademRemoteDataSource
+import com.khedma.makhdomy.data.remote.MakhdomRemoteDataSource
+import com.khedma.makhdomy.domain.Result
+import com.khedma.makhdomy.domain.model.Khadem
 import com.khedma.makhdomy.domain.model.Makhdom
+import com.khedma.makhdomy.domain.onFailure
+import com.khedma.makhdomy.domain.onSuccess
 import com.khedma.makhdomy.domain.repository.MakhdomRepository
+import com.khedma.makhdomy.presentation.utils.convertToByteArr
 import javax.inject.Inject
 
-class MakhdomRepositoryImpl @Inject constructor(private val makhdomLocalDataSource: MakhdomLocalDataSource) :
+class MakhdomRepositoryImpl @Inject constructor(
+    private val makhdomLocalDataSource: MakhdomLocalDataSource,
+    private val makhdomRemoteDataSource: MakhdomRemoteDataSource,
+    private val khademRemoteDataSource: KhademRemoteDataSource,
+) :
 
     MakhdomRepository {
-    override suspend fun addMakhdom(makhdom: Makhdom) =
+    override suspend fun addMakhdom(makhdom: Makhdom) {
         makhdomLocalDataSource.addMakhdom(makhdom)
+        try {
+            makhdomRemoteDataSource.addMakhdom(
+                makhdom.picture?.convertToByteArr(),
+                makhdom.mapToMakhdomyData()
+            ).onSuccess { makhdomKey ->
+                makhdom.isSynchronized = true
+                makhdom.makhdomKey = makhdomKey
+                updateMakhdom(makhdom)
+                Log.d("firebase success: ", makhdom.toString() )
+                khademRemoteDataSource.addMakhdomIdToKhadem(makhdomKey = makhdomKey)
+            }.onFailure {
+                Log.d("firebase exception: ", it.message.toString())
+            }
+        } catch (e: Exception) {
+            Log.d("firebase exception: ", e.message.toString())
+        }
 
+    }
 
     override fun readAll(): LiveData<List<Makhdom>> = makhdomLocalDataSource.readAll()
 
     override fun readById(id: Int): LiveData<Makhdom> = makhdomLocalDataSource.readById(id)
 
+    override fun searchByKeyWord(keyWord: String): LiveData<List<Makhdom>> =
+        makhdomLocalDataSource.searchByKeyWord(keyWord)
+
+
     override suspend fun updateMakhdom(makhdom: Makhdom) =
         makhdomLocalDataSource.updateMakhdom(makhdom)
+
+    override suspend fun addKhadem(khadem: Khadem): Result<String> =
+        khademRemoteDataSource.addKhadem(khadem)
 
 }

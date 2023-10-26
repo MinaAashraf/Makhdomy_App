@@ -11,17 +11,15 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp"
+        android:layout_height="@dimen/_60sdp"
         android:layout_margin="@dimen/_10sdp"
         app:cardCornerRadius="@dimen/_5sdp"
-        app:cardElevation="1dp"
-        >
+        app:cardElevation="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
-            android:layoutDirection="rtl"
-            >
+            android:layout_height="match_parent"
+            android:layoutDirection="rtl">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/picture_view"
@@ -47,6 +45,17 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/picture_view"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/_15sdp"
+                sync_icon="@{makhdom.isSynchronized}"
+                />
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

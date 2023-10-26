@@ -24,7 +24,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#eee"
+            android:background="@color/light_blue"
             android:padding="@dimen/_20sdp"
             tools:context=".presentation.makhdommen_screen.MakhdomDetailsFragment">
 
@@ -32,14 +32,16 @@
                 android:id="@+id/picture_view"
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/border_background"
-                android:padding="@dimen/_5sdp"
+                android:padding="@dimen/_10sdp"
                 android:src="@drawable/profile_img"
                 app:img_src="@{makhdom.picture}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/name_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_40sdp"
@@ -47,19 +49,31 @@
                 android:textColor="@color/blue"
                 android:textSize="@dimen/large"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/picture_view"
+                app:layout_constraintBottom_toTopOf="@+id/class_name_text"
                 app:layout_constraintStart_toEndOf="@id/picture_view"
                 app:layout_constraintTop_toTopOf="@+id/picture_view" />
 
+            <TextView
+                android:id="@+id/class_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:text="@{makhdom.className}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/small"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/picture_view"
+                app:layout_constraintStart_toEndOf="@id/picture_view"
+                app:layout_constraintTop_toBottomOf="@id/name_text" />
+
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_view"
+                android:id="@+id/card_view1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20sdp"
                 app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="1dp"
+                app:cardCornerRadius="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/picture_view">
@@ -79,16 +93,17 @@
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
                     <TextView
                         android:id="@+id/birth_date_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:text="@string/birth_date_label2"
                         android:textColor="@color/black"
                         android:textSize="@dimen/small"
-                        app:layout_constraintTop_toBottomOf="@id/basic_data_label"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginTop="@dimen/_10sdp"/>
+                        app:layout_constraintTop_toBottomOf="@id/basic_data_label" />
 
                     <TextView
                         android:id="@+id/birth_date_value"
@@ -114,9 +129,9 @@
                         app:layout_constraintTop_toBottomOf="@id/birth_date_value" />
 
                     <TextView
+                        android:id="@+id/birth_location_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/birth_location_value"
                         android:layout_marginStart="@dimen/_15sdp"
                         android:text="@{makhdom.birthLocation}"
                         android:textColor="@color/grey"
@@ -137,48 +152,66 @@
                         app:layout_constraintTop_toBottomOf="@id/birth_location_value" />
 
                     <TextView
+                        android:id="@+id/phone_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/phone_value"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:text="@{makhdom.mobilePhones.toString()}"
                         android:textColor="@color/grey"
                         android:textSize="@dimen/medium"
-                        android:layout_marginTop="@dimen/_10sdp"
                         app:layout_constraintStart_toStartOf="@id/phone_label"
                         app:layout_constraintTop_toBottomOf="@+id/phone_label" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-                    <View
-                        android:id="@+id/seperator1"
-                        android:layout_width="0dp"
-                        android:layout_height="0.5dp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:background="@color/grey"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/phone_value" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_view1">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:id="@+id/address_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_margin="@dimen/_15sdp"
                         android:text="@string/address_label"
                         android:textColor="@color/blue"
                         android:textSize="@dimen/very_small"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/seperator1"
+                        app:layout_constraintTop_toTopOf="parent"
 
                         />
 
-                    <TextView
-                        android:id="@+id/makhdom_address"
+                    <ImageButton
+                        android:id="@+id/map_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:src="@drawable/baseline_location_on_24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/makhdom_address"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="start"
                         android:textColor="@color/grey"
-                        android:textSize="@dimen/medium"
+                        android:textSize="@dimen/small"
                         app:address="@{address}"
+                        app:layout_constraintEnd_toStartOf="@id/map_icon"
                         app:layout_constraintStart_toStartOf="@id/address_label"
                         app:layout_constraintTop_toBottomOf="@id/address_label" />
 
@@ -193,28 +226,35 @@
                         app:layout_constraintStart_toStartOf="@id/address_label"
                         app:layout_constraintTop_toBottomOf="@id/makhdom_address" />
 
-                    <View
-                        android:id="@+id/seperator2"
-                        android:layout_width="0dp"
-                        android:layout_height="0.5dp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:background="@color/grey"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/address_another_data" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_view2">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_15sdp">
 
                     <TextView
                         android:id="@+id/family_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:text="@string/family_label"
                         android:textColor="@color/blue"
                         android:textSize="@dimen/very_small"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/seperator2" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/father_job_label"
@@ -222,6 +262,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:text="@string/father_job_label2"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/small"
                         app:layout_constraintStart_toStartOf="@id/family_label"
                         app:layout_constraintTop_toBottomOf="@id/family_label" />
@@ -233,6 +274,7 @@
                         android:layout_marginStart="@dimen/_20sdp"
                         android:text="@{makhdom.fatherJob}"
                         android:textSize="@dimen/medium"
+
                         app:layout_constraintBottom_toBottomOf="@id/father_job_label"
                         app:layout_constraintStart_toEndOf="@id/father_job_label"
                         app:layout_constraintTop_toTopOf="@id/father_job_label" />
@@ -244,6 +286,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:text="@string/mother_job_label2"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/small"
                         app:layout_constraintStart_toStartOf="@id/family_label"
                         app:layout_constraintTop_toBottomOf="@id/father_job_data"
@@ -262,27 +305,36 @@
                         app:layout_constraintTop_toTopOf="@id/mother_job_label" />
 
 
-                    <View
-                        android:id="@+id/seperator3"
-                        android:layout_width="0dp"
-                        android:layout_height="0.5dp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:background="@color/grey"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/mother_job_data" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_view3">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_15sdp">
 
                     <TextView
+                        android:id="@+id/spirit_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/spirit_label"
                         android:text="@string/spirit_label"
                         android:textColor="@color/blue"
                         android:textSize="@dimen/very_small"
                         android:textStyle="bold"
-                        android:layout_marginTop="@dimen/_10sdp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/seperator3"
+                        app:layout_constraintTop_toTopOf="parent"
+
                         />
 
                     <TextView
@@ -293,11 +345,8 @@
                         android:text="@string/spiritual_father_label2"
                         android:textColor="@color/black"
                         android:textSize="@dimen/small"
-                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/spirit_label"
-
-                        />
+                        app:layout_constraintTop_toBottomOf="@id/spirit_label" />
 
                     <TextView
                         android:id="@+id/spiritual_father_name"
@@ -318,7 +367,6 @@
                         android:text="@string/church_label2"
                         android:textColor="@color/black"
                         android:textSize="@dimen/small"
-                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/spiritual_father_name" />
 
@@ -334,28 +382,35 @@
                         app:layout_constraintTop_toTopOf="@+id/spiritual_father_church_label" />
 
 
-                    <View
-                        android:id="@+id/seperator4"
-                        android:layout_width="0dp"
-                        android:layout_height="0.5dp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:background="@color/grey"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/church_value" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_view4">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_15sdp">
 
                     <TextView
                         android:id="@+id/hobbies_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:text="@string/hobbies_prizes_label"
                         android:textColor="@color/blue"
                         android:textSize="@dimen/very_small"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/seperator4" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/hobbies_prizes_value"
@@ -366,27 +421,34 @@
                         app:layout_constraintStart_toStartOf="@id/hobbies_label"
                         app:layout_constraintTop_toBottomOf="@id/hobbies_label" />
 
-                    <View
-                        android:id="@+id/seperator6"
-                        android:layout_width="0dp"
-                        android:layout_height="0.5dp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:background="@color/grey"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/hobbies_prizes_value" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_view5">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_15sdp">
 
                     <TextView
                         android:id="@+id/media_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:text="@string/media_label"
                         android:textColor="@color/blue"
                         android:textSize="@dimen/very_small"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/seperator6" />
-
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/has_computer_label"
@@ -426,38 +488,42 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_20sdp"
-                        android:textSize="@dimen/medium"
                         android:text="@{makhdom.computerDealing}"
+                        android:textSize="@dimen/medium"
                         app:layout_constraintBottom_toBottomOf="@+id/computer_dealing_label"
                         app:layout_constraintStart_toEndOf="@id/computer_dealing_label"
                         app:layout_constraintTop_toTopOf="@+id/computer_dealing_label" />
 
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_view6">
 
-                    <View
-                        android:id="@+id/seperator5"
-                        android:layout_width="0dp"
-                        android:layout_height="0.5dp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:background="@color/grey"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/computer_dealing_value"
-
-                        />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_15sdp">
 
                     <TextView
                         android:id="@+id/health_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:text="@string/health_label"
                         android:textColor="@color/blue"
                         android:textSize="@dimen/very_small"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/seperator5"
+                        app:layout_constraintTop_toTopOf="parent"
 
                         />
 
@@ -511,18 +577,18 @@
             </androidx.cardview.widget.CardView>
 
             <Button
+                android:id="@+id/update_btn"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                 android:id="@+id/update_btn"
+                android:layout_height="@dimen/btn_height"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_20sdp"
                 android:text="@string/details_update_label"
                 android:textSize="@dimen/medium"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/card_view"
-                app:layout_constraintStart_toStartOf="@id/card_view"
-                app:layout_constraintTop_toBottomOf="@id/card_view" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_view7" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

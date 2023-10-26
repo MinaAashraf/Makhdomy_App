@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/_40sdp"
             android:layoutDirection="rtl"
+            android:background="@color/light_blue"
             tools:context=".presentation.makhdommen_screen.SpiritualMakhdomFragment"
 
             >
@@ -31,6 +32,8 @@
                 android:layout_marginTop="@dimen/_40sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -50,6 +53,8 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 app:layout_constraintTop_toBottomOf="@id/spiritual_father_field">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -67,7 +72,7 @@
             <Button
                 android:id="@+id/next_page_btn"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_height="@dimen/btn_height"
                 android:text="@string/next_page_label"
                 android:textSize="@dimen/small"
                 android:textStyle="bold"
@@ -79,9 +84,8 @@
             <Button
                 android:id="@+id/last_page_btn"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:backgroundTint="@color/grey"
                 android:text="@string/last_page_label"
                 android:textSize="@dimen/small"

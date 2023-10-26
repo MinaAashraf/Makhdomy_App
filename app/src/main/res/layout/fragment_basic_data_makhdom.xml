@@ -18,6 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/light_blue"
             android:layoutDirection="rtl"
             android:padding="@dimen/_40sdp"
             tools:context=".presentation.makhdommen_screen.BasicDataMakhdomFragment">
@@ -37,9 +38,12 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/name_text_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                app:helperTextEnabled="true"
+                app:helperTextTextColor="@color/red"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/picture_view">
@@ -55,19 +59,48 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/birthDate_field"
+                android:id="@+id/className_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                app:helperTextEnabled="true"
+                app:helperTextTextColor="@color/red"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/name_text_field">
+
+                <AutoCompleteTextView
+                    android:id="@+id/class_name_auto_complete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/class_label"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:inputType="none"
+                    android:text="@{makhdom.className}"
+                    android:textSize="@dimen/medium" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/birthDate_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/className_field">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/birth_date_label"
-                    android:inputType="date"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:text="@{makhdom.birthDate}"
                     android:textSize="@dimen/medium" />
 
@@ -75,9 +108,10 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/birthLocation_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/birthDate_field">
@@ -95,8 +129,8 @@
             <Button
                 android:id="@+id/next_page_btn"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:text="@string/next_page_label"
                 android:textSize="@dimen/medium"
                 android:textStyle="bold"
@@ -116,7 +150,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/next_page_btn" />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

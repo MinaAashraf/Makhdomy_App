@@ -2,16 +2,12 @@ package com.khedma.makhdomy.di
 
 import android.content.Context
 import androidx.room.Room
-import com.khedma.makhdomy.R
-import com.khedma.makhdomy.data.local.MakhdomLocalDataSource
-import com.khedma.makhdomy.data.local.MakhdomLocalDataSourceImpl
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import com.khedma.makhdomy.data.local.MakhdomyDao
 import com.khedma.makhdomy.data.local.MakhdomyDb
-import com.khedma.makhdomy.data.repository.MakhdomRepositoryImpl
-import com.khedma.makhdomy.domain.repository.MakhdomRepository
-import com.khedma.makhdomy.domain.usecases.ReadAllMakhdomeenUseCase
 import com.khedma.makhdomy.domain.utils.Makhdom_Local_Database_Name
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,6 +31,20 @@ object DatabaseModule {
     @Singleton
     @Provides
     fun provideMakhdomDao(makhdomyDb: MakhdomyDb): MakhdomyDao = makhdomyDb.getDao()
+
+
+    @Singleton
+    @Provides
+    fun provideFirebaseFirestore () : FirebaseFirestore = FirebaseFirestore.getInstance()
+
+    @Singleton
+    @Provides
+    fun provideFirebaseStorage () : FirebaseStorage = FirebaseStorage.getInstance()
+
+    @Singleton
+    @Provides
+    fun provideFirebaseAuth () : FirebaseAuth = FirebaseAuth.getInstance()
+
 
 
 

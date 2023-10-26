@@ -6,13 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.khedma.makhdomy.R
-import com.khedma.makhdomy.databinding.FragmentFamilyMakhdomBinding
 import com.khedma.makhdomy.databinding.FragmentSpiritualMakhdomBinding
-import com.khedma.makhdomy.presentation.hide
-import com.khedma.makhdomy.presentation.show
+import com.khedma.makhdomy.presentation.utils.hide
+import com.khedma.makhdomy.presentation.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

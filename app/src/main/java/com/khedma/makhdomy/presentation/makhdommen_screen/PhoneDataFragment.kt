@@ -1,16 +1,14 @@
 package com.khedma.makhdomy.presentation.makhdommen_screen
 
-import android.location.Address
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Phone
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.khedma.makhdomy.R
-import com.khedma.makhdomy.databinding.FragmentMediaAndHobbiesMakhdomBinding
 import com.khedma.makhdomy.databinding.FragmentPhoneDataBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -50,17 +48,22 @@ class PhoneDataFragment : Fragment() {
                         mutableMapOf<String, String>().apply { this[phoneOwner] = phoneNum }
                 }
             clearFields()
+            Snackbar.make(
+                binding.root,
+                getString(R.string.phone_added_successfully_msg),
+                Snackbar.LENGTH_SHORT
+            ).show()
         }
     }
 
 
-    private fun setUpNextBtn (){
+    private fun setUpNextBtn() {
         binding.nextPageBtn.setOnClickListener {
             findNavController().navigate(R.id.action_phoneDataFragment_to_familyMakhdomFragment)
         }
     }
 
-    private fun setUpLastBtn (){
+    private fun setUpLastBtn() {
         binding.lastPageBtn.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -71,7 +74,10 @@ class PhoneDataFragment : Fragment() {
         if (phoneNum.isEmpty()) {
             binding.phoneField.editText!!.error = getString(R.string.phone_empty_error_msg)
             isValid = false
-        } else if (phoneNum.length != 11) {
+        } else if (phoneNum.length != 11 || (phoneNum.substring(
+                0, 3) != "010" && phoneNum.substring(0, 3) != "011"
+                    && phoneNum.substring(0, 3) != "015")
+        ) {
             binding.phoneField.editText!!.error = getString(R.string.phone_wrong_err_msg)
             isValid = false
         }

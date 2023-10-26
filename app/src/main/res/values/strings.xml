@@ -4,7 +4,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="name_label">الاسم*</string>
-    <string name="name_err">يجب ادخال اسم المخدوم</string>
+    <string name="name_err">يجب إدخال اسم المخدوم!</string>
     <string name="birth_address">محل الميلاد</string>
     <string name="birth_date_label">تاريخ الميلاد</string>
     <string name="birth_location_label">محل الميلاد</string>
@@ -46,7 +46,7 @@
     <string name="phone_owner_label">اسم صاحب الموبايل</string>
     <string name="adding_another_phone_label">اضافة رقم اخر</string>
     <string name="save_phone_label">حفظ الرقم</string>
-    <string name="phone_empty_error_msg">ادخل رقم الموبايل، من فضلك.</string>
+    <string name="phone_empty_error_msg">يجب إدخال رقم الموبايل!</string>
     <string name="phone_wrong_err_msg">رقم الموبايل خاطيء.</string>
     <string name="phone_label">الموبايل:</string>
     <string name="basic_data_label">المعلومات الأساسية:</string>
@@ -55,4 +55,42 @@
     <string name="computer_fields_label">مجالات استخدام الطفل له:</string>
     <string name="health_label">الصحة:</string>
     <string name="save_exit_label">حفظ و خروج</string>
+    <string name="class_label">المرحــلـــة</string>
+    <string name="inavailable_msg">غير متاح!</string>
+    <string name="map_axis_label">وضع الأحداثيات</string>
+    <string name="latitude_label">خط الطول</string>
+    <string name="longitude_label">خط العرض</string>
+    <string name="automatic_gps_label">استخدم موقعك تلقائيا</string>
+    <string name="latitude_err_msg">يجب إدخال خط الطول</string>
+    <string name="longitude_err_msg">يجب إدخال خط العرض</string>
+    <string name="location_added_succesfully_msg">تم اضافة الاحداثيات بنجاح</string>
+    <string name="class_name_err_msg">يجب إدخال اسم المرحلة!</string>
+    <string name="map_is_notavaialbe_msg">العنوان غير متاح علي الخريطة</string>
+    <string name="phone_added_successfully_msg">تمت اضافة الموبايل بنجاح</string>
+    <string name="khadem_name">اسـم الخـادم</string>
+    <string name="preferences_file_key">preferences_file_key</string>
+    <string name="phone_num">رقم الموبايل</string>
+    <string name="verify_label">تأكيد</string>
+    <string name="otp_err_msg">الكود الذي أدخلته خاطيء!</string>
+    <string name="signed_in_successfully">تم التسجيل بنجاح</string>
+    <string name="internet_err_msg">يوجد خطأ، تأكد من اتصالك بالانترنت</string>
+    <string name="khadem_key">khadem_key</string>
+    <string name="enter_code_description">قم بادخال الكود الذي تم ارساله لك علي الرقم</string>
+    <string name="resend_otp_label">إرسال الكود مرة أخري</string>
+    <string name="my_makhdom_label">مخـــدومــي</string>
+    <string name="enter_code_msg">يجب إدخال الكود!</string>
+    <string name="try_again_msg">حاول في وقت لاحق</string>
+
+    <string-array name="classes_names">
+        <item>اولى ابتدائي</item>
+        <item>ثانية ابتدائي</item>
+        <item>ثالثة ابتدائي</item>
+        <item>رابعة ابتدائي</item>
+        <item>خامسة ابتدائي</item>
+        <item>سادسة ابتدائي</item>
+        <item>اولى اعدادي</item>
+        <item>ثانية اعدادي</item>
+        <item>ثالثة اعدادي</item>
+        <item>ثانوي</item>
+    </string-array>
 </resources>

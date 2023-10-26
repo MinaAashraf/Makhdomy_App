@@ -11,6 +11,8 @@ interface MakhdomLocalDataSource {
 
     fun readById(id: Int): LiveData<Makhdom>
 
+    fun searchByKeyWord (keyWord : String) : LiveData<List<Makhdom>>
+
     suspend fun updateMakhdom(makhdom: Makhdom)
 
 }
