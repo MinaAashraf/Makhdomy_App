@@ -22,16 +22,19 @@ class MakhdomRepositoryImpl @Inject constructor(
 
     MakhdomRepository {
     override suspend fun addMakhdom(makhdom: Makhdom) {
-        makhdomLocalDataSource.addMakhdom(makhdom)
+        val localMakhdomId = makhdomLocalDataSource.addMakhdom(makhdom)
         try {
             makhdomRemoteDataSource.addMakhdom(
                 makhdom.picture?.convertToByteArr(),
                 makhdom.mapToMakhdomyData()
             ).onSuccess { makhdomKey ->
-                makhdom.isSynchronized = true
-                makhdom.makhdomKey = makhdomKey
+                makhdom.apply {
+                    makhdom.id = localMakhdomId.toInt()
+                    makhdom.isSynchronized = true
+                    makhdom.makhdomKey = makhdomKey
+                }
                 updateMakhdom(makhdom)
-                Log.d("firebase success: ", makhdom.toString() )
+                Log.d("firebase success: ", makhdom.toString())
                 khademRemoteDataSource.addMakhdomIdToKhadem(makhdomKey = makhdomKey)
             }.onFailure {
                 Log.d("firebase exception: ", it.message.toString())

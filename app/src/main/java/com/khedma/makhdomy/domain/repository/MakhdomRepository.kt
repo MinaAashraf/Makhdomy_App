@@ -19,4 +19,6 @@ interface MakhdomRepository  {
 
 
     suspend fun addKhadem(khadem: Khadem): Result<String>
+
+
 }

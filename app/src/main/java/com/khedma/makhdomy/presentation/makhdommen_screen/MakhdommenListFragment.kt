@@ -2,6 +2,9 @@ package com.khedma.makhdomy.presentation.makhdommen_screen
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
@@ -9,10 +12,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.khedma.makhdomy.MainActivity
 import com.khedma.makhdomy.R
 import com.khedma.makhdomy.databinding.FragmentMakhdommenListBinding
 import com.khedma.makhdomy.presentation.utils.hide
 import com.khedma.makhdomy.presentation.utils.show
+import com.khedma.makhdomy.presentation.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,6 +29,9 @@ class MakhdommenListFragment : Fragment(), MakhdommenAdapter.OnItemClick {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (requireActivity() as MainActivity).supportActionBar?.setDisplayUseLogoEnabled(true)
+        (requireActivity() as MainActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -101,6 +109,30 @@ class MakhdommenListFragment : Fragment(), MakhdommenAdapter.OnItemClick {
             }
 
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        requireActivity().menuInflater.inflate(R.menu.sync_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.send_icon -> {
+                showToast(requireContext(),"send")
+                true
+            }
+            R.id.receive_icon -> {
+                showToast(requireContext(),"receive")
+                true
+            }
+            else -> true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun uploadMakhdommen (){
+        viewModel.uploadMakhdommen()
     }
 
 }

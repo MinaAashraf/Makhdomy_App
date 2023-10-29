@@ -78,6 +78,9 @@ class MakhdomViewModel @Inject constructor(
         preparedMakhdom = Makhdom()
     }
 
+    fun uploadMakhdommen() {
+
+    }
 
 
 }
