@@ -39,7 +39,7 @@ class FamilyMakhdomFragment : Fragment() {
     private fun setUpNextBtn() {
         binding.nextPageBtn.setOnClickListener {
             saveFamilyData()
-            findNavController().navigate(R.id.action_familyMakhdomFragment_to_spiritualMakhdomFragment)
+            findNavController().navigate(R.id.action_familyMakhdomFragment_to_brothersDataFragment)
         }
     }
 

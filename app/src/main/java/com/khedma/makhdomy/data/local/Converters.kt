@@ -35,11 +35,11 @@ class Converters {
     fun fromHashMap(map: MutableMap<String, String>): String = Gson().toJson(map)
 
     @TypeConverter
-    fun toListOfBrothers(value: String): List<Brother> =
-        Gson().fromJson(value, object : TypeToken<List<Brother>>() {})
+    fun toListOfBrothers(value: String): MutableList<Brother> =
+        Gson().fromJson(value, object : TypeToken<MutableList<Brother>>() {})
 
     @TypeConverter
-    fun fromListOfBrothers(list: List<Brother>): String = Gson().toJson(list)
+    fun fromListOfBrothers(list: MutableList<Brother>): String = Gson().toJson(list)
 
     @TypeConverter
     fun toAddressObj(value: String): Address =

@@ -104,6 +104,8 @@ dependencies {
     // pinview
     implementation ("io.github.chaosleung:pinview:1.4.4")
 
+    implementation ("com.google.android.play:integrity:1.2.0")
+
 
 
 }

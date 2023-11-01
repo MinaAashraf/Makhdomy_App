@@ -32,7 +32,7 @@ interface MakhdomyDao {
 
 
     @Query ("select * from makhdom_table where isSynchronized=0")
-    fun getUnSynchronizedMakhdommen() : List<Makhdom>
+    suspend fun getUnSynchronizedMakhdommen() : List<Makhdom>
 
 
 }

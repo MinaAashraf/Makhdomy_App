@@ -34,13 +34,12 @@ fun Bitmap.convertToByteArr(): ByteArray {
 
  fun validatePhoneNum(phoneField:TextInputLayout,context: Context): Boolean {
     var isValid = true
+    phoneField.helperText = null
     val phoneNum = phoneField.editText!!.text.toString()
     if (phoneNum.isEmpty()) {
         phoneField.helperText = context.getString(R.string.phone_empty_error_msg)
         isValid = false
-    } else if (phoneNum.length != 11 || (phoneNum.substring(0, 3) != "010" && phoneNum.substring(0, 3) != "011"
-                && phoneNum.substring(0, 3) != "015")
-    ) {
+    } else if (phoneNum.length != 11) {
         phoneField.helperText = context.getString(R.string.phone_wrong_err_msg)
         isValid = false
     }

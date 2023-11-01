@@ -50,6 +50,7 @@
     <string name="phone_wrong_err_msg">رقم الموبايل خاطيء.</string>
     <string name="phone_label">الموبايل:</string>
     <string name="basic_data_label">المعلومات الأساسية:</string>
+    <string name="basic_data_toolbar_title">المعلومات الأساسية</string>
     <string name="spirit_label">الإعتراف:</string>
     <string name="media_label">الميديا:</string>
     <string name="computer_fields_label">مجالات استخدام الطفل له:</string>
@@ -80,7 +81,18 @@
     <string name="my_makhdom_label">مخـــدومــي</string>
     <string name="enter_code_msg">يجب إدخال الكود!</string>
     <string name="try_again_msg">حاول في وقت لاحق</string>
-
+    <string name="choose_phone_label">اختار الرقم :</string>
+    <string name="internet_error_message">تأكد من الاتصال بالانترنت</string>
+    <string name="resama_date_label">تاريخ الرسامة</string>
+    <string name="not_exist_label">لا يوجد</string>
+    <string name="not_phone_exist_label">لا يوجد أي رقم تليفون للمخدوم!</string>
+    <string name="brother_name_label">الأســم</string>
+    <string name="age_label">الـسـن</string>
+    <string name="study_label">الدراسة</string>
+    <string name="type_label">الــنوع</string>
+    <string name="brother_name_err_msg">يجب إدخال الاسم!</string>
+    <string name="brother_data_addess_succssfully_msg">تم إضافة البيانات بنجاح</string>
+    <string name="brothers_label">الأخــوة:</string>
     <string-array name="classes_names">
         <item>اولى ابتدائي</item>
         <item>ثانية ابتدائي</item>
@@ -92,5 +104,10 @@
         <item>ثانية اعدادي</item>
         <item>ثالثة اعدادي</item>
         <item>ثانوي</item>
+    </string-array>
+
+    <string-array name="brother_types">
+       <item>أخ</item>
+       <item>أخت</item>
     </string-array>
 </resources>

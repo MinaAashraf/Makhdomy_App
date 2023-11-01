@@ -6,15 +6,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
+import com.khedma.makhdomy.domain.model.Brother
 import com.khedma.makhdomy.domain.model.FilterType
 import com.khedma.makhdomy.domain.model.Makhdom
 import com.khedma.makhdomy.domain.usecases.AddMakhdomUseCase
+import com.khedma.makhdomy.domain.usecases.GetNotSyncMakhdommenUseCase
 import com.khedma.makhdomy.domain.usecases.ReadAllMakhdomeenUseCase
 import com.khedma.makhdomy.domain.usecases.ReadMakhdomByIdUseCase
 import com.khedma.makhdomy.domain.usecases.SearchMakhdomUseCase
 import com.khedma.makhdomy.domain.usecases.UpdateMakhdomUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,7 +26,10 @@ class MakhdomViewModel @Inject constructor(
     private val readMakhdomByIdUseCase: ReadMakhdomByIdUseCase,
     private val addMakhdomUseCase: AddMakhdomUseCase,
     private val updateMakhdomUseCase: UpdateMakhdomUseCase,
-    private val searchMakhdomUseCase: SearchMakhdomUseCase
+    private val searchMakhdomUseCase: SearchMakhdomUseCase,
+    private val getNotSyncMakhdommenUseCase: GetNotSyncMakhdommenUseCase
+
+
 ) : ViewModel() {
 
     var preparedMakhdom: Makhdom = Makhdom()
@@ -44,6 +49,10 @@ class MakhdomViewModel @Inject constructor(
         }
     }
 
+    init {
+        uploadUnSynchMakhdommen()
+    }
+
     fun search(searchKeyWord: String) {
         if (searchKeyWord.isNotEmpty()) {
             this.searchKeyWord = searchKeyWord
@@ -57,16 +66,16 @@ class MakhdomViewModel @Inject constructor(
     fun readMakhdomById(id: Int): LiveData<Makhdom> = readMakhdomByIdUseCase.execute(id)
 
 
-    fun addMakhdom() {
-        viewModelScope.launch(Dispatchers.IO) {
-            addMakhdomUseCase.execute(preparedMakhdom)
+    fun addMakhdom(makhdom: Makhdom = preparedMakhdom) {
+        viewModelScope.launch {
+            async { addMakhdomUseCase.execute(makhdom)}.await()
             clearPreparedMakhdomData()
         }
     }
 
     fun updateMakhdom() {
-        viewModelScope.launch(Dispatchers.IO) {
-            updateMakhdomUseCase.execute(preparedMakhdom)
+        viewModelScope.launch {
+           async {updateMakhdomUseCase.execute(preparedMakhdom)}.await()
             updatingState = false
             clearPreparedMakhdomData()
             Log.d("updatingState:", "${updatingState}")
@@ -76,11 +85,25 @@ class MakhdomViewModel @Inject constructor(
 
     private fun clearPreparedMakhdomData() {
         preparedMakhdom = Makhdom()
+        phones = null
+        phonesList.clear()
+        brothers = null
     }
 
-    fun uploadMakhdommen() {
-
+    private fun uploadUnSynchMakhdommen() {
+        viewModelScope.launch {
+            val unSynchMakhdommen = getNotSyncMakhdommenUseCase.execute()
+            unSynchMakhdommen.forEach {
+                addMakhdom(it)
+            }
+        }
     }
 
+
+     var phones: MutableMap<String, String>? = null
+
+     val phonesList: MutableList<Pair<String, String>> = mutableListOf()
+
+     var brothers: MutableList<Brother>? = null
 
 }

@@ -38,13 +38,8 @@
         android:name="com.khedma.makhdomy.presentation.makhdommen_screen.FamilyMakhdomFragment"
         android:label="بيانات الأسرة">
         <action
-            android:id="@+id/action_familyMakhdomFragment_to_spiritualMakhdomFragment"
-            app:destination="@id/spiritualMakhdomFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/fade_out" />
-        />
+            android:id="@+id/action_familyMakhdomFragment_to_brothersDataFragment"
+            app:destination="@id/brothersDataFragment" />
     </fragment>
     <fragment
         android:id="@+id/spiritualMakhdomFragment"
@@ -133,12 +128,7 @@
         android:label="رقم الموبايل">
         <action
             android:id="@+id/action_phoneDataFragment_to_familyMakhdomFragment"
-            app:destination="@id/familyMakhdomFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/fade_out" />
-        />
+            app:destination="@id/familyMakhdomFragment" />
     </fragment>
     <fragment
         android:id="@+id/khademLoginFragment"
@@ -174,6 +164,14 @@
             app:destination="@id/makhdommenListFragment"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/brothersDataFragment"
+        android:name="com.khedma.makhdomy.presentation.makhdommen_screen.BrothersDataFragment"
+        android:label="BrothersDataFragment" >
+        <action
+            android:id="@+id/action_brothersDataFragment_to_spiritualMakhdomFragment"
+            app:destination="@id/spiritualMakhdomFragment" />
     </fragment>
 
 

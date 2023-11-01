@@ -7,52 +7,90 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import com.khedma.makhdomy.R
 import com.khedma.makhdomy.databinding.FragmentPhoneDataBinding
+import com.khedma.makhdomy.presentation.utils.hide
+import com.khedma.makhdomy.presentation.utils.show
+import com.khedma.makhdomy.presentation.utils.showToast
+import com.khedma.makhdomy.presentation.utils.validatePhoneNum
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class PhoneDataFragment : Fragment() {
+class PhoneDataFragment : Fragment(), PhonesAdapter.OnClickListener {
 
     private val binding by lazy { FragmentPhoneDataBinding.inflate(layoutInflater) }
 
     private val viewModel: MakhdomViewModel by activityViewModels()
 
+
+    private val phonesAdapter by lazy {
+        PhonesAdapter(
+            requireContext(),
+            viewModel.phonesList,
+            this
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = binding.root
+    ): View {
+        return binding.root
+
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpUi()
+    }
+
+    private fun setUpUi() {
         setUpSavingPhoneBtn()
         setUpNextBtn()
         setUpLastBtn()
+        setUpPhonesGrid()
+        handleSaveExitBtn()
+    }
+
+
+    private fun setUpPhonesGrid() {
+        viewModel.preparedMakhdom.mobilePhones?.let {
+            if (viewModel.phones == null) {
+                viewModel.phones = mutableMapOf<String, String>().apply { this.putAll(it) }
+                viewModel.phonesList.clear()
+                viewModel.phonesList.addAll(it.toList())
+            }
+        }
+        //  phones = viewModel.preparedMakhdom.mobilePhones
+        /*     phones?.let {
+                 phonesList.clear()
+                 phonesList.addAll(it.toList())
+             }*/
+        binding.phonesGrid.isExpanded = true
+        binding.phonesGrid.adapter = phonesAdapter
     }
 
     private fun setUpSavingPhoneBtn() {
         binding.savePhoneBtn.setOnClickListener {
             val phoneOwner = binding.phoneOwnerField.editText!!.text.toString()
             val phoneNum = binding.phoneField.editText!!.text.toString()
-            if (!validatePhoneNum(phoneNum))
+            if (!validatePhoneNum(binding.phoneField, requireContext()))
                 return@setOnClickListener
+            val key =
+                if (phoneOwner.isEmpty()) "موبايل ${viewModel.phones?.size?.plus(1) ?: 1}" else phoneOwner
 
-            val phones = viewModel.preparedMakhdom.mobilePhones
-            phones?.let {
-                it[if (phoneOwner.isEmpty()) "موبايل ${phones.size + 1}" else phoneOwner] = phoneNum
+            viewModel.phones?.let {
+                it[key] = phoneNum
             }
                 ?: kotlin.run {
-                    viewModel.preparedMakhdom.mobilePhones =
-                        mutableMapOf<String, String>().apply { this[phoneOwner] = phoneNum }
+                    viewModel.phones =
+                        mutableMapOf<String, String>().apply { this[key] = phoneNum }
                 }
+            viewModel.phonesList.add(Pair(key, phoneNum))
+            phonesAdapter.notifyDataSetChanged()
             clearFields()
-            Snackbar.make(
-                binding.root,
-                getString(R.string.phone_added_successfully_msg),
-                Snackbar.LENGTH_SHORT
-            ).show()
+            showToast(requireContext(), getString(R.string.phone_added_successfully_msg))
         }
     }
 
@@ -69,24 +107,30 @@ class PhoneDataFragment : Fragment() {
         }
     }
 
-    private fun validatePhoneNum(phoneNum: String): Boolean {
-        var isValid = true
-        if (phoneNum.isEmpty()) {
-            binding.phoneField.editText!!.error = getString(R.string.phone_empty_error_msg)
-            isValid = false
-        } else if (phoneNum.length != 11 || (phoneNum.substring(
-                0, 3) != "010" && phoneNum.substring(0, 3) != "011"
-                    && phoneNum.substring(0, 3) != "015")
-        ) {
-            binding.phoneField.editText!!.error = getString(R.string.phone_wrong_err_msg)
-            isValid = false
-        }
-        return isValid
-    }
 
     private fun clearFields() {
         binding.phoneField.editText?.setText("")
         binding.phoneOwnerField.editText?.setText("")
+    }
+
+    override fun onRemoveClick(key: String, position: Int) {
+        viewModel.phones?.remove(key)
+        viewModel.phonesList.removeAt(position)
+        phonesAdapter.notifyDataSetChanged()
+    }
+
+    private fun handleSaveExitBtn() {
+
+        if (viewModel.updatingState)
+            binding.saveExitBtn.show()
+        else
+            binding.saveExitBtn.hide()
+
+        binding.saveExitBtn.setOnClickListener {
+            viewModel.preparedMakhdom.mobilePhones = viewModel.phones
+            viewModel.updateMakhdom()
+            findNavController().popBackStack(R.id.makhdomDetailsFragment, false)
+        }
     }
 
 }

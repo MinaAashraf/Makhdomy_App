@@ -31,6 +31,7 @@ class MakhdommenListFragment : Fragment(), MakhdommenAdapter.OnItemClick {
     ): View {
         (requireActivity() as MainActivity).supportActionBar?.setDisplayUseLogoEnabled(true)
         (requireActivity() as MainActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
+        requireActivity().title = getString(R.string.basic_data_toolbar_title)
         setHasOptionsMenu(true)
         return binding.root
     }
@@ -131,8 +132,5 @@ class MakhdommenListFragment : Fragment(), MakhdommenAdapter.OnItemClick {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun uploadMakhdommen (){
-        viewModel.uploadMakhdommen()
-    }
 
 }

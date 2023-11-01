@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         val navHost =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        navHost.navController.addOnDestinationChangedListener { controller, destination, argument ->
+  /*      navHost.navController.addOnDestinationChangedListener { controller, destination, argument ->
             title =
                 when (destination.id) {
                     R.id.basicDataMakhdomFragment -> "البيانات الأساسية"
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                     R.id.phoneDataFragment -> "بيانات التواصل"
                     else -> "البيانات الصحية"
                 }
-        }
+        }*/
     }
 
     private fun setAppLangToAr() {

@@ -22,14 +22,25 @@ class MakhdomRepositoryImpl @Inject constructor(
 
     MakhdomRepository {
     override suspend fun addMakhdom(makhdom: Makhdom) {
-        val localMakhdomId = makhdomLocalDataSource.addMakhdom(makhdom)
+        makhdom.id?.let {
+            // already exist in local database but not uploaded to cloud yet
+            addPublicMakhdom(makhdom, it)
+        } ?: kotlin.run {
+            // not exist in local database nor cloud
+            val localMakhdomId = makhdomLocalDataSource.addMakhdom(makhdom)
+            addPublicMakhdom(makhdom, localMakhdomId.toInt())
+        }
+
+    }
+
+    override suspend fun addPublicMakhdom(makhdom: Makhdom, localMakhdomId: Int) {
         try {
             makhdomRemoteDataSource.addMakhdom(
                 makhdom.picture?.convertToByteArr(),
                 makhdom.mapToMakhdomyData()
             ).onSuccess { makhdomKey ->
                 makhdom.apply {
-                    makhdom.id = localMakhdomId.toInt()
+                    makhdom.id = localMakhdomId
                     makhdom.isSynchronized = true
                     makhdom.makhdomKey = makhdomKey
                 }
@@ -42,8 +53,8 @@ class MakhdomRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             Log.d("firebase exception: ", e.message.toString())
         }
-
     }
+
 
     override fun readAll(): LiveData<List<Makhdom>> = makhdomLocalDataSource.readAll()
 
@@ -58,5 +69,9 @@ class MakhdomRepositoryImpl @Inject constructor(
 
     override suspend fun addKhadem(khadem: Khadem): Result<String> =
         khademRemoteDataSource.addKhadem(khadem)
+
+    override suspend fun getNotSynchMakhdommen(): List<Makhdom> =
+        makhdomLocalDataSource.getUnSynchronizedMakhdommen()
+
 
 }

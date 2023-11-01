@@ -9,6 +9,8 @@ interface MakhdomRepository  {
 
     suspend fun addMakhdom(makhdom: Makhdom)
 
+    suspend fun addPublicMakhdom (makhdom: Makhdom, localMakhdomId : Int)
+
     fun readAll(): LiveData<List<Makhdom>>
 
     fun readById(id: Int): LiveData<Makhdom>
@@ -17,8 +19,9 @@ interface MakhdomRepository  {
 
     suspend fun updateMakhdom(makhdom: Makhdom)
 
-
     suspend fun addKhadem(khadem: Khadem): Result<String>
+
+    suspend fun getNotSynchMakhdommen () : List<Makhdom>
 
 
 }

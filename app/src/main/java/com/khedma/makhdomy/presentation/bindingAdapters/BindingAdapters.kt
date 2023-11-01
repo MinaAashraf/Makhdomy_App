@@ -8,6 +8,7 @@ import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout
 import com.khedma.makhdomy.R
 import com.khedma.makhdomy.domain.model.Address
+import com.khedma.makhdomy.domain.model.Brother
 
 
 @BindingAdapter("img_src")
@@ -63,6 +64,22 @@ fun bindComputerDealingInitialVisibilityDependingOnRadioBtn(
 @BindingAdapter("sync_icon")
 fun bindSynchronizedIcon(imageView: ImageView, isSynchronized: Boolean) {
     imageView.setImageResource(if (isSynchronized) R.drawable.sync_icon else R.drawable.notsync_icon)
+}
+
+@BindingAdapter("phones_map")
+fun bindPhonesMap(textView: TextView, phones: MutableMap<String, String>?) {
+    var phonesString = ""
+    phones?.forEach {
+        phonesString += "${it.key} : ${it.value}\n"
+    }
+    textView.text = phonesString
+}
+
+@BindingAdapter("brothers_list")
+fun bindBrothersList(textView: TextView, brothers: List<Brother>?) {
+    var brothersString = ""
+    brothers?.forEach { brothersString += "$it\n" }
+    textView.text = brothersString
 }
 
 

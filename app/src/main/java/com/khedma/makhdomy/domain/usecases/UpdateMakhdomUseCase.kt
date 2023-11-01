@@ -8,5 +8,4 @@ class UpdateMakhdomUseCase @Inject constructor(private val makhdomRepository: Ma
 
     suspend fun execute(makhdom: Makhdom) = makhdomRepository.updateMakhdom(makhdom)
 
-
 }

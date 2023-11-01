@@ -30,7 +30,7 @@ data class Makhdom(
     // family data
     var fatherJob: String? = null,
     var motherJob: String? = null,
-    var brothers: List<Brother>? = null,
+    var brothers: MutableList<Brother>? = null,
 
     var spiritualFatherName: String? = null,
     var churchName: String? = null,
