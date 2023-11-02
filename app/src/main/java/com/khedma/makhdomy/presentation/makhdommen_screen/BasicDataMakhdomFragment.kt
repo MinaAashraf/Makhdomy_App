@@ -2,6 +2,7 @@ package com.khedma.makhdomy.presentation.makhdommen_screen
 
 import android.app.DatePickerDialog
 import android.content.ContentResolver
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
@@ -13,7 +14,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -113,12 +113,13 @@ class BasicDataMakhdomFragment : Fragment() {
 
     private fun setUpPictureImage() {
         binding.pictureView.setOnClickListener {
-            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+            pickMedia.launch(Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI))
         }
     }
 
     private val pickMedia =
-        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val uri = result.data?.data
             uri?.let {
                 binding.pictureView.setImageURI(it)
                 viewModel.preparedMakhdom.picture = getBitmapFromUri(it)

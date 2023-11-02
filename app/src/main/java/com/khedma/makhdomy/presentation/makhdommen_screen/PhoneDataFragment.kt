@@ -97,6 +97,8 @@ class PhoneDataFragment : Fragment(), PhonesAdapter.OnClickListener {
 
     private fun setUpNextBtn() {
         binding.nextPageBtn.setOnClickListener {
+            if (!viewModel.updatingState)
+                viewModel.preparedMakhdom.mobilePhones = viewModel.phones
             findNavController().navigate(R.id.action_phoneDataFragment_to_familyMakhdomFragment)
         }
     }

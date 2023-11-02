@@ -114,6 +114,8 @@ class BrothersDataFragment : Fragment(), BrothersAdapter.OnClickListener {
 
     private fun setUpNextBtn() {
         binding.nextPageBtn.setOnClickListener {
+            if (!viewModel.updatingState)
+                viewModel.preparedMakhdom.brothers = viewModel.brothers
             findNavController().navigate(R.id.action_brothersDataFragment_to_spiritualMakhdomFragment)
         }
     }
