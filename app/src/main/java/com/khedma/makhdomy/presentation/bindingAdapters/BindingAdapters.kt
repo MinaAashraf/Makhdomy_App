@@ -28,8 +28,9 @@ fun bindAddress(textView: TextView, address: Address?) {
         val streetName = it.streetName ?: ""
         addressString += streetName
         val motfare3From =
-            it.motafre3From?.let { concatenateDashIfRequired(addressString) + it } ?: ""
-        if (motfare3From.isNotEmpty()) addressString += "متفرع من $motfare3From"
+            it.motafre3From?.let { concatenateDashIfRequired(addressString) + "متفرع من " + it }
+                ?: ""
+        addressString += motfare3From
         val area = it.areaName?.let { concatenateDashIfRequired(addressString) + it } ?: ""
         addressString += area
         val homeNum =

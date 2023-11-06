@@ -33,7 +33,7 @@ interface MakhdomyDao {
     @Query("select * from makhdom_table where isSynchronized=0")
     suspend fun getUnSynchronizedMakhdommen(): List<Makhdom>
 
-    @Query("select * from makhdom_table where isSynchronized == 1 & isDirty=1")
+    @Query("select * from makhdom_table where isSynchronized = 1 and isDirty=1")
     suspend fun getDirtyMakhdommen(): List<Makhdom>
 
 

@@ -1,18 +1,26 @@
 package com.khedma.makhdomy.presentation.makhdommen_screen
 
 import android.app.AlertDialog
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.Intent.CATEGORY_BROWSABLE
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+import android.content.Intent.FLAG_ACTIVITY_REQUIRE_NON_BROWSER
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.khedma.makhdomy.MainActivity
 import com.khedma.makhdomy.R
 import com.khedma.makhdomy.databinding.FragmentMakhdomDetailsBinding
 import com.khedma.makhdomy.databinding.PhoneSelectionDialogBinding
@@ -40,6 +48,7 @@ class MakhdomDetailsFragment : Fragment(), PhoneSelectionAdapter.OnClickListener
             this
         )
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -91,10 +100,11 @@ class MakhdomDetailsFragment : Fragment(), PhoneSelectionAdapter.OnClickListener
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.R)
     private fun goToLocationOnMap(address: Address, makhdomName: String) {
 
-        val myLatitude = address.lat
-        val myLongitude = address.lng
+        val myLatitude = "30.0627"
+        val myLongitude = "31.3069"
         val labelLocation = makhdomName
 
         if (myLatitude == null || myLongitude == null) {
@@ -107,12 +117,17 @@ class MakhdomDetailsFragment : Fragment(), PhoneSelectionAdapter.OnClickListener
         }
         val mapIntent = Intent(
             Intent.ACTION_VIEW,
-           // Uri.parse("geo:$myLatitude,$myLongitude?q=<$myLatitude>,<$myLongitude>($labelLocation)")
-           Uri.parse("geo:$myLatitude,$myLongitude?q=$myLatitude,$myLongitude($labelLocation)")
-        )
+            // Uri.parse("geo:$myLatitude,$myLongitude?q=<$myLatitude>,<$myLongitude>($labelLocation)")
+            Uri.parse("geo:$myLatitude,$myLongitude?q=$myLatitude,$myLongitude($labelLocation)")
+        ).apply {
+            addCategory(CATEGORY_BROWSABLE)
+            flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_REQUIRE_NON_BROWSER
+        }
 
-        mapIntent.resolveActivity(requireActivity().packageManager)?.let {
+        try {
             startActivity(Intent.createChooser(mapIntent, "Open location with..."))
+        } catch (e: ActivityNotFoundException) {
+            Log.d("go to maps:", e.message.toString())
         }
     }
 
@@ -147,12 +162,13 @@ class MakhdomDetailsFragment : Fragment(), PhoneSelectionAdapter.OnClickListener
         }
     }
 
+    private lateinit var dialog: AlertDialog
     private fun showPhoneSelectionDialog() {
 
         val dialogBinding = PhoneSelectionDialogBinding.inflate(requireActivity().layoutInflater)
         dialogBinding.phonesGrid.adapter = phonesAdapter
 
-        val dialog = AlertDialog.Builder(requireActivity()).apply {
+        dialog = AlertDialog.Builder(requireActivity()).apply {
             setView(dialogBinding.root)
 
         }.create()
@@ -163,9 +179,10 @@ class MakhdomDetailsFragment : Fragment(), PhoneSelectionAdapter.OnClickListener
     private lateinit var selectedPhone: Pair<String, String>
     override fun onPhoneItemSelect(pair: Pair<String, String>) {
         selectedPhone = pair
-        if (checkPhoneCallPermission(requireContext()))
+        if (checkPhoneCallPermission(requireContext())) {
             makePhoneCall(requireActivity(), pair.second)
-        else
+            dialog.dismiss()
+        } else
             requestPermission(this)
 
     }

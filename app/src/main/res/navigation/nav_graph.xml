@@ -11,10 +11,7 @@
         <action
             android:id="@+id/action_basicDataMakhdomFragment_to_addressMakhdomFragment"
             app:destination="@id/addressMakhdomFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/fade_out" />
+            />
         <argument
             android:name="makhdom_id"
             android:defaultValue="-1"
@@ -27,10 +24,7 @@
         <action
             android:id="@+id/action_addressMakhdomFragment_to_phoneDataFragment"
             app:destination="@id/phoneDataFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/fade_out" />
+            />
         />
     </fragment>
     <fragment
@@ -48,10 +42,7 @@
         <action
             android:id="@+id/action_spiritualMakhdomFragment_to_mediaAndHobbiesMakhdomFragment"
             app:destination="@id/mediaAndHobbiesMakhdomFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/fade_out" />
+            />
         />
     </fragment>
     <fragment
@@ -61,10 +52,7 @@
         <action
             android:id="@+id/action_mediaAndHobbiesMakhdomFragment_to_healthAndCharacterMakhdomFragment"
             app:destination="@id/healthAndCharacterMakhdomFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/fade_out" />
+            />
         />
     </fragment>
     <fragment
@@ -74,10 +62,7 @@
         <action
             android:id="@+id/action_healthAndCharacterMakhdomFragment_to_makhdomDetailsFragment"
             app:destination="@id/makhdomReviewsFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/fade_out" />
+            />
         />
     </fragment>
     <fragment
@@ -91,18 +76,12 @@
         <action
             android:id="@+id/action_makhdommenListFragment_to_basicDataMakhdomFragment"
             app:destination="@id/basicDataMakhdomFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/fade_out" />
+            />
         />
         <action
             android:id="@+id/action_makhdommenListFragment_to_makhdomDetailsFragment"
             app:destination="@id/makhdomDetailsFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/fade_out" />
+            />
         />
     </fragment>
     <fragment
@@ -116,10 +95,7 @@
         <action
             android:id="@+id/action_makhdomDetailsFragment_to_basicDataMakhdomFragment"
             app:destination="@id/basicDataMakhdomFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/fade_out" />
+            />
         />
     </fragment>
     <fragment

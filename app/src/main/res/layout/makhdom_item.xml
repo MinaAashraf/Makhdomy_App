@@ -53,7 +53,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="@dimen/_15sdp"
-                sync_icon="@{makhdom.isSynchronized}"
+                sync_icon="@{makhdom}"
                 />
 
 

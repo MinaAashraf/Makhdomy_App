@@ -85,6 +85,7 @@ class MakhdomRepositoryImpl @Inject constructor(
                 makhdomData = makhdom.mapToMakhdomyData()
             ).onSuccess {
                 makhdom.isDirty = false
+                makhdom.isPictureUpdated = false
                 updateMakhdomLocally(makhdom)
             }
         } catch (e: Exception) {

@@ -94,7 +94,7 @@ class BrothersDataFragment : Fragment(), BrothersAdapter.OnClickListener {
     }
 
     override fun onRemoveClick(position: Int) {
-        viewModel.brothers?.removeAt(position)
+        viewModel.brothers.removeAt(position)
         brothersAdapter.notifyDataSetChanged()
     }
 
@@ -109,7 +109,7 @@ class BrothersDataFragment : Fragment(), BrothersAdapter.OnClickListener {
 
     private fun setUpNextBtn() {
         binding.nextPageBtn.setOnClickListener {
-            viewModel.preparedMakhdom.brothers = viewModel.brothers
+            viewModel.saveBrothersList()
             findNavController().navigate(R.id.action_brothersDataFragment_to_spiritualMakhdomFragment)
         }
     }
@@ -129,7 +129,7 @@ class BrothersDataFragment : Fragment(), BrothersAdapter.OnClickListener {
             binding.saveExitBtn.hide()
 
         binding.saveExitBtn.setOnClickListener {
-            viewModel.preparedMakhdom.brothers = viewModel.brothers
+            viewModel.saveBrothersList()
             viewModel.updateMakhdom()
             findNavController().popBackStack(R.id.makhdomDetailsFragment, false)
         }

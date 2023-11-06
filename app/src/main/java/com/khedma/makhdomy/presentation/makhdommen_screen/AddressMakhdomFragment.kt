@@ -33,6 +33,7 @@ import com.khedma.makhdomy.databinding.BottomSheetLayoutBinding
 import com.khedma.makhdomy.databinding.FragmentAddressMakhdomBinding
 import com.khedma.makhdomy.domain.model.Address
 import com.khedma.makhdomy.presentation.utils.hide
+import com.khedma.makhdomy.presentation.utils.makeInVisible
 import com.khedma.makhdomy.presentation.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -264,14 +265,14 @@ class AddressMakhdomFragment : Fragment() {
     }
 
     private fun hideBottomSheet() {
-        bottomSheet.hide()
+        bottomSheet.dismiss()
     }
 
     private fun handleBottomSheetInputs() {
 
         bottomSheetLayoutBinding.automaticGpsBtn.setOnClickListener {
             bottomSheetLayoutBinding.progressBar.show()
-            bottomSheetLayoutBinding.automaticGpsBtn.hide()
+            bottomSheetLayoutBinding.automaticGpsBtn.makeInVisible()
             getCurrentLocation()
         }
         bottomSheetLayoutBinding.apply {

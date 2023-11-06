@@ -133,6 +133,8 @@ class BasicDataMakhdomFragment : Fragment() {
                 val bitmap = decodeSampledBitmapFromResource(it,320,320)
                 binding.pictureView.setImageBitmap(bitmap)
                 viewModel.preparedMakhdom.picture = bitmap
+                if (viewModel.preparedMakhdom.isSynchronized)
+                    viewModel.preparedMakhdom.isPictureUpdated = true
             }
         }
 

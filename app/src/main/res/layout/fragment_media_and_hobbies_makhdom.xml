@@ -77,6 +77,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="top"
+                    android:text="@{makhdom.computerDealing}"
                     android:hint="@string/computer_dealing_label"
                     android:inputType="textMultiLine" />
 

@@ -94,6 +94,13 @@ class MakhdomViewModel @Inject constructor(
         }
     }
 
+    fun saveBrothersList (){
+        if (preparedMakhdom.brothers == null)
+             preparedMakhdom.brothers = mutableListOf()
+        preparedMakhdom.brothers!!.clear()
+        preparedMakhdom.brothers!!.addAll(brothers)
+    }
+
 
     fun clearPreparedMakhdomData() {
         preparedMakhdom = Makhdom()
