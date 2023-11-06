@@ -22,7 +22,11 @@ class MediaAndHobbiesMakhdomFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = binding.root
+    ): View {
+        requireActivity().title = getString(R.string.media_toolbar_title)
+        return binding.root
+
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,10 +52,11 @@ class MediaAndHobbiesMakhdomFragment : Fragment() {
     private fun saveMediaData() {
         val hasComputerOrInternet = binding.positiveRadioBtn.isChecked
         val favouriteHobbiesAndPrizes = binding.hobbiesField.editText!!.text.toString()
-
+        val computerDealing = binding.computerDealingField.editText!!.text.toString()
         viewModel.preparedMakhdom.apply {
             this.hasComputer = hasComputerOrInternet
             this.hobbiesAndPrizes = favouriteHobbiesAndPrizes
+            this.computerDealing = computerDealing
         }
     }
 

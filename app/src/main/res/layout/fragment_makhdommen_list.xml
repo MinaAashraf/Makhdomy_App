@@ -49,6 +49,7 @@
                 android:layout_height="0dp"
                 android:nestedScrollingEnabled="true"
                 android:orientation="vertical"
+                android:layoutDirection="rtl"
                 android:padding="@dimen/_10sdp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"

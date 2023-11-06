@@ -44,7 +44,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/phone_field"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/EndAlignedTextInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -59,6 +59,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/phone_num"
                     android:inputType="phone"
+                    android:gravity="end"
                     android:textSize="@dimen/medium" />
 
             </com.google.android.material.textfield.TextInputLayout>

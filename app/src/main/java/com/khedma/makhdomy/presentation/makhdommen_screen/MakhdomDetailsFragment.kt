@@ -45,6 +45,7 @@ class MakhdomDetailsFragment : Fragment(), PhoneSelectionAdapter.OnClickListener
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        requireActivity().title = getString(R.string.details_toolbar_title)
         return binding.root
     }
 
@@ -106,11 +107,12 @@ class MakhdomDetailsFragment : Fragment(), PhoneSelectionAdapter.OnClickListener
         }
         val mapIntent = Intent(
             Intent.ACTION_VIEW,
-            Uri.parse("geo:<$myLatitude>,<$myLongitude>?q=<$myLatitude>,<$myLongitude>($labelLocation)")
-        );
+           // Uri.parse("geo:$myLatitude,$myLongitude?q=<$myLatitude>,<$myLongitude>($labelLocation)")
+           Uri.parse("geo:$myLatitude,$myLongitude?q=$myLatitude,$myLongitude($labelLocation)")
+        )
 
         mapIntent.resolveActivity(requireActivity().packageManager)?.let {
-            startActivity(mapIntent)
+            startActivity(Intent.createChooser(mapIntent, "Open location with..."))
         }
     }
 

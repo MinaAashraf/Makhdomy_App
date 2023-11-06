@@ -25,7 +25,7 @@
                 android:id="@+id/save_btn"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/btn_height"
-                android:text="@string/save_label"
+                android:text="@string/confirmation_toolbar_title"
                 android:textSize="@dimen/small"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

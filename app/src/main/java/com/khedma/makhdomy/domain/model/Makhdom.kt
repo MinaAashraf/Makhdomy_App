@@ -23,7 +23,7 @@ data class Makhdom(
 
     // phone data
     var homePhoneNum: String? = null,
-    var mobilePhones: MutableMap<String, String>? = null,
+
     // school data
     var schoolPhase: String? = null,
     var schoolName: String? = null,
@@ -48,13 +48,20 @@ data class Makhdom(
     var khademName: String? = null,
 
     var isSynchronized : Boolean = false,
-
+    var isDirty : Boolean = false,
+    var isPictureUpdated : Boolean = false,
     var makhdomKey : String? = null
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
 
     var couldKey : String? = null
+    var mobilePhones: MutableMap<String, String>? = null
+        set(value) {
+            field = value
+            phonesList = value?.values?.toMutableList()
+        }
+    var phonesList: MutableList<String>? = null
 
     fun mapToMakhdomyData(): MakhdomData {
         return MakhdomData(

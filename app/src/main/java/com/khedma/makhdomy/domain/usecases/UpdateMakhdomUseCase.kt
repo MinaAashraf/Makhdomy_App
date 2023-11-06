@@ -6,6 +6,12 @@ import javax.inject.Inject
 
 class UpdateMakhdomUseCase @Inject constructor(private val makhdomRepository: MakhdomRepository) {
 
-    suspend fun execute(makhdom: Makhdom) = makhdomRepository.updateMakhdom(makhdom)
+    suspend fun execute(makhdom: Makhdom, remoteOnly: Boolean = false) {
+        if (!remoteOnly)
+            makhdomRepository.updateMakhdom(makhdom)
+        else
+            makhdomRepository.updateMakhdomRemotely(makhdom)
+
+    }
 
 }

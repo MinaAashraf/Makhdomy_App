@@ -12,8 +12,12 @@ interface MakhdomLocalDataSource {
     fun readById(id: Int): LiveData<Makhdom>
 
     fun searchByKeyWord (keyWord : String) : LiveData<List<Makhdom>>
+    fun searchByPhone (phone : String) : LiveData<List<Makhdom>>
 
     suspend fun updateMakhdom(makhdom: Makhdom)
 
     suspend fun getUnSynchronizedMakhdommen() : List<Makhdom>
+
+    suspend fun getDirtyMakhdommen() : List<Makhdom>
+
 }

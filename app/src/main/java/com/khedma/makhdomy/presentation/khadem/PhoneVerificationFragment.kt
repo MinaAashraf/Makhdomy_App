@@ -46,7 +46,7 @@ class PhoneVerificationFragment : Fragment() {
 
     private val currentKhadem by lazy { fromJson(readFromPreferences(getString(R.string.khadem_key))!!) }
 
-    private val phoneNumber : String by lazy { "+2${currentKhadem.phone}"}
+    private val phoneNumber: String by lazy { "+2${currentKhadem.phone}" }
 
     val viewModel: KhademViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +54,7 @@ class PhoneVerificationFragment : Fragment() {
         createPreferences(requireContext())
         val options = PhoneAuthOptions.newBuilder(auth)
             .setPhoneNumber(phoneNumber) // Phone number to verify
-            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setTimeout(120L, TimeUnit.SECONDS) // Timeout and unit
             .setActivity(requireActivity()) // Activity (for callback binding)
             .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
             .build()
@@ -105,11 +105,15 @@ class PhoneVerificationFragment : Fragment() {
         setUpResendCodeBtn()
     }
 
-    private fun setUpVerificationBtn (){
+    private fun setUpVerificationBtn() {
         binding.veriicationBtn.setOnClickListener {
             binding.otpView.error = null
             if (binding.otpView.text!!.isEmpty()) {
                 binding.otpView.error = getString(R.string.enter_code_msg)
+                return@setOnClickListener
+            }
+            if (binding.otpView.text!!.length != 6) {
+                binding.otpView.error = getString(R.string.enter_code_msg2)
                 return@setOnClickListener
             }
             storedVerificationId?.let {
@@ -120,12 +124,12 @@ class PhoneVerificationFragment : Fragment() {
         }
     }
 
-    private fun setUpVerificationDescriptionTxt (){
+    private fun setUpVerificationDescriptionTxt() {
         binding.descriptionTxt.text =
             "${getString(R.string.enter_code_description)} ${currentKhadem.phone}"
     }
 
-    private fun setUpResendCodeBtn (){
+    private fun setUpResendCodeBtn() {
         binding.resendOtpBtn.setOnClickListener {
             resendVerificationCode()
         }
@@ -146,10 +150,9 @@ class PhoneVerificationFragment : Fragment() {
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
         auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
-                currentKhadem.key= it.result!!.user!!.uid
+                currentKhadem.key = it.result!!.user!!.uid
                 viewModel.addKhadem(currentKhadem)
-            }
-            else {
+            } else {
                 viewModel.endLoading()
                 showToast(requireContext(), getString(R.string.otp_err_msg))
             }
@@ -168,7 +171,7 @@ class PhoneVerificationFragment : Fragment() {
                     else {
                         binding.veriicationBtn.show()
                         binding.progressBar.hide()
-                      //  showToast(requireContext(), getString(R.string.internet_err_msg))
+                        //  showToast(requireContext(), getString(R.string.internet_err_msg))
                     }
                 }
 

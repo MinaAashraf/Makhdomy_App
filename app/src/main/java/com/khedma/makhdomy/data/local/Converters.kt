@@ -22,7 +22,7 @@ class Converters {
     fun fromBitmap(btm: Bitmap?): ByteArray? {
         return btm?.let {
             val outputStream = ByteArrayOutputStream()
-            btm.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+            it.compress(Bitmap.CompressFormat.PNG, 70, outputStream)
             outputStream.toByteArray()
         }
     }
@@ -33,6 +33,14 @@ class Converters {
 
     @TypeConverter
     fun fromHashMap(map: MutableMap<String, String>): String = Gson().toJson(map)
+
+    @TypeConverter
+    fun toListOfStrings(value: String): MutableList<String> =
+        Gson().fromJson(value, object : TypeToken<MutableList<String>>() {})
+
+    @TypeConverter
+    fun fromListOfString(list: MutableList<String>): String = Gson().toJson(list)
+
 
     @TypeConverter
     fun toListOfBrothers(value: String): MutableList<Brother> =

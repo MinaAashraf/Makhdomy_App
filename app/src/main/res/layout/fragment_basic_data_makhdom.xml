@@ -25,25 +25,32 @@
 
             <ImageView
                 android:id="@+id/picture_view"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp"
-                android:background="@drawable/border_background"
-                android:padding="@dimen/_5sdp"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:scaleType="centerCrop"
                 app:img_src="@{makhdom.picture}"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-
                 />
 
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/name_label"
+    app:layout_constraintStart_toStartOf="@id/name_text_field"
+    app:layout_constraintBottom_toTopOf="@id/name_text_field"
+    android:layout_margin="@dimen/_5sdp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/name_text_field"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_50sdp"
                 app:helperTextEnabled="true"
                 app:helperTextTextColor="@color/red"
+                app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/picture_view">

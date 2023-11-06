@@ -137,6 +137,9 @@
         <action
             android:id="@+id/action_khademLoginFragment_to_phoneVerificationFragment"
             app:destination="@id/phoneVerificationFragment" />
+        <action
+            android:id="@+id/action_khademLoginFragment_to_makhdommenListFragment"
+            app:destination="@id/makhdommenListFragment" />
     </fragment>
     <fragment
         android:id="@+id/phoneVerificationFragment"

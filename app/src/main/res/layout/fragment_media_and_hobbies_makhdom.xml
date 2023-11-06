@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layoutDirection="rtl"
             android:background="@color/light_blue"
-            android:padding="@dimen/_20sdp"
+            android:padding="@dimen/_40sdp"
             tools:context=".presentation.makhdommen_screen.MediaAndHobbiesMakhdomFragment">
 
             <TextView
@@ -63,7 +63,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/computer_dealing_field"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_100sdp"
+                android:layout_height="@dimen/_120sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +87,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/hobbies_field"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_100sdp"
+                android:layout_height="@dimen/_120sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -109,8 +109,6 @@
                 android:id="@+id/next_page_btn"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_50sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginTop="@dimen/_40sdp"
                 android:text="@string/next_page_label"
                 android:textSize="@dimen/small"

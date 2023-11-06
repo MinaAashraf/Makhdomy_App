@@ -29,15 +29,16 @@ class MakhdommenListFragment : Fragment(), MakhdommenAdapter.OnItemClick {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        (requireActivity() as MainActivity).supportActionBar?.setDisplayUseLogoEnabled(true)
-        (requireActivity() as MainActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
-        requireActivity().title = getString(R.string.basic_data_toolbar_title)
-        setHasOptionsMenu(true)
+        (requireActivity() as MainActivity).supportActionBar?.show()
+        requireActivity().title = getString(R.string.app_name)
+      //  setHasOptionsMenu(true)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (viewModel.preparedMakhdom.name != null)
+            viewModel.clearPreparedMakhdomData()
         setUpUi()
         observeMakhdommen()
     }
@@ -118,15 +119,17 @@ class MakhdommenListFragment : Fragment(), MakhdommenAdapter.OnItemClick {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
+        return when (item.itemId) {
             R.id.send_icon -> {
-                showToast(requireContext(),"send")
+                showToast(requireContext(), "send")
                 true
             }
+
             R.id.receive_icon -> {
-                showToast(requireContext(),"receive")
+                showToast(requireContext(), "receive")
                 true
             }
+
             else -> true
         }
         return super.onOptionsItemSelected(item)

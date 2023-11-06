@@ -4,9 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.GridView
 
-/* This component class is based on an answer by @tacone on StackOverflow
-* Link: https://stackoverflow.com/a/8483078
-*/   class ExpandableHeightGridView : GridView {
+
+   class ExpandableHeightGridView : GridView {
     var isExpanded = false
 
     constructor(context: Context?) : super(context)

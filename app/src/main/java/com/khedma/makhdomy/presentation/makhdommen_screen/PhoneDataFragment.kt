@@ -36,6 +36,7 @@ class PhoneDataFragment : Fragment(), PhonesAdapter.OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        requireActivity().title = getString(R.string.phone_toolbar_title)
         return binding.root
 
     }
@@ -97,8 +98,7 @@ class PhoneDataFragment : Fragment(), PhonesAdapter.OnClickListener {
 
     private fun setUpNextBtn() {
         binding.nextPageBtn.setOnClickListener {
-            if (!viewModel.updatingState)
-                viewModel.preparedMakhdom.mobilePhones = viewModel.phones
+            viewModel.preparedMakhdom.mobilePhones = viewModel.phones
             findNavController().navigate(R.id.action_phoneDataFragment_to_familyMakhdomFragment)
         }
     }

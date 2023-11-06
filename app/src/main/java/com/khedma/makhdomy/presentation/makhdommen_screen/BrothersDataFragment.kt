@@ -30,7 +30,7 @@ class BrothersDataFragment : Fragment(), BrothersAdapter.OnClickListener {
     private val brothersAdapter by lazy {
         BrothersAdapter(
             requireContext(),
-            viewModel.brothers ?: mutableListOf(),
+            viewModel.brothers,
             this
         )
     }
@@ -39,6 +39,7 @@ class BrothersDataFragment : Fragment(), BrothersAdapter.OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        requireActivity().title = getString(R.string.brother_toolbar_title)
         return binding.root
     }
 
@@ -69,13 +70,7 @@ class BrothersDataFragment : Fragment(), BrothersAdapter.OnClickListener {
                 return@setOnClickListener
             }
             val brother = Brother(brotherName, brotherType, brotherAge, brotherStudy)
-            viewModel.brothers?.let {
-                it.add(brother)
-            } ?: kotlin.run {
-                viewModel.brothers = mutableListOf<Brother>().apply {
-                    add(brother)
-                }
-            }
+            viewModel.brothers.add(brother)
             brothersAdapter.notifyDataSetChanged()
             clearFields()
             showToast(requireContext(), getString(R.string.brother_data_addess_succssfully_msg))
@@ -84,8 +79,8 @@ class BrothersDataFragment : Fragment(), BrothersAdapter.OnClickListener {
 
     private fun setUpGridView() {
         viewModel.preparedMakhdom.brothers?.let {
-            if (viewModel.brothers == null)
-                viewModel.brothers = mutableListOf<Brother>().apply { addAll(it) }
+            if (viewModel.brothers.isEmpty())
+                viewModel.brothers.addAll(it)
         }
         binding.brothersGrid.isExpanded = true
         binding.brothersGrid.adapter = brothersAdapter
@@ -114,8 +109,7 @@ class BrothersDataFragment : Fragment(), BrothersAdapter.OnClickListener {
 
     private fun setUpNextBtn() {
         binding.nextPageBtn.setOnClickListener {
-            if (!viewModel.updatingState)
-                viewModel.preparedMakhdom.brothers = viewModel.brothers
+            viewModel.preparedMakhdom.brothers = viewModel.brothers
             findNavController().navigate(R.id.action_brothersDataFragment_to_spiritualMakhdomFragment)
         }
     }

@@ -7,7 +7,7 @@ import com.khedma.makhdomy.domain.model.Makhdom
 
 @Database(
     entities = [Makhdom::class],
-    version = 6,
+    version = 7,
     exportSchema = false,
 )
 @TypeConverters (Converters::class)

@@ -65,6 +65,7 @@ class AddressMakhdomFragment : Fragment() {
             Activity.RESULT_OK -> {
                 isGpsOpen = true
                 getCurrentLocation()
+                isGpsOpen= false
             }
         }
     }
@@ -73,6 +74,7 @@ class AddressMakhdomFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        requireActivity().title = getString(R.string.address_toolbar_title)
         return binding.root
     }
 
@@ -162,22 +164,27 @@ class AddressMakhdomFragment : Fragment() {
     private fun checkLocationPermission(): Boolean {
         return ContextCompat.checkSelfPermission(
             requireContext(),
-            android.Manifest.permission.ACCESS_FINE_LOCATION
+            Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
                 ||
                 ContextCompat.checkSelfPermission(
                     requireContext(),
-                    android.Manifest.permission.ACCESS_COARSE_LOCATION
+                    Manifest.permission.ACCESS_COARSE_LOCATION
                 ) == PackageManager.PERMISSION_GRANTED
     }
 
     private val requestPermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
             getCurrentLocation()
         }
 
     private fun requestLocationPermission() {
-        requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+        requestPermissionLauncher.launch(
+            arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            )
+        )
     }
 
 
@@ -203,6 +210,8 @@ class AddressMakhdomFragment : Fragment() {
                             latTextField.editText!!.setText(it.latitude.toString())
                             lngTextField.editText!!.setText(it.longitude.toString())
                         }
+                        bottomSheetLayoutBinding.progressBar.hide()
+                        bottomSheetLayoutBinding.automaticGpsBtn.show()
                     } ?: run { Log.d("lat lng", "null location") }
                 }
 
@@ -222,6 +231,8 @@ class AddressMakhdomFragment : Fragment() {
         task.addOnSuccessListener {
             isGpsOpen = true
             getCurrentLocation()
+            isGpsOpen = false
+
         }
         // if gps is closed -> display request dialogue to open gps
         task.addOnFailureListener { exception ->
@@ -259,6 +270,8 @@ class AddressMakhdomFragment : Fragment() {
     private fun handleBottomSheetInputs() {
 
         bottomSheetLayoutBinding.automaticGpsBtn.setOnClickListener {
+            bottomSheetLayoutBinding.progressBar.show()
+            bottomSheetLayoutBinding.automaticGpsBtn.hide()
             getCurrentLocation()
         }
         bottomSheetLayoutBinding.apply {

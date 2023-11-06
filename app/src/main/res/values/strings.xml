@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Makhdomy</string>
+    <string name="app_name">مخدومي</string>
     <string name="class_adding_label">إضافة فصل</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -33,6 +33,9 @@
     <string name="birth_location_label2">محل الميلاد:</string>
     <string name="address_label">العنوان:</string>
     <string name="family_label">الأسـرة:</string>
+    <string name="family_toolbar_title">بيانات الأسـرة</string>
+    <string name="health_toolbar_title">الحالة الجسدية و النفسية</string>
+    <string name="brother_toolbar_title">بيانات الأخوة</string>
     <string name="father_job_label2">وظيفة الأب:</string>
     <string name="mother_job_label2">وظيفة الأم:</string>
     <string name="spiritual_father_label2">أب الاعتراف:</string>
@@ -49,12 +52,16 @@
     <string name="phone_empty_error_msg">يجب إدخال رقم الموبايل!</string>
     <string name="phone_wrong_err_msg">رقم الموبايل خاطيء.</string>
     <string name="phone_label">الموبايل:</string>
+    <string name="phone_toolbar_title">الموبايل</string>
     <string name="basic_data_label">المعلومات الأساسية:</string>
     <string name="basic_data_toolbar_title">المعلومات الأساسية</string>
     <string name="spirit_label">الإعتراف:</string>
+    <string name="spirit_toolbar_title">الإعتراف</string>
     <string name="media_label">الميديا:</string>
+    <string name="media_toolbar_title">الميديا</string>
     <string name="computer_fields_label">مجالات استخدام الطفل له:</string>
     <string name="health_label">الصحة:</string>
+    <string name="health_toolbar_label">الصحة</string>
     <string name="save_exit_label">حفظ و خروج</string>
     <string name="class_label">المرحــلـــة</string>
     <string name="inavailable_msg">غير متاح!</string>
@@ -80,6 +87,7 @@
     <string name="resend_otp_label">إرسال الكود مرة أخري</string>
     <string name="my_makhdom_label">مخـــدومــي</string>
     <string name="enter_code_msg">يجب إدخال الكود!</string>
+    <string name="enter_code_msg2">يجب إدخال الكود بشكل سليم!</string>
     <string name="try_again_msg">حاول في وقت لاحق</string>
     <string name="choose_phone_label">اختار الرقم :</string>
     <string name="internet_error_message">تأكد من الاتصال بالانترنت</string>
@@ -93,6 +101,9 @@
     <string name="brother_name_err_msg">يجب إدخال الاسم!</string>
     <string name="brother_data_addess_succssfully_msg">تم إضافة البيانات بنجاح</string>
     <string name="brothers_label">الأخــوة:</string>
+    <string name="address_toolbar_title">العنوان</string>
+    <string name="details_toolbar_title">بيانات المخدوم</string>
+    <string name="confirmation_toolbar_title">تأكــيد</string>
     <string-array name="classes_names">
         <item>اولى ابتدائي</item>
         <item>ثانية ابتدائي</item>

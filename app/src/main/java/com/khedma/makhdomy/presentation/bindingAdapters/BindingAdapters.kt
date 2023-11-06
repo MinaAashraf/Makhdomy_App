@@ -9,6 +9,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.khedma.makhdomy.R
 import com.khedma.makhdomy.domain.model.Address
 import com.khedma.makhdomy.domain.model.Brother
+import com.khedma.makhdomy.domain.model.Makhdom
 
 
 @BindingAdapter("img_src")
@@ -28,7 +29,7 @@ fun bindAddress(textView: TextView, address: Address?) {
         addressString += streetName
         val motfare3From =
             it.motafre3From?.let { concatenateDashIfRequired(addressString) + it } ?: ""
-        addressString += motfare3From
+        if (motfare3From.isNotEmpty()) addressString += "متفرع من $motfare3From"
         val area = it.areaName?.let { concatenateDashIfRequired(addressString) + it } ?: ""
         addressString += area
         val homeNum =
@@ -62,8 +63,8 @@ fun bindComputerDealingInitialVisibilityDependingOnRadioBtn(
 }
 
 @BindingAdapter("sync_icon")
-fun bindSynchronizedIcon(imageView: ImageView, isSynchronized: Boolean) {
-    imageView.setImageResource(if (isSynchronized) R.drawable.sync_icon else R.drawable.notsync_icon)
+fun bindSynchronizedIcon(imageView: ImageView, makhdom: Makhdom) {
+    imageView.setImageResource(if (makhdom.isSynchronized && !makhdom.isDirty) R.drawable.sync_icon else R.drawable.notsync_icon)
 }
 
 @BindingAdapter("phones_map")

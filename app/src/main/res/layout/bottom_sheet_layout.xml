@@ -66,6 +66,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/lng_text_field" />
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/automatic_gps_btn"
+            app:layout_constraintTop_toTopOf="@+id/automatic_gps_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+
         <Button
             android:id="@+id/save_btn"
             android:layout_width="0dp"

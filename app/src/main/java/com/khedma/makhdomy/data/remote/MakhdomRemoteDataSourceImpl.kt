@@ -16,7 +16,7 @@ class MakhdomRemoteDataSourceImpl @Inject constructor(
         makhdomData: MakhdomData,
     ): Result<String> {
 
-      return picture?.let {
+        return picture?.let {
             try {
                 val storageTaskSnapshot =
                     storage.reference.child("servant_image/${makhdomData.name}").putBytes(picture)
@@ -33,7 +33,7 @@ class MakhdomRemoteDataSourceImpl @Inject constructor(
                 Result.Failure(Exception(e.message.toString()))
             }
         } ?: kotlin.run {
-          return@run  try {
+            return@run try {
                 val id = uploadMakhdomToDatabase(makhdomData)
                 Result.Success(id)
             } catch (e: Exception) {
@@ -42,12 +42,55 @@ class MakhdomRemoteDataSourceImpl @Inject constructor(
 
         }
     }
-
     private suspend fun uploadMakhdomToDatabase(makhdomData: MakhdomData): String {
         val reference = fireStore.collection("servant").document()
         reference.set(makhdomData).await()
         reference.update(mapOf("key" to reference.id))
         return reference.id
     }
+
+
+
+
+    override suspend fun updateMakhdom(
+        picture: ByteArray?,
+        makhdomData: MakhdomData
+    ): Result<String> {
+
+      return picture?.let {
+            try {
+                val storageTaskSnapshot =
+                    storage.reference.child("servant_image/${makhdomData.name}").putBytes(picture)
+                        .await()
+
+                if (storageTaskSnapshot.task.isSuccessful) {
+                    val uri = storageTaskSnapshot.storage.downloadUrl.await()
+                    makhdomData.picture = uri?.toString()
+
+                    val reference = fireStore.collection("servant").document(makhdomData.key!!)
+                    reference.set(makhdomData).await()
+                    Result.Success(makhdomData.key!!)
+
+                } else {
+                    Result.Failure(Exception("image not uploaded"))
+                }
+            } catch (e: Exception) {
+                Result.Failure(Exception(e.message.toString()))
+            }
+        } ?: kotlin.run {
+            return@run try {
+                val reference = fireStore.collection("servant").document(makhdomData.key!!)
+                reference.set(makhdomData).await()
+                Result.Success(makhdomData.key!!)
+            } catch (e: Exception) {
+                Result.Failure(Exception(e.message.toString()))
+            }
+
+        }
+
+
+    }
+
+
 
 }

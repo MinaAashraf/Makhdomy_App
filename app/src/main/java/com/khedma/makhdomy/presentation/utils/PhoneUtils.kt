@@ -30,7 +30,7 @@ fun getPhoneCallDialogMessage(name: String): String {
 fun checkPhoneCallPermission(context: Context) = ActivityCompat.checkSelfPermission(
     context,
     android.Manifest.permission.CALL_PHONE
-) != PackageManager.PERMISSION_GRANTED
+) == PackageManager.PERMISSION_GRANTED
 
 fun requestPermission(fragment: Fragment) {
     fragment.requestPermissions(

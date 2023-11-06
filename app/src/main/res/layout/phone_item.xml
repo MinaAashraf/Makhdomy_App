@@ -23,8 +23,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="@dimen/_5sdp"
+        android:maxLines="1"
+        android:gravity="center"
         android:text="01201090632"
-        android:textSize="@dimen/medium"
+        android:textSize="@dimen/small"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/close_icon"
         app:layout_constraintTop_toTopOf="parent" />

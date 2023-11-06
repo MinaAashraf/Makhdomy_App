@@ -4,7 +4,10 @@ import android.app.DatePickerDialog
 import android.content.ContentResolver
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
 import android.graphics.ImageDecoder
+import android.graphics.Matrix
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -44,6 +47,7 @@ class BasicDataMakhdomFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View {
+        requireActivity().title = getString(R.string.basic_data_toolbar_title)
         handleMakhdomInitialValueIFExist()
         return binding.root
     }
@@ -113,7 +117,12 @@ class BasicDataMakhdomFragment : Fragment() {
 
     private fun setUpPictureImage() {
         binding.pictureView.setOnClickListener {
-            pickMedia.launch(Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI))
+            pickMedia.launch(
+                Intent(
+                    Intent.ACTION_PICK,
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                )
+            )
         }
     }
 
@@ -121,8 +130,9 @@ class BasicDataMakhdomFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val uri = result.data?.data
             uri?.let {
-                binding.pictureView.setImageURI(it)
-                viewModel.preparedMakhdom.picture = getBitmapFromUri(it)
+                val bitmap = decodeSampledBitmapFromResource(it,320,320)
+                binding.pictureView.setImageBitmap(bitmap)
+                viewModel.preparedMakhdom.picture = bitmap
             }
         }
 
@@ -133,13 +143,86 @@ class BasicDataMakhdomFragment : Fragment() {
             bitmap = if (Build.VERSION.SDK_INT < 28) {
                 MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
             } else {
-                val source = ImageDecoder.createSource(contentResolver, imageUri)
+                val source: ImageDecoder.Source = ImageDecoder.createSource(contentResolver, imageUri)
                 ImageDecoder.decodeBitmap(source)
             }
+             bitmap = Bitmap.createScaledBitmap(bitmap!!,(bitmap.width*0.3).toInt(),(bitmap.height*0.3).toInt(),true)
         } catch (e: Exception) {
             e.printStackTrace()
         }
+        Log.d("bitmap", bitmap.toString())
+
         return bitmap
+    }
+
+    private fun resizeBitmap(bitmap: Bitmap?, newWidth: Int, newHeight: Int): Bitmap? {
+        if (bitmap == null)
+            return bitmap
+        // Calculate the scaling factors for width and height
+        val widthScale = newWidth.toFloat() / bitmap.width
+        val heightScale = newHeight.toFloat() / bitmap.height
+
+        // Calculate the scale factor while maintaining the aspect ratio
+        val scaleFactor = minOf(widthScale, heightScale)
+
+        // Calculate the new dimensions based on the aspect ratio
+        val scaledWidth = (bitmap.width * scaleFactor).toInt()
+        val scaledHeight = (bitmap.height * scaleFactor).toInt()
+
+        // Create a Matrix to perform the scaling
+        val matrix = Matrix()
+        matrix.postScale(scaleFactor, scaleFactor)
+
+        // Create a new Bitmap with the desired dimensions
+
+        var resizedBitmap = Bitmap.createBitmap(scaledWidth, scaledHeight, Bitmap.Config.ARGB_8888)
+        // Create a Canvas and draw the scaled Bitmap onto the new Bitmap
+        val canvas = Canvas(resizedBitmap)
+        canvas.drawBitmap(bitmap, matrix, null)
+
+        return resizedBitmap
+    }
+
+    private fun decodeSampledBitmapFromResource(
+        imageUri : Uri,
+        reqWidth: Int,
+        reqHeight: Int
+    ): Bitmap? {
+        // First decode with inJustDecodeBounds=true to check dimensions
+        return BitmapFactory.Options().run {
+            inJustDecodeBounds = true
+            BitmapFactory.decodeStream(requireActivity().contentResolver.openInputStream(imageUri), null, this)
+
+            // Calculate inSampleSize
+            inSampleSize = calculateInSampleSize(this, reqWidth, reqHeight)
+
+            // Decode bitmap with inSampleSize set
+            inJustDecodeBounds = false
+
+            BitmapFactory.decodeStream(requireActivity().contentResolver.openInputStream(imageUri), null, this)
+        }
+    }
+
+    private fun calculateInSampleSize(
+        options: BitmapFactory.Options, reqWidth: Int, reqHeight: Int
+    ): Int {
+        // Raw height and width of image
+        val height = options.outHeight
+        val width = options.outWidth
+        var inSampleSize = 1
+        if (height > reqHeight || width > reqWidth) {
+            val halfHeight = height / 2
+            val halfWidth = width / 2
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while (halfHeight / inSampleSize >= reqHeight
+                && halfWidth / inSampleSize >= reqWidth
+            ) {
+                inSampleSize *= 2
+            }
+        }
+        return inSampleSize
     }
 
     private fun handleMakhdomInitialValueIFExist() {
@@ -212,7 +295,7 @@ class BasicDataMakhdomFragment : Fragment() {
             calender.get(Calendar.MONTH),
             calender.get(Calendar.DAY_OF_MONTH),
 
-        )
+            )
         datePickerDialog.show()
     }
 

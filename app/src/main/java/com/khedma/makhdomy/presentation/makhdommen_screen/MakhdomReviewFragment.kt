@@ -21,7 +21,10 @@ class MakhdomReviewFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = binding.root
+    ): View {
+        requireActivity().title = getString(R.string.confirmation_toolbar_title)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,9 +33,11 @@ class MakhdomReviewFragment : Fragment() {
     }
 
     private fun setUpSaveBtn() {
-
         binding.saveBtn.setOnClickListener {
-            viewModel.addMakhdom()
+            if (viewModel.updatingState && viewModel.preparedMakhdom.isSynchronized)
+                viewModel.updateMakhdom()
+            else
+                viewModel.addMakhdom()
             findNavController().popBackStack(R.id.makhdommenListFragment, false)
             Log.d("makhdom : ", viewModel.preparedMakhdom.toString())
         }
@@ -43,9 +48,6 @@ class MakhdomReviewFragment : Fragment() {
             findNavController().popBackStack()
         }
     }
-
-
-
 
 
 }

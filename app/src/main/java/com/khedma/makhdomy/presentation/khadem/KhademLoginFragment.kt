@@ -91,7 +91,8 @@ class KhademLoginFragment : Fragment() {
             binding.khademNameField.helperText = "يجب ادخال اسم الخادم!"
             isValid = false
         }
-        isValid = validatePhoneNum(binding.phoneField, requireContext())
+        if (!validatePhoneNum(binding.phoneField, requireContext()))
+            isValid = false
 
         if (binding.classNameField.editText!!.text.isEmpty()) {
             binding.classNameField.helperText = "يجب ادخال المرحلة!"
