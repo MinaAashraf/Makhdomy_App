@@ -47,8 +47,10 @@ fun Bitmap.convertToByteArr(): ByteArray {
 }
 
 
-lateinit var preferences: SharedPreferences
+ var preferences: SharedPreferences? = null
 fun createPreferences(context: Context) {
+    if (preferences != null)
+        return
     preferences = context.getSharedPreferences(
         context.getString(R.string.preferences_file_key),
         Context.MODE_PRIVATE
@@ -56,14 +58,18 @@ fun createPreferences(context: Context) {
 }
 
 
-fun readFromPreferences(key: String) =
-    preferences.getString(key, "")
+fun readFromPreferences(context: Context,key: String): String? {
+    createPreferences(context)
+    return preferences!!.getString(key, "")
+}
 
-fun writePreferences(key: String, value: String) =
-    preferences.edit().putString(key, value).apply()
+fun writePreferences(context: Context, key: String, value: String) {
+    createPreferences(context)
+    preferences!!.edit().putString(key, value).apply()
+}
 
 fun showToast(context: Context, msg: String) {
-    Toast.makeText(context, msg, Toast.LENGTH_LONG)
+    Toast.makeText(context, msg, Toast.LENGTH_SHORT)
         .show()
 }
 

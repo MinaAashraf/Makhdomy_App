@@ -48,7 +48,7 @@
             android:id="@+id/mother_job_field"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/father_job_field"
@@ -64,6 +64,98 @@
                 android:text="@{makhdom.motherJob}"
                 android:textSize="@dimen/medium" />
 
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/family_life_level_field"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:helperTextEnabled="true"
+            app:helperTextTextColor="@color/red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mother_job_field">
+
+            <AutoCompleteTextView
+                android:id="@+id/family_life_level_auto_complete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:hint="@string/family_life_level_label"
+                android:inputType="none"
+                android:text="@{makhdom.familyLifeLevel}"
+                android:textSize="@dimen/medium" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/familyLastVisitAttitude"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/family_life_level_field">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:hint="@string/family_attitude_label"
+                android:inputType="textMultiLine"
+                android:text="@{makhdom.familyLastVisitAttitude}"
+                android:textSize="@dimen/medium" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/family_church_connection"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/familyLastVisitAttitude">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:hint="@string/family_church_connection_label"
+                android:inputType="textMultiLine"
+                android:text="@{makhdom.familyChurchConnection}"
+                android:textSize="@dimen/medium" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/family_notes_field"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/family_church_connection">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:hint="@string/another_notes_label"
+                android:inputType="textMultiLine"
+                android:text="@{makhdom.familyNotes}"
+                android:textSize="@dimen/medium" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -71,29 +163,26 @@
             android:id="@+id/next_page_btn"
             android:layout_width="0dp"
             android:layout_height="@dimen/btn_height"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
             android:text="@string/next_page_label"
             android:textSize="@dimen/small"
             android:textStyle="bold"
+            android:layout_marginTop="@dimen/_15sdp"
             app:layout_constraintEnd_toStartOf="@id/last_page_btn"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mother_job_field" />
+            app:layout_constraintTop_toBottomOf="@+id/family_notes_field" />
 
         <Button
             android:id="@+id/last_page_btn"
             android:layout_width="0dp"
             android:layout_height="@dimen/btn_height"
             android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
             android:backgroundTint="@color/grey"
             android:text="@string/last_page_label"
             android:textSize="@dimen/small"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/next_page_btn"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mother_job_field" />
+            app:layout_constraintStart_toEndOf="@id/next_page_btn"
+            app:layout_constraintTop_toTopOf="@+id/next_page_btn" />
 
 
         <Button

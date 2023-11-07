@@ -19,8 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:scrollbars="none"
-        android:layoutDirection="rtl">
+        android:layoutDirection="rtl"
+        android:scrollbars="none">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -81,20 +81,22 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                   >
+                    android:paddingBottom="@dimen/_8sdp"
+
+                    >
 
                     <ImageButton
+                        android:id="@+id/phone_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/baseline_phone_24"
-                        android:id="@+id/phone_icon"
-                        android:contentDescription="Go to map"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:padding="@dimen/_7sdp"
-                        android:background="@drawable/circlular_background"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@drawable/circlular_background"
+                        android:contentDescription="Go to map"
+                        android:padding="@dimen/_7sdp"
+                        android:src="@drawable/baseline_phone_24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
 
                         />
 
@@ -103,11 +105,11 @@
                         android:id="@+id/basic_data_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_15sdp"
                         android:text="@string/basic_data_label"
                         android:textColor="@color/blue"
                         android:textSize="@dimen/very_small"
                         android:textStyle="bold"
-                        android:layout_margin="@dimen/_15sdp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -170,14 +172,13 @@
 
                     <TextView
                         android:id="@+id/phone_value"
+                        phones_map="@{makhdom.mobilePhones}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
-                        phones_map="@{makhdom.mobilePhones}"
                         android:textColor="@color/grey"
                         android:textSize="@dimen/small"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:layout_marginBottom="@dimen/_15sdp"
                         app:layout_constraintStart_toStartOf="@id/phone_label"
                         app:layout_constraintTop_toBottomOf="@+id/phone_label" />
 
@@ -198,7 +199,9 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/_8sdp"
+                    >
 
                     <TextView
                         android:id="@+id/address_label"
@@ -220,8 +223,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:layout_marginEnd="@dimen/_10sdp"
-                        android:padding="@dimen/_7sdp"
                         android:background="@drawable/circlular_background"
+                        android:padding="@dimen/_7sdp"
                         android:src="@drawable/baseline_location_on_24"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -244,14 +247,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_15sdp"
                         android:text="@{address.anotherAddressData}"
                         android:textColor="@color/grey"
+                        isEmpty="@{address.anotherAddressData}"
                         android:textSize="@dimen/small"
-                        app:layout_constraintStart_toStartOf="@id/address_label"
-                        app:layout_constraintTop_toBottomOf="@id/makhdom_address"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:layout_marginBottom="@dimen/_15sdp"
-                        />
+                        app:layout_constraintStart_toStartOf="@id/address_label"
+                        app:layout_constraintTop_toBottomOf="@id/makhdom_address" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
@@ -301,7 +304,6 @@
                         android:layout_marginStart="@dimen/_20sdp"
                         android:text="@{makhdom.fatherJob}"
                         android:textSize="@dimen/small"
-
                         app:layout_constraintBottom_toBottomOf="@id/father_job_label"
                         app:layout_constraintStart_toEndOf="@id/father_job_label"
                         app:layout_constraintTop_toTopOf="@id/father_job_label" />
@@ -331,6 +333,114 @@
                         app:layout_constraintStart_toEndOf="@id/mother_job_label"
                         app:layout_constraintTop_toTopOf="@id/mother_job_label" />
 
+
+                    <TextView
+                        android:id="@+id/family_life_level_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/family_life_level_label"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/very_small"
+                        app:layout_constraintStart_toStartOf="@id/family_label"
+                        app:layout_constraintTop_toBottomOf="@id/mother_job_data"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/family_life_level_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:text="@{makhdom.familyLifeLevel}"
+                        android:textSize="@dimen/small"
+                        app:layout_constraintBottom_toBottomOf="@id/family_life_level_label"
+                        app:layout_constraintStart_toEndOf="@id/family_life_level_label"
+                        app:layout_constraintTop_toTopOf="@id/family_life_level_label" />
+
+
+                    <TextView
+                        android:id="@+id/family_attitude_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/family_attitude_label"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/very_small"
+                        app:layout_constraintStart_toStartOf="@id/family_label"
+                        app:layout_constraintTop_toBottomOf="@id/family_life_level_value"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/family_attitude_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="start"
+                        android:text="@{makhdom.familyLastVisitAttitude}"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/small"
+                        isEmpty="@{makhdom.familyLastVisitAttitude}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/family_attitude_label"
+                        app:layout_constraintTop_toBottomOf="@+id/family_attitude_label" />
+
+                    <TextView
+                        android:id="@+id/family_church_connection_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/family_church_connection_label"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/very_small"
+                        app:layout_constraintStart_toStartOf="@id/family_label"
+                        app:layout_constraintTop_toBottomOf="@id/family_attitude_value"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/family_church_connection_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="start"
+                        android:text="@{makhdom.familyChurchConnection}"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/small"
+                        isEmpty="@{makhdom.familyChurchConnection}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/family_church_connection_label"
+                        app:layout_constraintTop_toBottomOf="@+id/family_church_connection_label" />
+
+                    <TextView
+                        android:id="@+id/family_notes_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/another_notes_label"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/very_small"
+                        app:layout_constraintStart_toStartOf="@id/family_label"
+                        app:layout_constraintTop_toBottomOf="@id/family_church_connection_value"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/family_notes_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="start"
+                        android:text="@{makhdom.familyNotes}"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/small"
+                        isEmpty="@{makhdom.familyNotes}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/family_notes_label"
+                        app:layout_constraintTop_toBottomOf="@+id/family_notes_label" />
+
+
                     <TextView
                         android:id="@+id/brothers_label"
                         android:layout_width="wrap_content"
@@ -340,16 +450,15 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/very_small"
                         app:layout_constraintStart_toStartOf="@id/family_label"
-                        app:layout_constraintTop_toBottomOf="@id/mother_job_data"
-                        />
+                        app:layout_constraintTop_toBottomOf="@id/family_notes_value" />
 
                     <TextView
                         android:id="@+id/brothers_value"
+                        brothers_list="@{makhdom.brothers}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:textColor="@color/grey"
-                        brothers_list="@{makhdom.brothers}"
                         android:textSize="@dimen/small"
                         app:layout_constraintStart_toStartOf="@id/brothers_label"
                         app:layout_constraintTop_toBottomOf="@+id/brothers_label" />
@@ -467,6 +576,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
+                        isEmpty="@{makhdom.hobbiesAndPrizes}"
                         android:text="@{makhdom.hobbiesAndPrizes}"
                         app:layout_constraintStart_toStartOf="@id/hobbies_label"
                         app:layout_constraintTop_toBottomOf="@id/hobbies_label" />
@@ -535,12 +645,13 @@
 
                     <TextView
                         android:id="@+id/computer_dealing_value"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_20sdp"
+                        android:gravity="start"
                         android:text="@{makhdom.computerDealing}"
                         android:textSize="@dimen/small"
-                        app:layout_constraintBottom_toBottomOf="@+id/computer_dealing_label"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/computer_dealing_label"
                         app:layout_constraintTop_toTopOf="@+id/computer_dealing_label" />
 
@@ -591,11 +702,14 @@
 
                     <TextView
                         android:id="@+id/health_problems_value"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="start"
                         android:text="@{makhdom.healthProblems}"
+                        isEmpty="@{makhdom.healthProblems}"
                         android:textSize="@dimen/small"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/health_problems_label"
                         app:layout_constraintTop_toBottomOf="@id/health_problems_label" />
 
@@ -614,11 +728,14 @@
 
                     <TextView
                         android:id="@+id/child_notes_value"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="start"
                         android:text="@{makhdom.childCharacterNotes}"
                         android:textSize="@dimen/small"
+                        isEmpty="@{makhdom.childCharacterNotes}"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/child_notes_label"
                         app:layout_constraintTop_toBottomOf="@id/child_notes_label" />
 

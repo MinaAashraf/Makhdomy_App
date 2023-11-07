@@ -16,7 +16,6 @@ import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.auth.PhoneAuthProvider.ForceResendingToken
 import com.khedma.makhdomy.R
 import com.khedma.makhdomy.databinding.FragmentPhoneVerificationBinding
-import com.khedma.makhdomy.presentation.utils.createPreferences
 import com.khedma.makhdomy.presentation.utils.fromJson
 import com.khedma.makhdomy.presentation.utils.hide
 import com.khedma.makhdomy.presentation.utils.makeInVisible
@@ -44,14 +43,13 @@ class PhoneVerificationFragment : Fragment() {
 
     private var credential: PhoneAuthCredential? = null
 
-    private val currentKhadem by lazy { fromJson(readFromPreferences(getString(R.string.khadem_key))!!) }
+    private val currentKhadem by lazy { fromJson(readFromPreferences(requireContext(),getString(R.string.khadem_key))!!) }
 
     private val phoneNumber: String by lazy { "+2${currentKhadem.phone}" }
 
     val viewModel: KhademViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        createPreferences(requireContext())
         val options = PhoneAuthOptions.newBuilder(auth)
             .setPhoneNumber(phoneNumber) // Phone number to verify
             .setTimeout(120L, TimeUnit.SECONDS) // Timeout and unit
@@ -181,7 +179,7 @@ class PhoneVerificationFragment : Fragment() {
 
     private fun onSavingKhademSuccess() {
         currentKhadem.key = viewModel.resultKhademId
-        writePreferences(getString(R.string.khadem_key), toJson(currentKhadem))
+        writePreferences(requireContext(),getString(R.string.khadem_key), toJson(currentKhadem))
         showToast(requireContext(), getString(R.string.signed_in_successfully))
         findNavController().navigate(R.id.action_phoneVerificationFragment_to_makhdommenListFragment)
     }

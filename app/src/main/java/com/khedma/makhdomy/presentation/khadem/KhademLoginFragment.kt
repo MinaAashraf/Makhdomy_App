@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import com.khedma.makhdomy.R
 import com.khedma.makhdomy.databinding.FragmentKhademLoginBinding
 import com.khedma.makhdomy.domain.model.Khadem
-import com.khedma.makhdomy.presentation.utils.createPreferences
 import com.khedma.makhdomy.presentation.utils.toJson
 import com.khedma.makhdomy.presentation.utils.validatePhoneNum
 import com.khedma.makhdomy.presentation.utils.writePreferences
@@ -81,8 +80,7 @@ class KhademLoginFragment : Fragment() {
             makhdomeenCount = 0,
             phone = phone,
         )
-        createPreferences(requireContext())
-        writePreferences(getString(R.string.khadem_key), toJson(currentKhadem))
+        writePreferences(requireContext(),getString(R.string.khadem_key), toJson(currentKhadem))
     }
 
     private fun isInputsValid(): Boolean {

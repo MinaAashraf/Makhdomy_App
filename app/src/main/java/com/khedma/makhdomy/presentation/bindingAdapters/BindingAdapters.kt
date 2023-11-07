@@ -10,6 +10,8 @@ import com.khedma.makhdomy.R
 import com.khedma.makhdomy.domain.model.Address
 import com.khedma.makhdomy.domain.model.Brother
 import com.khedma.makhdomy.domain.model.Makhdom
+import com.khedma.makhdomy.presentation.utils.hide
+import com.khedma.makhdomy.presentation.utils.show
 
 
 @BindingAdapter("img_src")
@@ -22,7 +24,7 @@ fun bindImg(imgView: ImageView, bitmap: Bitmap?) {
 @BindingAdapter("address")
 fun bindAddress(textView: TextView, address: Address?) {
     address?.let {
-
+        textView.show()
         var addressString = ""
 
         val streetName = it.streetName ?: ""
@@ -44,7 +46,7 @@ fun bindAddress(textView: TextView, address: Address?) {
         addressString += floorNum
         //  val addressString = "$streetName$motfare3From$area$homeNum$apartmentNum$floorNum"
         textView.text = addressString
-    } ?: run { textView.text = "لا يوجد" }
+    } ?: run { textView.hide() }
 }
 
 private fun concatenateDashIfRequired(addressString: String) =
@@ -53,6 +55,11 @@ private fun concatenateDashIfRequired(addressString: String) =
 @BindingAdapter("has_computer")
 fun bindComputerExistence(textView: TextView, hasComputer: Boolean = false) {
     textView.text = if (hasComputer) "نعم" else "لا"
+}
+
+@BindingAdapter("isEmpty")
+fun bindTextVisibility(textView: TextView, text: String?) {
+    textView.visibility = if (text.isNullOrEmpty()) View.GONE else View.VISIBLE
 }
 
 @BindingAdapter("initial_visibility_depend_on_radio_btn")
@@ -71,17 +78,27 @@ fun bindSynchronizedIcon(imageView: ImageView, makhdom: Makhdom) {
 @BindingAdapter("phones_map")
 fun bindPhonesMap(textView: TextView, phones: MutableMap<String, String>?) {
     var phonesString = ""
-    phones?.forEach {
-        phonesString += "${it.key} : ${it.value}\n"
+    if (phones.isNullOrEmpty())
+        textView.hide()
+    else {
+        phones.forEach {
+            phonesString += "${it.key} : ${it.value}\n"
+        }
+        textView.text = phonesString
+        textView.show()
     }
-    textView.text = phonesString
 }
 
 @BindingAdapter("brothers_list")
 fun bindBrothersList(textView: TextView, brothers: List<Brother>?) {
     var brothersString = ""
-    brothers?.forEach { brothersString += "$it\n" }
-    textView.text = brothersString
+    if (brothers.isNullOrEmpty())
+        textView.hide()
+    else {
+        brothers.forEach { brothersString += "$it\n" }
+        textView.text = brothersString
+        textView.show()
+    }
 }
 
 

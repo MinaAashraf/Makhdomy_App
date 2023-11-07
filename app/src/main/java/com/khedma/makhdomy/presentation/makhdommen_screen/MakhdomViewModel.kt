@@ -42,6 +42,17 @@ class MakhdomViewModel @Inject constructor(
 
     private var searchKeyWord: String? = null
 
+    var tempAddressLat: String? = null
+
+    var tempAddressLng: String? = null
+
+
+    var phones: MutableMap<String, String>? = null
+
+    val phonesList: MutableList<Pair<String, String>> = mutableListOf()
+
+    var brothers: MutableList<Brother> = mutableListOf()
+
     val makhdommen: LiveData<List<Makhdom>> = filterType.switchMap {
         return@switchMap when (it) {
             FilterType.GENERAL_SEARCH -> searchMakhdomUseCase.execute(searchKeyWord!!)
@@ -94,9 +105,13 @@ class MakhdomViewModel @Inject constructor(
         }
     }
 
-    fun saveBrothersList (){
+    fun clearUpdatingState() {
+        updatingState = false
+    }
+
+    fun saveBrothersList() {
         if (preparedMakhdom.brothers == null)
-             preparedMakhdom.brothers = mutableListOf()
+            preparedMakhdom.brothers = mutableListOf()
         preparedMakhdom.brothers!!.clear()
         preparedMakhdom.brothers!!.addAll(brothers)
     }
@@ -132,12 +147,6 @@ class MakhdomViewModel @Inject constructor(
             updateMakhdomUseCase.execute(makhdom)
         }
     }
-
-    var phones: MutableMap<String, String>? = null
-
-    val phonesList: MutableList<Pair<String, String>> = mutableListOf()
-
-    var brothers: MutableList<Brother> = mutableListOf()
 
     private fun isNumeric(input: String): Boolean {
         return input.matches(Regex("\\d+"))

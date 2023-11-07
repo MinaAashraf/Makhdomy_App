@@ -61,15 +61,16 @@ class MakhdomRepositoryImpl @Inject constructor(
             makhdomRemoteDataSource.addMakhdom(
                 makhdom.picture?.convertToByteArr(),
                 makhdom.mapToMakhdomyData()
-            ).onSuccess { makhdomKey ->
+            ).onSuccess { sharedParameters ->
                 makhdom.apply {
                     makhdom.id = localMakhdomId
                     makhdom.isSynchronized = true
-                    makhdom.makhdomKey = makhdomKey
+                    makhdom.makhdomKey = sharedParameters.key
+                    makhdom.remotePictureUrl = sharedParameters.picUrl
                 }
                 updateMakhdom(makhdom)
                 Log.d("firebase success: ", makhdom.toString())
-                khademRemoteDataSource.addMakhdomIdToKhadem(makhdomKey = makhdomKey)
+                khademRemoteDataSource.addMakhdomIdToKhadem(makhdomKey = sharedParameters.key)
             }.onFailure {
                 Log.d("firebase exception: ", it.message.toString())
             }
@@ -86,7 +87,10 @@ class MakhdomRepositoryImpl @Inject constructor(
             ).onSuccess {
                 makhdom.isDirty = false
                 makhdom.isPictureUpdated = false
+                makhdom.remotePictureUrl = it.picUrl
                 updateMakhdomLocally(makhdom)
+            }.onFailure {
+                Log.d("updating remotely err:", it.message.toString())
             }
         } catch (e: Exception) {
             Log.d("updating remotely err:", e.message.toString())

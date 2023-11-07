@@ -38,13 +38,13 @@
                     android:layout_height="match_parent"
                     android:hint="@string/khadem_name"
                     android:inputType="textPersonName"
-                    android:textSize="@dimen/medium" />
+                    android:textSize="@dimen/small" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/phone_field"
-                style="@style/EndAlignedTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -59,8 +59,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/phone_num"
                     android:inputType="phone"
-                    android:gravity="end"
-                    android:textSize="@dimen/medium" />
+                    android:textAlignment="viewStart"
+                    android:textSize="@dimen/small" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,7 +85,7 @@
                     android:focusable="false"
                     android:hint="@string/class_label"
                     android:inputType="none"
-                    android:textSize="@dimen/medium" />
+                    android:textSize="@dimen/small" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

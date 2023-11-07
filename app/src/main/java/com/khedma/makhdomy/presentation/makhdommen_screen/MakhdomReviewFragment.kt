@@ -10,6 +10,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.khedma.makhdomy.R
 import com.khedma.makhdomy.databinding.FragmentMakhdomReviewBinding
+import com.khedma.makhdomy.presentation.utils.fromJson
+import com.khedma.makhdomy.presentation.utils.readFromPreferences
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,6 +36,9 @@ class MakhdomReviewFragment : Fragment() {
 
     private fun setUpSaveBtn() {
         binding.saveBtn.setOnClickListener {
+            val currentKhadem = fromJson(readFromPreferences(requireContext(),getString(R.string.khadem_key))!!)
+            viewModel.preparedMakhdom.khademName = currentKhadem.name
+
             if (viewModel.updatingState && viewModel.preparedMakhdom.isSynchronized)
                 viewModel.updateMakhdom()
             else

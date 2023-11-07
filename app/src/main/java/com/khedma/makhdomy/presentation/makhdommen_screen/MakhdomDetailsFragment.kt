@@ -60,6 +60,7 @@ class MakhdomDetailsFragment : Fragment(), PhoneSelectionAdapter.OnClickListener
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.clearUpdatingState()
         presentMakhdomData()
         setUpPhoneIconBtn()
         setUpMapImgButton()
@@ -103,8 +104,8 @@ class MakhdomDetailsFragment : Fragment(), PhoneSelectionAdapter.OnClickListener
     @RequiresApi(Build.VERSION_CODES.R)
     private fun goToLocationOnMap(address: Address, makhdomName: String) {
 
-        val myLatitude = "30.0627"
-        val myLongitude = "31.3069"
+        val myLatitude = address.lat
+        val myLongitude = address.lng
         val labelLocation = makhdomName
 
         if (myLatitude == null || myLongitude == null) {

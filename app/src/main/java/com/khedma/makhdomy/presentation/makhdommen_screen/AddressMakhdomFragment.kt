@@ -56,8 +56,6 @@ class AddressMakhdomFragment : Fragment() {
 
     private var isGpsOpen = false
 
-    private var addressLat: String? = null
-    private var addressLng: String? = null
 
     private val resolutionForResult = registerForActivityResult(
         ActivityResultContracts.StartIntentSenderForResult()
@@ -66,7 +64,7 @@ class AddressMakhdomFragment : Fragment() {
             Activity.RESULT_OK -> {
                 isGpsOpen = true
                 getCurrentLocation()
-                isGpsOpen= false
+                isGpsOpen = false
             }
         }
     }
@@ -129,8 +127,8 @@ class AddressMakhdomFragment : Fragment() {
             streetName = streetName,
             motafre3From = motfare3From,
             anotherAddressData = anotherAddressData,
-            lat = addressLat,
-            lng = addressLng
+            lat = viewModel.tempAddressLat,
+            lng = viewModel.tempAddressLng
         )
 
         viewModel.preparedMakhdom.apply {
@@ -139,6 +137,8 @@ class AddressMakhdomFragment : Fragment() {
             this.streetName = streetName
             this.motafare3From = motfare3From
         }
+        viewModel.tempAddressLat = null
+        viewModel.tempAddressLng = null
     }
 
     private fun setUpLastBtn() {
@@ -297,18 +297,23 @@ class AddressMakhdomFragment : Fragment() {
     }
 
     private fun saveBottomSheetInputsLatLngTemporally() {
-        addressLat = bottomSheetLayoutBinding.latTextField.editText!!.text.toString()
-        addressLng = bottomSheetLayoutBinding.lngTextField.editText!!.text.toString()
-        binding.getLocationAxisBtn.text = "$addressLat - $addressLng"
+        viewModel.tempAddressLat = bottomSheetLayoutBinding.latTextField.editText!!.text.toString()
+        viewModel.tempAddressLng = bottomSheetLayoutBinding.lngTextField.editText!!.text.toString()
+        binding.getLocationAxisBtn.text =
+            "${viewModel.tempAddressLat} - ${viewModel.tempAddressLng}"
     }
 
     private fun setLatLngInitialValueIfExist() {
         bottomSheetLayoutBinding.latTextField.editText!!.setText(
-            addressLat ?: viewModel.preparedMakhdom.address?.lat
+            viewModel.preparedMakhdom.address?.lat
         )
         bottomSheetLayoutBinding.lngTextField.editText!!.setText(
-            addressLat ?: viewModel.preparedMakhdom.address?.lng
+            viewModel.preparedMakhdom.address?.lng
         )
+        if (viewModel.preparedMakhdom.address?.lat
+            != null && viewModel.preparedMakhdom.address?.lng != null)
+            binding.getLocationAxisBtn.text =
+                "${viewModel.preparedMakhdom.address?.lat} - ${viewModel.preparedMakhdom.address?.lng}"
     }
 
     private fun verifyBottomSheetInputs(): Boolean {

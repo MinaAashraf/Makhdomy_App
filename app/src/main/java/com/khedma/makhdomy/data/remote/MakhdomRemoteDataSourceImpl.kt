@@ -3,6 +3,7 @@ package com.khedma.makhdomy.data.remote
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.khedma.makhdomy.domain.Result
+import com.khedma.makhdomy.domain.model.SharedParameters
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
@@ -14,7 +15,7 @@ class MakhdomRemoteDataSourceImpl @Inject constructor(
     override suspend fun addMakhdom(
         picture: ByteArray?,
         makhdomData: MakhdomData,
-    ): Result<String> {
+    ): Result<SharedParameters> {
 
         return picture?.let {
             try {
@@ -24,8 +25,8 @@ class MakhdomRemoteDataSourceImpl @Inject constructor(
                 if (storageTaskSnapshot.task.isSuccessful) {
                     val uri = storageTaskSnapshot.storage.downloadUrl.await()
                     makhdomData.picture = uri?.toString()
-                    val id = uploadMakhdomToDatabase(makhdomData)
-                    Result.Success(id)
+                    val key = uploadMakhdomToDatabase(makhdomData)
+                    Result.Success(SharedParameters(key, uri.toString()))
                 } else {
                     Result.Failure(Exception("image not uploaded"))
                 }
@@ -34,14 +35,15 @@ class MakhdomRemoteDataSourceImpl @Inject constructor(
             }
         } ?: kotlin.run {
             return@run try {
-                val id = uploadMakhdomToDatabase(makhdomData)
-                Result.Success(id)
+                val key = uploadMakhdomToDatabase(makhdomData)
+                Result.Success(SharedParameters(key))
             } catch (e: Exception) {
                 Result.Failure(Exception(e.message.toString()))
             }
 
         }
     }
+
     private suspend fun uploadMakhdomToDatabase(makhdomData: MakhdomData): String {
         val reference = fireStore.collection("servant").document()
         reference.set(makhdomData).await()
@@ -50,14 +52,12 @@ class MakhdomRemoteDataSourceImpl @Inject constructor(
     }
 
 
-
-
     override suspend fun updateMakhdom(
         picture: ByteArray?,
         makhdomData: MakhdomData
-    ): Result<String> {
+    ): Result<SharedParameters> {
 
-      return picture?.let {
+        return picture?.let {
             try {
                 val storageTaskSnapshot =
                     storage.reference.child("servant_image/${makhdomData.name}").putBytes(picture)
@@ -69,28 +69,23 @@ class MakhdomRemoteDataSourceImpl @Inject constructor(
 
                     val reference = fireStore.collection("servant").document(makhdomData.key!!)
                     reference.set(makhdomData).await()
-                    Result.Success(makhdomData.key!!)
+                    Result.Success(SharedParameters(makhdomData.key!!, uri.toString()))
 
                 } else {
                     Result.Failure(Exception("image not uploaded"))
                 }
             } catch (e: Exception) {
-                Result.Failure(Exception(e.message.toString()))
+                Result.Failure(e)
             }
         } ?: kotlin.run {
             return@run try {
                 val reference = fireStore.collection("servant").document(makhdomData.key!!)
                 reference.set(makhdomData).await()
-                Result.Success(makhdomData.key!!)
+                Result.Success(SharedParameters(makhdomData.key!!))
             } catch (e: Exception) {
-                Result.Failure(Exception(e.message.toString()))
+                Result.Failure(e)
             }
 
         }
-
-
     }
-
-
-
 }

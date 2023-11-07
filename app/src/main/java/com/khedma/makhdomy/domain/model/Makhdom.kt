@@ -30,6 +30,11 @@ data class Makhdom(
     // family data
     var fatherJob: String? = null,
     var motherJob: String? = null,
+    var familyLifeLevel: String? = null,
+    var familyLastVisitAttitude: String? = null,
+    var familyChurchConnection: String? = null,
+    var familyNotes: String? = null,
+
     var brothers: MutableList<Brother>? = null,
 
     var spiritualFatherName: String? = null,
@@ -50,12 +55,11 @@ data class Makhdom(
     var isSynchronized : Boolean = false,
     var isDirty : Boolean = false,
     var isPictureUpdated : Boolean = false,
-    var makhdomKey : String? = null
+    var makhdomKey : String? = null,
+    var remotePictureUrl : String? = null
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
-
-    var couldKey : String? = null
     var mobilePhones: MutableMap<String, String>? = null
         set(value) {
             field = value
@@ -65,7 +69,7 @@ data class Makhdom(
 
     fun mapToMakhdomyData(): MakhdomData {
         return MakhdomData(
-            null,
+            remotePictureUrl,
             name,
             birthDate,
             birthLocation,
@@ -90,7 +94,8 @@ data class Makhdom(
             hobbiesAndPrizes,
             healthProblems,
             childCharacterNotes,
-            khademName
+            khademName,
+            makhdomKey
         )
     }
 
