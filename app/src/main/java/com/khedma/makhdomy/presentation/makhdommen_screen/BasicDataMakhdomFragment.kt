@@ -54,7 +54,7 @@ class BasicDataMakhdomFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("fragment: ", "basic fragment, ${args.makhdomId.toString()}")
+        Log.d("fragment: ", "basic fragment, ${args.makhdomId}")
         setUpUi()
     }
 

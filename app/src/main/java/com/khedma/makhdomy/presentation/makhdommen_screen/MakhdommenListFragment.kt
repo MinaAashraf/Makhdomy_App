@@ -31,7 +31,7 @@ class MakhdommenListFragment : Fragment(), MakhdommenAdapter.OnItemClick {
     ): View {
         (requireActivity() as MainActivity).supportActionBar?.show()
         requireActivity().title = getString(R.string.app_name)
-      //  setHasOptionsMenu(true)
+        setHasOptionsMenu(true)
         return binding.root
     }
 

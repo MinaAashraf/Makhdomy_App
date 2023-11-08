@@ -13,7 +13,7 @@ data class Makhdom(
     var birthDate: String? = null,
     var birthLocation: String? = null,
     var className: String? = null,
-    var classId : Int? = null,
+    var classId: Int? = null,
     // address data
     var address: Address? = null,
     // these splitted address fields for supporting searching by address
@@ -23,6 +23,7 @@ data class Makhdom(
 
     // phone data
     var homePhoneNum: String? = null,
+    var mobilePhones: MutableMap<String, String>? = null,
 
     // school data
     var schoolPhase: String? = null,
@@ -52,20 +53,20 @@ data class Makhdom(
 
     var khademName: String? = null,
 
-    var isSynchronized : Boolean = false,
-    var isDirty : Boolean = false,
-    var isPictureUpdated : Boolean = false,
-    var makhdomKey : String? = null,
-    var remotePictureUrl : String? = null
+    var isSynchronized: Boolean = false,
+    var isDirty: Boolean = false,
+    var isPictureUpdated: Boolean = false,
+    var makhdomKey: String? = null,
+    var remotePictureUrl: String? = null
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
-    var mobilePhones: MutableMap<String, String>? = null
-        set(value) {
-            field = value
-            phonesList = value?.values?.toMutableList()
-        }
-    var phonesList: MutableList<String>? = null
+    /*  var mobilePhones: MutableMap<String, String>? = null
+          set(value) {
+              field = value
+              phonesList = value?.values?.toMutableList()
+          }
+      var phonesList: MutableList<String>? = null*/
 
     fun mapToMakhdomyData(): MakhdomData {
         return MakhdomData(
@@ -85,6 +86,10 @@ data class Makhdom(
             schoolName,
             fatherJob,
             motherJob,
+            familyLifeLevel,
+            familyLastVisitAttitude,
+            familyChurchConnection,
+            familyNotes,
             brothers,
             spiritualFatherName,
             churchName,

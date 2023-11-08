@@ -12,6 +12,7 @@ import com.khedma.makhdomy.domain.onFailure
 import com.khedma.makhdomy.domain.onSuccess
 import com.khedma.makhdomy.domain.repository.MakhdomRepository
 import com.khedma.makhdomy.presentation.utils.convertToByteArr
+import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class MakhdomRepositoryImpl @Inject constructor(
@@ -117,4 +118,14 @@ class MakhdomRepositoryImpl @Inject constructor(
 
     override suspend fun getDirtyMakhdommen(): List<Makhdom> =
         makhdomLocalDataSource.getDirtyMakhdommen()
+
+    override suspend fun readKhadem(khademKey: String): Result<Khadem> {
+        try {
+
+        }
+        catch (){
+
+        }
+        khademRemoteDataSource.readKhadem(khademKey).await()
+    }
 }

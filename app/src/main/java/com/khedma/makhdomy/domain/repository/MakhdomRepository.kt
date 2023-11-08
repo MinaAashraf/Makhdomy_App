@@ -31,4 +31,5 @@ interface MakhdomRepository  {
     suspend fun getDirtyMakhdommen () : List<Makhdom>
 
 
+    suspend fun readKhadem (khademKey : String) : Result<Khadem>
 }

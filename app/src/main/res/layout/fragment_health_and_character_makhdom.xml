@@ -99,7 +99,7 @@
                 android:layout_height="@dimen/btn_height"
                 android:layout_marginTop="@dimen/_14sdp"
                 android:text="@string/save_exit_label"
-                android:textSize="@dimen/medium"
+                android:textSize="@dimen/small"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/grey"

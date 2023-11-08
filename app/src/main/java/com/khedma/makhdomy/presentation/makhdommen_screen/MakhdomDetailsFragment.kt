@@ -159,6 +159,7 @@ class MakhdomDetailsFragment : Fragment(), PhoneSelectionAdapter.OnClickListener
         if (requestCode == 0) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 makePhoneCall(requireActivity(), selectedPhone.second)
+                dialog.dismiss()
             }
         }
     }

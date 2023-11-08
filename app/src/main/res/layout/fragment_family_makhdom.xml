@@ -191,7 +191,7 @@
             android:layout_height="@dimen/btn_height"
             android:layout_marginTop="@dimen/_30sdp"
             android:text="@string/save_exit_label"
-            android:textSize="@dimen/medium"
+            android:textSize="@dimen/small"
             android:visibility="gone"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

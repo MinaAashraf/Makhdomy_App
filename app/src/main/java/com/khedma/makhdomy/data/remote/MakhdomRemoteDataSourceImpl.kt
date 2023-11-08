@@ -2,6 +2,8 @@ package com.khedma.makhdomy.data.remote
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.khedma.makhdomy.data.utils.MAKHDOM_COLLECTION
+import com.khedma.makhdomy.data.utils.SERVANT_IMAGE_FOLDER
 import com.khedma.makhdomy.domain.Result
 import com.khedma.makhdomy.domain.model.SharedParameters
 import kotlinx.coroutines.tasks.await
@@ -20,7 +22,7 @@ class MakhdomRemoteDataSourceImpl @Inject constructor(
         return picture?.let {
             try {
                 val storageTaskSnapshot =
-                    storage.reference.child("servant_image/${makhdomData.name}").putBytes(picture)
+                    storage.reference.child("$SERVANT_IMAGE_FOLDER${makhdomData.name}").putBytes(picture)
                         .await()
                 if (storageTaskSnapshot.task.isSuccessful) {
                     val uri = storageTaskSnapshot.storage.downloadUrl.await()
@@ -45,7 +47,7 @@ class MakhdomRemoteDataSourceImpl @Inject constructor(
     }
 
     private suspend fun uploadMakhdomToDatabase(makhdomData: MakhdomData): String {
-        val reference = fireStore.collection("servant").document()
+        val reference = fireStore.collection(MAKHDOM_COLLECTION).document()
         reference.set(makhdomData).await()
         reference.update(mapOf("key" to reference.id))
         return reference.id
@@ -60,14 +62,14 @@ class MakhdomRemoteDataSourceImpl @Inject constructor(
         return picture?.let {
             try {
                 val storageTaskSnapshot =
-                    storage.reference.child("servant_image/${makhdomData.name}").putBytes(picture)
+                    storage.reference.child("$SERVANT_IMAGE_FOLDER${makhdomData.name}").putBytes(picture)
                         .await()
 
                 if (storageTaskSnapshot.task.isSuccessful) {
                     val uri = storageTaskSnapshot.storage.downloadUrl.await()
                     makhdomData.picture = uri?.toString()
 
-                    val reference = fireStore.collection("servant").document(makhdomData.key!!)
+                    val reference = fireStore.collection(MAKHDOM_COLLECTION).document(makhdomData.key!!)
                     reference.set(makhdomData).await()
                     Result.Success(SharedParameters(makhdomData.key!!, uri.toString()))
 
@@ -79,7 +81,7 @@ class MakhdomRemoteDataSourceImpl @Inject constructor(
             }
         } ?: kotlin.run {
             return@run try {
-                val reference = fireStore.collection("servant").document(makhdomData.key!!)
+                val reference = fireStore.collection(MAKHDOM_COLLECTION).document(makhdomData.key!!)
                 reference.set(makhdomData).await()
                 Result.Success(SharedParameters(makhdomData.key!!))
             } catch (e: Exception) {

@@ -244,7 +244,7 @@
 
                     <TextView
                         android:id="@+id/address_another_data"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginBottom="@dimen/_15sdp"
@@ -252,6 +252,8 @@
                         android:textColor="@color/grey"
                         isEmpty="@{address.anotherAddressData}"
                         android:textSize="@dimen/small"
+                        android:gravity="start"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@id/address_label"
                         app:layout_constraintTop_toBottomOf="@id/makhdom_address" />
@@ -455,11 +457,13 @@
                     <TextView
                         android:id="@+id/brothers_value"
                         brothers_list="@{makhdom.brothers}"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:textColor="@color/grey"
                         android:textSize="@dimen/small"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:gravity="start"
                         app:layout_constraintStart_toStartOf="@id/brothers_label"
                         app:layout_constraintTop_toBottomOf="@+id/brothers_label" />
 
@@ -531,13 +535,15 @@
 
                     <TextView
                         android:id="@+id/church_value"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_20sdp"
                         android:text="@{makhdom.churchName}"
                         android:textSize="@dimen/small"
                         app:layout_constraintBottom_toBottomOf="@+id/spiritual_father_church_label"
                         app:layout_constraintStart_toEndOf="@id/spiritual_father_label"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:gravity="start"
                         app:layout_constraintTop_toTopOf="@+id/spiritual_father_church_label" />
 
 
@@ -573,11 +579,13 @@
 
                     <TextView
                         android:id="@+id/hobbies_prizes_value"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         isEmpty="@{makhdom.hobbiesAndPrizes}"
                         android:text="@{makhdom.hobbiesAndPrizes}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:gravity="start"
                         app:layout_constraintStart_toStartOf="@id/hobbies_label"
                         app:layout_constraintTop_toBottomOf="@id/hobbies_label" />
 
