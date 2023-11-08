@@ -107,42 +107,21 @@
             app:destination="@id/familyMakhdomFragment" />
     </fragment>
     <fragment
-        android:id="@+id/khademLoginFragment"
-        android:name="com.khedma.makhdomy.presentation.khadem.KhademLoginFragment"
-        android:label="KhademLoginFragment">
-        <action
-            android:id="@+id/action_khademLoginFragment_to_phoneVerificationFragment"
-            app:destination="@id/phoneVerificationFragment" />
-        <action
-            android:id="@+id/action_khademLoginFragment_to_makhdommenListFragment"
-            app:destination="@id/makhdommenListFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/phoneVerificationFragment"
-        android:name="com.khedma.makhdomy.presentation.khadem.PhoneVerificationFragment"
-        android:label="PhoneVerificationFragment">
-        <action
-            android:id="@+id/action_phoneVerificationFragment_to_makhdommenListFragment"
-            app:destination="@id/makhdommenListFragment"
-            app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true" />
-
-    </fragment>
-    <fragment
         android:id="@+id/splashFragment"
         android:name="com.khedma.makhdomy.presentation.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
-            android:id="@+id/action_splashFragment_to_khademLoginFragment"
-            app:destination="@id/khademLoginFragment"
-            app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_splashFragment_to_makhdommenListFragment"
             app:destination="@id/makhdommenListFragment"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_khademRegisterationFragment"
+            app:destination="@id/khademRegisterationFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true"
+            />
     </fragment>
     <fragment
         android:id="@+id/brothersDataFragment"
@@ -151,6 +130,43 @@
         <action
             android:id="@+id/action_brothersDataFragment_to_spiritualMakhdomFragment"
             app:destination="@id/spiritualMakhdomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/khademLoginFragment2"
+        android:name="com.khedma.makhdomy.presentation.khadem.KhademLoginFragment"
+        android:label="KhademLoginFragment" >
+        <action
+            android:id="@+id/action_khademLoginFragment2_to_khademRegisterationFragment"
+            app:destination="@id/khademRegisterationFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true"
+            />
+        <action
+            android:id="@+id/action_khademLoginFragment2_to_makhdommenListFragment"
+            app:destination="@id/makhdommenListFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/khademRegisterationFragment"
+        android:name="com.khedma.makhdomy.presentation.khadem.KhademRegisterationFragment"
+        android:label="KhademRegisterationFragment"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true"
+        >
+        <action
+            android:id="@+id/action_khademRegisterationFragment_to_khademLoginFragment2"
+            app:destination="@id/khademLoginFragment2"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true"
+            />
+        <action
+            android:id="@+id/action_khademRegisterationFragment_to_makhdommenListFragment"
+            app:destination="@id/makhdommenListFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true"
+            />
     </fragment>
 
 

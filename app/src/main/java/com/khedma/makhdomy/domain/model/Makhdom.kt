@@ -1,9 +1,16 @@
 package com.khedma.makhdomy.domain.model
 
+import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.util.Log
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import coil.ImageLoader
+import coil.request.ImageRequest
+import coil.request.SuccessResult
 import com.khedma.makhdomy.data.remote.MakhdomData
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 @Entity(tableName = "makhdom_table")
 data class Makhdom(
@@ -104,5 +111,15 @@ data class Makhdom(
         )
     }
 
+    suspend fun getBitmapFromUrl(context: Context) {
+        remotePictureUrl?.let {
+            val loader = ImageLoader(context)
+            val request = ImageRequest.Builder(context)
+                .data(it).build()
+            val drawable = (loader.execute(request) as SuccessResult).drawable
+            val bitmap = (drawable as BitmapDrawable).bitmap
+            this.picture = bitmap
 
+        }
+    }
 }

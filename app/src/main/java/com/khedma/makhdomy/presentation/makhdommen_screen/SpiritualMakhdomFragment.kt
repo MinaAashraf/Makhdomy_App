@@ -2,6 +2,7 @@ package com.khedma.makhdomy.presentation.makhdommen_screen
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -24,6 +25,7 @@ class SpiritualMakhdomFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         requireActivity().title = getString(R.string.spirit_toolbar_title)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -76,5 +78,16 @@ class SpiritualMakhdomFragment : Fragment() {
         }
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                findNavController().popBackStack()
+                true
+            }
+
+            else -> return super.onContextItemSelected(item)
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 }

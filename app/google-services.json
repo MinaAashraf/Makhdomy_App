@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "457525873353-4d757gosp6stteq7usp7l39qj2lmo4kd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.khedma.makhdomy",
+            "certificate_hash": "2ca3b5152fa29d29f67af0507522fbba089edf63"
+          }
+        },
+        {
           "client_id": "457525873353-hgbun6plgi7h3i2vf2tng7d04pkf32qb.apps.googleusercontent.com",
           "client_type": 3
         }

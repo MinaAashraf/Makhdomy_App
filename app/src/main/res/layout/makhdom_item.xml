@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_40sdp"
                 android:text="@{makhdom.name}"
-                android:textSize="@dimen/large"
+                android:textSize="@dimen/medium"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/picture_view"

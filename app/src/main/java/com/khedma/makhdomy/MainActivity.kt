@@ -14,8 +14,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setAppLangToAr()
-
+     //   setAppLangToAr()
         val navHost =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
   /*      navHost.navController.addOnDestinationChangedListener { controller, destination, argument ->
@@ -35,12 +34,12 @@ class MainActivity : AppCompatActivity() {
         }*/
     }
 
-    private fun setAppLangToAr() {
+ /*   private fun setAppLangToAr() {
         val locale = Locale("ar")
         Locale.setDefault(locale)
         val config: Configuration = baseContext.resources.configuration
         config.setLocale(locale)
         createConfigurationContext(config)
     }
-
+*/
 }

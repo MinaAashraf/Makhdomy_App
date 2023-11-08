@@ -1,6 +1,7 @@
 package com.khedma.makhdomy.domain.repository
 
 import androidx.lifecycle.LiveData
+import com.khedma.makhdomy.data.remote.MakhdomData
 import com.khedma.makhdomy.domain.Result
 import com.khedma.makhdomy.domain.model.Khadem
 import com.khedma.makhdomy.domain.model.Makhdom
@@ -8,6 +9,8 @@ import com.khedma.makhdomy.domain.model.Makhdom
 interface MakhdomRepository  {
 
     suspend fun addMakhdom(makhdom: Makhdom)
+
+    suspend fun addLocalMakhdom (makhdom: MakhdomData)
 
     suspend fun addPublicMakhdom (makhdom: Makhdom, localMakhdomId : Int)
 
@@ -24,7 +27,10 @@ interface MakhdomRepository  {
     suspend fun updateMakhdomLocally(makhdom: Makhdom)
     suspend fun updateMakhdomRemotely(makhdom: Makhdom)
 
+    suspend fun readMakhdomenFromRemote (makhdommenKeys : List<String>) : Result<String>
+
     suspend fun addKhadem(khadem: Khadem): Result<String>
+
 
     suspend fun getNotSynchMakhdommen () : List<Makhdom>
 

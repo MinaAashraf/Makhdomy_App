@@ -14,6 +14,9 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -23,11 +26,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.khedma.makhdomy.MainActivity
 import com.khedma.makhdomy.R
 import com.khedma.makhdomy.databinding.FragmentBasicDataMakhdomBinding
 import com.khedma.makhdomy.domain.model.Makhdom
 import com.khedma.makhdomy.presentation.utils.hide
 import com.khedma.makhdomy.presentation.utils.show
+import com.khedma.makhdomy.presentation.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -47,7 +52,12 @@ class BasicDataMakhdomFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View {
+        (requireActivity() as MainActivity).supportActionBar?.apply {
+            setDisplayShowHomeEnabled(true)
+            setDisplayHomeAsUpEnabled(true) // Optional: Show the Up button
+        }
         requireActivity().title = getString(R.string.basic_data_toolbar_title)
+        setHasOptionsMenu(true)
         handleMakhdomInitialValueIFExist()
         return binding.root
     }
@@ -130,7 +140,7 @@ class BasicDataMakhdomFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val uri = result.data?.data
             uri?.let {
-                val bitmap = decodeSampledBitmapFromResource(it,320,320)
+                val bitmap = decodeSampledBitmapFromResource(it, 320, 320)
                 binding.pictureView.setImageBitmap(bitmap)
                 viewModel.preparedMakhdom.picture = bitmap
                 if (viewModel.preparedMakhdom.isSynchronized)
@@ -145,10 +155,16 @@ class BasicDataMakhdomFragment : Fragment() {
             bitmap = if (Build.VERSION.SDK_INT < 28) {
                 MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
             } else {
-                val source: ImageDecoder.Source = ImageDecoder.createSource(contentResolver, imageUri)
+                val source: ImageDecoder.Source =
+                    ImageDecoder.createSource(contentResolver, imageUri)
                 ImageDecoder.decodeBitmap(source)
             }
-             bitmap = Bitmap.createScaledBitmap(bitmap!!,(bitmap.width*0.3).toInt(),(bitmap.height*0.3).toInt(),true)
+            bitmap = Bitmap.createScaledBitmap(
+                bitmap!!,
+                (bitmap.width * 0.3).toInt(),
+                (bitmap.height * 0.3).toInt(),
+                true
+            )
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -186,14 +202,18 @@ class BasicDataMakhdomFragment : Fragment() {
     }
 
     private fun decodeSampledBitmapFromResource(
-        imageUri : Uri,
+        imageUri: Uri,
         reqWidth: Int,
         reqHeight: Int
     ): Bitmap? {
         // First decode with inJustDecodeBounds=true to check dimensions
         return BitmapFactory.Options().run {
             inJustDecodeBounds = true
-            BitmapFactory.decodeStream(requireActivity().contentResolver.openInputStream(imageUri), null, this)
+            BitmapFactory.decodeStream(
+                requireActivity().contentResolver.openInputStream(imageUri),
+                null,
+                this
+            )
 
             // Calculate inSampleSize
             inSampleSize = calculateInSampleSize(this, reqWidth, reqHeight)
@@ -201,7 +221,11 @@ class BasicDataMakhdomFragment : Fragment() {
             // Decode bitmap with inSampleSize set
             inJustDecodeBounds = false
 
-            BitmapFactory.decodeStream(requireActivity().contentResolver.openInputStream(imageUri), null, this)
+            BitmapFactory.decodeStream(
+                requireActivity().contentResolver.openInputStream(imageUri),
+                null,
+                this
+            )
         }
     }
 
@@ -305,5 +329,17 @@ class BasicDataMakhdomFragment : Fragment() {
     private fun setTextDateToDateField(date: String) =
         binding.birthDateField.editText!!.setText(date)
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                findNavController().popBackStack()
+                true
+            }
+
+            else -> return super.onContextItemSelected(item)
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 }
+

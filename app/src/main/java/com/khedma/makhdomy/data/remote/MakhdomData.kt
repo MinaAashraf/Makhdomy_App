@@ -99,12 +99,7 @@ data class MakhdomData(
         )
     }
 
-    suspend fun getBitmapFromUrl (@ApplicationContext context: Context, url : String) : Bitmap{
-        val request = ImageRequest.Builder(context)
-            .data(url).build()
-        val drawable = (ImageLoader(context).execute(request) as SuccessResult).drawable
-        return (drawable as BitmapDrawable).bitmap
-    }
+
 }
 
 

@@ -13,6 +13,8 @@ import com.khedma.makhdomy.domain.model.Khadem
 import java.io.ByteArrayOutputStream
 
 
+const val KHADEM_CODE = "كن قدوة"
+
 fun View.show() {
     this.visibility = View.VISIBLE
 }

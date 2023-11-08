@@ -8,4 +8,5 @@ interface MakhdomRemoteDataSource {
    suspend fun addMakhdom(picture: ByteArray?, makhdomData: MakhdomData): Result<SharedParameters>
    suspend fun updateMakhdom(picture: ByteArray?, makhdomData: MakhdomData): Result<SharedParameters>
 
+   suspend fun readMakhdmenByKeys (keys:List<String>) : Result<List<MakhdomData>>
 }

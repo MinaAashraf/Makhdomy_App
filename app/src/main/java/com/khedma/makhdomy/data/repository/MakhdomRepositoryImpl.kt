@@ -1,9 +1,12 @@
 package com.khedma.makhdomy.data.repository
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
+import com.khedma.makhdomy.R
 import com.khedma.makhdomy.data.local.MakhdomLocalDataSource
 import com.khedma.makhdomy.data.remote.KhademRemoteDataSource
+import com.khedma.makhdomy.data.remote.MakhdomData
 import com.khedma.makhdomy.data.remote.MakhdomRemoteDataSource
 import com.khedma.makhdomy.domain.Result
 import com.khedma.makhdomy.domain.model.Khadem
@@ -12,13 +15,18 @@ import com.khedma.makhdomy.domain.onFailure
 import com.khedma.makhdomy.domain.onSuccess
 import com.khedma.makhdomy.domain.repository.MakhdomRepository
 import com.khedma.makhdomy.presentation.utils.convertToByteArr
-import kotlinx.coroutines.tasks.await
+import com.khedma.makhdomy.presentation.utils.fromJson
+import com.khedma.makhdomy.presentation.utils.readFromPreferences
+import com.khedma.makhdomy.presentation.utils.toJson
+import com.khedma.makhdomy.presentation.utils.writePreferences
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class MakhdomRepositoryImpl @Inject constructor(
     private val makhdomLocalDataSource: MakhdomLocalDataSource,
     private val makhdomRemoteDataSource: MakhdomRemoteDataSource,
     private val khademRemoteDataSource: KhademRemoteDataSource,
+    @ApplicationContext private val context: Context
 ) :
 
     MakhdomRepository {
@@ -36,6 +44,32 @@ class MakhdomRepositoryImpl @Inject constructor(
             }
         }
 
+    }
+
+    // add makhdom in room after receive it from remote
+    override suspend fun addLocalMakhdom(makhdom: MakhdomData) {
+        makhdomLocalDataSource.addMakhdom(makhdom.mapToLocalMakhdom())
+    }
+
+    override suspend fun readMakhdomenFromRemote(makhdommenKeys: List<String>): Result<String> {
+        makhdomRemoteDataSource.readMakhdmenByKeys(makhdommenKeys).onSuccess {
+            val makhdommen: List<Makhdom> = it.map { it.mapToLocalMakhdom() }
+            makhdomLocalDataSource.clear()
+            val idsList = makhdomLocalDataSource.addMakhdommen(makhdommen)
+            updateBitmapPictures(makhdommen,idsList)
+            return Result.Success("تم استقبال البيانات بنجاح")
+        }.onFailure {
+            return Result.Failure(Throwable("لا يوجد بيانات"))
+        }
+        return Result.Failure(Throwable("لا يوجد بيانات"))
+    }
+
+    private suspend fun updateBitmapPictures(makhdommen: List<Makhdom>, idsList: List<Long>) {
+        makhdommen.forEachIndexed() {index,makhdom->
+            makhdom.id = idsList[index].toInt()
+            makhdom.getBitmapFromUrl(context)
+            makhdomLocalDataSource.updateMakhdom(makhdom)
+        }
     }
 
     override suspend fun updateMakhdom(makhdom: Makhdom) {
@@ -71,13 +105,21 @@ class MakhdomRepositoryImpl @Inject constructor(
                 }
                 updateMakhdom(makhdom)
                 Log.d("firebase success: ", makhdom.toString())
-                khademRemoteDataSource.addMakhdomIdToKhadem(makhdomKey = sharedParameters.key)
+                addMakhdomIdToKhadem(sharedParameters.key)
             }.onFailure {
                 Log.d("firebase exception: ", it.message.toString())
             }
         } catch (e: Exception) {
             Log.d("firebase exception: ", e.message.toString())
         }
+    }
+
+    private suspend fun addMakhdomIdToKhadem(makhdomKey: String) {
+        khademRemoteDataSource.addMakhdomIdToKhadem(makhdomKey = makhdomKey)
+        val currentKhadem =
+            fromJson(readFromPreferences(context, context.getString(R.string.khadem_key))!!)
+        currentKhadem.makhdomeenIds.add(makhdomKey)
+        writePreferences(context, context.getString(R.string.khadem_key), toJson(currentKhadem))
     }
 
     override suspend fun updatePublicMakhdom(makhdom: Makhdom) {
@@ -119,13 +161,6 @@ class MakhdomRepositoryImpl @Inject constructor(
     override suspend fun getDirtyMakhdommen(): List<Makhdom> =
         makhdomLocalDataSource.getDirtyMakhdommen()
 
-    override suspend fun readKhadem(khademKey: String): Result<Khadem> {
-        try {
-
-        }
-        catch (){
-
-        }
-        khademRemoteDataSource.readKhadem(khademKey).await()
-    }
+    override suspend fun readKhadem(khademKey: String): Result<Khadem> =
+        khademRemoteDataSource.readKhadem(khademKey)
 }

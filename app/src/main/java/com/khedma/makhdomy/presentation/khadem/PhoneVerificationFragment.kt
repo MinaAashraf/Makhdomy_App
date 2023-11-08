@@ -24,13 +24,11 @@ import com.khedma.makhdomy.presentation.utils.show
 import com.khedma.makhdomy.presentation.utils.showToast
 import com.khedma.makhdomy.presentation.utils.toJson
 import com.khedma.makhdomy.presentation.utils.writePreferences
-import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-@AndroidEntryPoint
 class PhoneVerificationFragment : Fragment() {
-    @Inject
+    /*@Inject
     lateinit var auth: FirebaseAuth
 
     val binding by lazy { FragmentPhoneVerificationBinding.inflate(layoutInflater) }
@@ -184,5 +182,5 @@ class PhoneVerificationFragment : Fragment() {
         findNavController().navigate(R.id.action_phoneVerificationFragment_to_makhdommenListFragment)
     }
 
-
+*/
 }

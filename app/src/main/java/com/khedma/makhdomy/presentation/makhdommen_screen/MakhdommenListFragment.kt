@@ -29,7 +29,12 @@ class MakhdommenListFragment : Fragment(), MakhdommenAdapter.OnItemClick {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        (requireActivity() as MainActivity).supportActionBar?.show()
+        (requireActivity() as MainActivity).supportActionBar?.apply {
+            show()
+            setDisplayShowHomeEnabled(false)
+            setDisplayHomeAsUpEnabled(false) // Optional: Show the Up button
+
+        }
         requireActivity().title = getString(R.string.app_name)
         setHasOptionsMenu(true)
         return binding.root
@@ -41,6 +46,7 @@ class MakhdommenListFragment : Fragment(), MakhdommenAdapter.OnItemClick {
             viewModel.clearPreparedMakhdomData()
         setUpUi()
         observeMakhdommen()
+        observeOnLoading()
     }
 
     private fun observeMakhdommen() {
@@ -113,6 +119,17 @@ class MakhdommenListFragment : Fragment(), MakhdommenAdapter.OnItemClick {
         })
     }
 
+    private fun observeOnLoading() {
+        viewModel.loading.observe(viewLifecycleOwner) {
+            it?.let {
+                if (it)
+                    binding.progressBar.show()
+                else
+                    binding.progressBar.hide()
+            }
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         requireActivity().menuInflater.inflate(R.menu.sync_menu, menu);
         super.onCreateOptionsMenu(menu, inflater)
@@ -120,13 +137,18 @@ class MakhdommenListFragment : Fragment(), MakhdommenAdapter.OnItemClick {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            android.R.id.home->{
+                findNavController().popBackStack()
+                true
+            }
             R.id.send_icon -> {
                 showToast(requireContext(), "send")
                 true
             }
 
             R.id.receive_icon -> {
-                showToast(requireContext(), "receive")
+                if (viewModel.loading.value == null || viewModel.loading.value == false)
+                    viewModel.receiveMakhdommenFromRemote(requireContext())
                 true
             }
 

@@ -33,7 +33,7 @@ class SplashFragment : Fragment() {
             delay(2000)
             auth.currentUser?.let {
                 findNavController().navigate(R.id.action_splashFragment_to_makhdommenListFragment)
-            } ?: findNavController().navigate(R.id.action_splashFragment_to_khademLoginFragment )
+            } ?: findNavController().navigate(R.id.action_splashFragment_to_khademRegisterationFragment )
         }
     }
 

@@ -12,11 +12,11 @@ data class Khadem(
 
     var classId: Int? = null,
 
-    var phone: String? = null,
+   // var phone: String? = null,
 
     var makhdomeenCount: Int = 0,
 
-    var makhdomeenIds : List<String> = listOf(),
+    var makhdomeenIds : MutableList<String> = mutableListOf(),
 
     var key: String? = null
 

@@ -39,7 +39,7 @@
                 android:hint="@string/father_job_label"
                 android:inputType="text"
                 android:text="@{makhdom.fatherJob}"
-                android:textSize="@dimen/medium" />
+                android:textSize="@dimen/small" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,7 +62,7 @@
                 android:hint="@string/mother_job_label"
                 android:inputType="text"
                 android:text="@{makhdom.motherJob}"
-                android:textSize="@dimen/medium" />
+                android:textSize="@dimen/small" />
 
 
 
@@ -89,7 +89,7 @@
                 android:hint="@string/family_life_level_label"
                 android:inputType="none"
                 android:text="@{makhdom.familyLifeLevel}"
-                android:textSize="@dimen/medium" />
+                android:textSize="@dimen/small" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,7 +111,7 @@
                 android:hint="@string/family_attitude_label"
                 android:inputType="textMultiLine"
                 android:text="@{makhdom.familyLastVisitAttitude}"
-                android:textSize="@dimen/medium" />
+                android:textSize="@dimen/small" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -132,7 +132,7 @@
                 android:hint="@string/family_church_connection_label"
                 android:inputType="textMultiLine"
                 android:text="@{makhdom.familyChurchConnection}"
-                android:textSize="@dimen/medium" />
+                android:textSize="@dimen/small" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -154,7 +154,7 @@
                 android:hint="@string/another_notes_label"
                 android:inputType="textMultiLine"
                 android:text="@{makhdom.familyNotes}"
-                android:textSize="@dimen/medium" />
+                android:textSize="@dimen/small" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

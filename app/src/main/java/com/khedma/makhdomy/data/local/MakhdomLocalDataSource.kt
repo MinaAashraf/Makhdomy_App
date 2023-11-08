@@ -6,6 +6,7 @@ import com.khedma.makhdomy.domain.model.Makhdom
 interface MakhdomLocalDataSource {
 
     suspend fun addMakhdom(makhdom: Makhdom) : Long
+    suspend fun addMakhdommen(makhdommen: List<Makhdom>) : List<Long>
 
     fun readAll(): LiveData<List<Makhdom>>
 
@@ -20,4 +21,5 @@ interface MakhdomLocalDataSource {
 
     suspend fun getDirtyMakhdommen() : List<Makhdom>
 
+    suspend fun clear ()
 }

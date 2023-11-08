@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -35,6 +36,7 @@ import com.khedma.makhdomy.domain.model.Address
 import com.khedma.makhdomy.presentation.utils.hide
 import com.khedma.makhdomy.presentation.utils.makeInVisible
 import com.khedma.makhdomy.presentation.utils.show
+import com.khedma.makhdomy.presentation.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -74,6 +76,7 @@ class AddressMakhdomFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         requireActivity().title = getString(R.string.address_toolbar_title)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -316,6 +319,8 @@ class AddressMakhdomFragment : Fragment() {
                 "${viewModel.preparedMakhdom.address?.lat} - ${viewModel.preparedMakhdom.address?.lng}"
     }
 
+
+
     private fun verifyBottomSheetInputs(): Boolean {
         var isVerified = true
         if (bottomSheetLayoutBinding.latTextField.editText!!.text.isEmpty()) {
@@ -327,6 +332,18 @@ class AddressMakhdomFragment : Fragment() {
             bottomSheetLayoutBinding.lngTextField.helperText = getString(R.string.latitude_err_msg)
         }
         return isVerified
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                findNavController().popBackStack()
+                true
+            }
+
+            else -> return super.onContextItemSelected(item)
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

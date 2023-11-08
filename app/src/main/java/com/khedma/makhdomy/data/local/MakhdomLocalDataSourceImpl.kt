@@ -18,6 +18,10 @@ class MakhdomLocalDataSourceImpl @Inject constructor(private val dao: MakhdomyDa
         }
     }
 
+    override suspend fun addMakhdommen(makhdommen: List<Makhdom>): List<Long> {
+       return dao.addMakhdommen(makhdommen)
+    }
+
     override fun readAll(): LiveData<List<Makhdom>> {
         return dao.readAll()
     }
@@ -29,8 +33,8 @@ class MakhdomLocalDataSourceImpl @Inject constructor(private val dao: MakhdomyDa
     }
 
     override fun searchByPhone(phone: String): LiveData<List<Makhdom>> {
-        val resultList = readAll().value?.filter { it.phonesList?.any{it.contains("01201090")} == true }
-        val result: LiveData<List<Makhdom>> =   MutableLiveData(dao.readAll().value?.filter { it.phonesList?.any{it.contains(phone)} == true })
+        val resultList = readAll().value?.filter { it.mobilePhones?.values?.any{it.contains("01201090")} == true }
+        val result: LiveData<List<Makhdom>> =   MutableLiveData(dao.readAll().value?.filter { it.mobilePhones?.values?.any{it.contains(phone)} == true })
         Log.d("matching phones", resultList.toString())
         return result
     }
@@ -40,4 +44,8 @@ class MakhdomLocalDataSourceImpl @Inject constructor(private val dao: MakhdomyDa
     override suspend fun getUnSynchronizedMakhdommen() :List<Makhdom> = dao.getUnSynchronizedMakhdommen()
 
     override suspend fun getDirtyMakhdommen(): List<Makhdom> = dao.getDirtyMakhdommen()
+
+    override suspend fun clear() {
+        dao.clear()
+    }
 }

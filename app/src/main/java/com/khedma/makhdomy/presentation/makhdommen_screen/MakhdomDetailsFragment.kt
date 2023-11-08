@@ -12,6 +12,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -54,7 +55,12 @@ class MakhdomDetailsFragment : Fragment(), PhoneSelectionAdapter.OnClickListener
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (requireActivity() as MainActivity).supportActionBar?.apply {
+            setDisplayShowHomeEnabled(true)
+            setDisplayHomeAsUpEnabled(true) // Optional: Show the Up button
+        }
         requireActivity().title = getString(R.string.details_toolbar_title)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -187,6 +193,18 @@ class MakhdomDetailsFragment : Fragment(), PhoneSelectionAdapter.OnClickListener
         } else
             requestPermission(this)
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                findNavController().popBackStack()
+                true
+            }
+
+            else -> return super.onContextItemSelected(item)
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

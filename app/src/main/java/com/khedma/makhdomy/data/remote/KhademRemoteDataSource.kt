@@ -11,5 +11,5 @@ interface KhademRemoteDataSource {
 
     suspend fun addMakhdomIdToKhadem (makhdomKey:String)
 
-    suspend fun  readKhadem(khademKey:String): Task<DocumentSnapshot>
+    suspend fun  readKhadem(khademKey:String): Result<Khadem>
 }

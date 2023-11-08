@@ -11,8 +11,11 @@ import com.khedma.makhdomy.domain.model.Makhdom
 @Dao
 interface MakhdomyDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addMakhdom(makhdom: Makhdom): Long
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addMakhdommen(makhdommen: List<Makhdom>) : List<Long>
 
     @Query("select * from makhdom_table")
     fun readAll(): LiveData<List<Makhdom>>
@@ -23,7 +26,8 @@ interface MakhdomyDao {
     @Query(
         "Select * from makhdom_table" +
                 " where name like :keyWord or className like :keyWord or addressArea like :keyWord" +
-                " or streetName like :keyWord or motafare3From like :keyWord")
+                " or streetName like :keyWord or motafare3From like :keyWord"
+    )
     fun searchByKeyWord(keyWord: String): LiveData<List<Makhdom>>
 
     @Update
@@ -35,6 +39,9 @@ interface MakhdomyDao {
 
     @Query("select * from makhdom_table where isSynchronized = 1 and isDirty=1")
     suspend fun getDirtyMakhdommen(): List<Makhdom>
+
+    @Query("Delete from makhdom_table")
+    suspend fun clear()
 
 
 }

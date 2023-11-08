@@ -1,6 +1,8 @@
 package com.khedma.makhdomy.data.remote
 
+import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.toObject
 import com.google.firebase.storage.FirebaseStorage
 import com.khedma.makhdomy.data.utils.MAKHDOM_COLLECTION
 import com.khedma.makhdomy.data.utils.SERVANT_IMAGE_FOLDER
@@ -22,7 +24,8 @@ class MakhdomRemoteDataSourceImpl @Inject constructor(
         return picture?.let {
             try {
                 val storageTaskSnapshot =
-                    storage.reference.child("$SERVANT_IMAGE_FOLDER${makhdomData.name}").putBytes(picture)
+                    storage.reference.child("$SERVANT_IMAGE_FOLDER${makhdomData.name}")
+                        .putBytes(picture)
                         .await()
                 if (storageTaskSnapshot.task.isSuccessful) {
                     val uri = storageTaskSnapshot.storage.downloadUrl.await()
@@ -62,14 +65,16 @@ class MakhdomRemoteDataSourceImpl @Inject constructor(
         return picture?.let {
             try {
                 val storageTaskSnapshot =
-                    storage.reference.child("$SERVANT_IMAGE_FOLDER${makhdomData.name}").putBytes(picture)
+                    storage.reference.child("$SERVANT_IMAGE_FOLDER${makhdomData.name}")
+                        .putBytes(picture)
                         .await()
 
                 if (storageTaskSnapshot.task.isSuccessful) {
                     val uri = storageTaskSnapshot.storage.downloadUrl.await()
                     makhdomData.picture = uri?.toString()
 
-                    val reference = fireStore.collection(MAKHDOM_COLLECTION).document(makhdomData.key!!)
+                    val reference =
+                        fireStore.collection(MAKHDOM_COLLECTION).document(makhdomData.key!!)
                     reference.set(makhdomData).await()
                     Result.Success(SharedParameters(makhdomData.key!!, uri.toString()))
 
@@ -90,4 +95,20 @@ class MakhdomRemoteDataSourceImpl @Inject constructor(
 
         }
     }
+
+    override suspend fun readMakhdmenByKeys(keys: List<String>): Result<List<MakhdomData>> {
+        val resultList = mutableListOf<MakhdomData>()
+        keys.forEach {
+            try {
+                val snapShot = fireStore.collection(MAKHDOM_COLLECTION).document(it).get().await()
+                if (snapShot != null && !snapShot.data.isNullOrEmpty())
+                    resultList.add(snapShot.toObject(MakhdomData::class.java)!!)
+            } catch (e: Exception) {
+                Log.d("reading err", e.message.toString())
+            }
+        }
+        return if (resultList.isEmpty()) Result.Failure(Throwable("data not available")) else
+            Result.Success(resultList)
+    }
+
 }
