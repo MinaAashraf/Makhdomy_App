@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,10 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
 
-        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layoutDirection="rtl"
@@ -30,14 +32,14 @@
                 app:helperTextTextColor="@color/red"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/khadem_name_field">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/gmail_label"
                     android:inputType="textEmailAddress"
-                    android:textSize="@dimen/small" />
+                    android:textSize="@dimen/medium" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,19 +82,52 @@
 
 
             <Button
+                android:id="@+id/forget_password_btn"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/new_account_label"
-                app:layout_constraintTop_toBottomOf="@id/save_btn"
-                app:layout_constraintStart_toStartOf="@id/save_btn"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:textStyle="bold"
+                android:text="@string/forget_password_label"
+                android:textColor="@color/blue"
                 android:textSize="@dimen/small"
-                android:layout_marginTop="@dimen/_20sdp"
-                app:layout_constraintEnd_toEndOf="@id/save_btn"
-                android:id="@+id/register_btn"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/save_btn"
+                app:layout_constraintTop_toBottomOf="@id/save_btn"
 
                 />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/forget_password_btn">
+
+                <TextView
+                    android:id="@+id/dont_have_account_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:gravity="end"
+                    android:text="@string/dont_have_account_label"
+                    android:textSize="@dimen/small" />
+
+                <Button
+                    android:id="@+id/register_btn"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|center_vertical"
+                    android:text="@string/new_account_label"
+                    android:textSize="@dimen/small"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/dont_have_account_txt"
+                    app:layout_constraintTop_toBottomOf="@id/save_btn" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <ProgressBar
                 android:id="@+id/progress_bar"
@@ -103,8 +138,6 @@
                 app:layout_constraintEnd_toEndOf="@id/save_btn"
                 app:layout_constraintStart_toStartOf="@id/save_btn"
                 app:layout_constraintTop_toTopOf="@+id/save_btn" />
-
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

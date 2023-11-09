@@ -1,9 +1,7 @@
 package com.khedma.makhdomy.presentation.khadem
 
 import android.content.Context
-import android.provider.Settings.Global.getString
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,7 +19,6 @@ import com.khedma.makhdomy.presentation.utils.writePreferences
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 @HiltViewModel
@@ -123,6 +120,22 @@ class KhademViewModel @Inject constructor(
 
     private fun getCurrentUserKey(): String {
         return firebaseAuth.currentUser!!.uid
+    }
+
+
+    private val _passwordResetLoading = MutableLiveData<Boolean?>(null)
+    val passwordResetLoading: LiveData<Boolean?> = _passwordResetLoading
+     var resetMailSendResultMessage  : String? = null
+
+    fun resetPassword(context: Context, email: String) {
+        _passwordResetLoading.value = true
+        firebaseAuth.sendPasswordResetEmail(email).addOnSuccessListener {
+            _passwordResetLoading.postValue(false)
+            resetMailSendResultMessage = context.getString(R.string.reset_link_sent_msg)
+        }.addOnFailureListener {
+            _passwordResetLoading.postValue(false)
+            resetMailSendResultMessage = context.getString(R.string.reset_link_err)
+        }
     }
 
 }

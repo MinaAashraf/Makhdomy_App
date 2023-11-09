@@ -1,15 +1,18 @@
 package com.khedma.makhdomy.presentation.khadem
 
+import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.khedma.makhdomy.R
 import com.khedma.makhdomy.databinding.FragmentKhademLoginBinding
-import com.khedma.makhdomy.databinding.FragmentKhademRegisterationBinding
+import com.khedma.makhdomy.databinding.PasswordResetDialogBinding
 import com.khedma.makhdomy.presentation.utils.hide
 import com.khedma.makhdomy.presentation.utils.makeInVisible
 import com.khedma.makhdomy.presentation.utils.show
@@ -34,11 +37,14 @@ class KhademLoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpUi()
         observeOnLoading()
+
     }
 
     private fun setUpUi() {
         setUpLoginBtn()
         handleRegisterTextButton()
+        setUpForgetPasswordButton()
+        setUpPasswordRestDialog()
     }
 
     private fun handleRegisterTextButton() {
@@ -50,10 +56,56 @@ class KhademLoginFragment : Fragment() {
 
     private fun setUpLoginBtn() {
         binding.saveBtn.setOnClickListener {
+            binding.gmailField.helperText = ""
+            binding.passwordField.helperText = ""
             val email = binding.gmailField.editText!!.text.toString()
             val password = binding.passwordField.editText!!.text.toString()
             if (validateInputs(email, password))
                 viewModel.signInWithEmailAndPassword(requireContext(), email, password)
+        }
+    }
+
+    private val passwordResetBinding: PasswordResetDialogBinding by lazy {
+        PasswordResetDialogBinding.inflate(
+            layoutInflater
+        )
+    }
+    private lateinit var passwordResetDialog: Dialog
+
+    private fun setUpPasswordRestDialog (){
+        passwordResetDialog = Dialog(requireContext()).apply {
+            requestWindowFeature(Window.FEATURE_NO_TITLE)
+            setCancelable(false)
+            setContentView(passwordResetBinding.root)
+        }
+        passwordResetBinding.sendEmailBtn.setOnClickListener {
+            setUpSendResetEmailDialogBtn()
+        }
+        passwordResetBinding.cancelBtn.setOnClickListener {
+            passwordResetDialog.dismiss()
+        }
+    }
+    private fun showResetPasswordDialog() {
+       passwordResetDialog.show()
+    }
+
+
+    private fun setUpSendResetEmailDialogBtn() {
+        val email = passwordResetBinding.emailField.editText!!.text.toString()
+        if (email.isEmpty()) {
+            passwordResetBinding.emailField.helperText = getString(R.string.email_err_msg)
+            return
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            binding.gmailField.helperText = getString(R.string.not_correct_email_msg)
+            return
+        }
+        viewModel.resetPassword(requireContext(), email)
+
+    }
+
+    private fun setUpForgetPasswordButton() {
+        binding.forgetPasswordBtn.setOnClickListener {
+            showResetPasswordDialog()
         }
     }
 
@@ -75,6 +127,19 @@ class KhademLoginFragment : Fragment() {
 
             }
         }
+        viewModel.passwordResetLoading.observe(viewLifecycleOwner) {
+            it?.let {
+                if (it) {
+                    passwordResetBinding.sendEmailBtn.makeInVisible()
+                    passwordResetBinding.progressBar.show()
+                } else {
+                    passwordResetBinding.progressBar.hide()
+                    passwordResetBinding.sendEmailBtn.show()
+                    showToast(requireContext(), viewModel.resetMailSendResultMessage!!)
+                    passwordResetDialog.dismiss()
+                }
+            }
+        }
     }
 
     private fun onSavingKhademSuccess() {
@@ -87,9 +152,7 @@ class KhademLoginFragment : Fragment() {
         if (email.isEmpty()) {
             binding.gmailField.helperText = getString(R.string.email_err_msg)
             isValid = false
-        }
-
-       else if (!email.contains("@gmail.com")) {
+        } else if(!Patterns.EMAIL_ADDRESS.matcher(binding.gmailField.editText!!.text ).matches())  {
             binding.gmailField.helperText = getString(R.string.not_correct_email_msg)
             isValid = false
         }

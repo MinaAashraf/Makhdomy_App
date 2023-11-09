@@ -26,6 +26,7 @@
         android:layout_gravity="center"
         android:text="@string/my_makhdom_label"
         android:textColor="@color/white"
+        android:textStyle="bold"
         android:textSize="@dimen/verry_large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

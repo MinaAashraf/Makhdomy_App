@@ -108,7 +108,7 @@
     <string name="family_attitude_label">مدي ترحيب الأسرة بأخر زيارة:</string>
     <string name="family_church_connection_label">ارتباط الأسرة بالكنيسة:</string>
     <string name="another_notes_label">ملاحظات اخري:</string>
-    <string name="gmail_label">حساب جوجل</string>
+    <string name="gmail_label">البريد الإلكتروني</string>
     <string name="password_label">الرقم السري</string>
     <string name="password_confirmation_label">تأكيد الرقم السري</string>
     <string name="khadem_code_label">كود الخادم</string>
@@ -120,6 +120,17 @@
     <string name="not_correct_email_msg">البريد الإلكتروني غير صحيح!</string>
     <string name="password_err_msg">يجب ادخال الرقم السري!</string>
     <string name="wrong_email_or_password_err">تأكد من البريد الالكتروني و الرقم السري!</string>
+    <string name="server_data_receive_title">استقبال البيانات من السيرفر</string>
+    <string name="server_data_receive_message">هل تريد استقبال البيانات من السيرفر وتخزينها علي جهازك؟</string>
+    <string name="forget_password_label">نسيت الرقم السري؟</string>
+    <string name="have_account_text">لديك حساب؟</string>
+    <string name="password_reset_text">تغيير الرقم السري</string>
+    <string name="email_reset_link_instruction">سيتم إرسال لينك الى بريدك الإلكتروني لتغيير الرقم السري</string>
+    <string name="reset_link_sent_msg">تم ارسال لينك الي بريدك الالكتروني بنجاح</string>
+    <string name="reset_link_err">تأكد من البريد الالكتروني أو من اتصالك بالشبكة</string>
+    <string name="dont_have_account_label">ليس لديك حساب؟</string>
+    <string name="cancel_label">إلغاء</string>
+    <string name="ok_label">تأكيد</string>
     <string-array name="classes_names">
         <item>اولى ابتدائي</item>
         <item>ثانية ابتدائي</item>

@@ -1,8 +1,10 @@
 package com.khedma.makhdomy.presentation.utils
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Bitmap
+import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputLayout
@@ -22,10 +24,10 @@ fun View.show() {
 fun View.hide() {
     this.visibility = View.GONE
 }
+
 fun View.makeInVisible() {
     this.visibility = View.INVISIBLE
 }
-
 
 
 fun Bitmap.convertToByteArr(): ByteArray {
@@ -34,14 +36,14 @@ fun Bitmap.convertToByteArr(): ByteArray {
     return bytes.toByteArray()
 }
 
- fun validatePhoneNum(phoneField:TextInputLayout,context: Context): Boolean {
+fun validatePhoneNum(phoneField: TextInputLayout, context: Context): Boolean {
     var isValid = true
     phoneField.helperText = null
     val phoneNum = phoneField.editText!!.text.toString()
     if (phoneNum.isEmpty()) {
         phoneField.helperText = context.getString(R.string.phone_empty_error_msg)
         isValid = false
-    } else if (phoneNum.length != 11) {
+    } else if (!Patterns.PHONE.matcher(phoneNum).matches()) {
         phoneField.helperText = context.getString(R.string.phone_wrong_err_msg)
         isValid = false
     }
@@ -49,7 +51,7 @@ fun Bitmap.convertToByteArr(): ByteArray {
 }
 
 
- var preferences: SharedPreferences? = null
+var preferences: SharedPreferences? = null
 fun createPreferences(context: Context) {
     if (preferences != null)
         return
@@ -60,7 +62,7 @@ fun createPreferences(context: Context) {
 }
 
 
-fun readFromPreferences(context: Context,key: String): String? {
+fun readFromPreferences(context: Context, key: String): String? {
     createPreferences(context)
     return preferences!!.getString(key, "")
 }
@@ -80,3 +82,15 @@ fun fromJson(json: String): Khadem {
 }
 
 fun toJson(khadem: Khadem): String = Gson().toJson(khadem)
+fun showDialog(context: Context, title: String, message: String, function: () -> Unit) {
+    AlertDialog.Builder(context).apply {
+        setTitle(title)
+        setMessage(message)
+        setPositiveButton("نعم") { dialog, which ->
+            function()
+            dialog.dismiss()
+        }
+        setNegativeButton("لا") { dialog, which -> dialog.dismiss() }
+        show()
+    }
+}

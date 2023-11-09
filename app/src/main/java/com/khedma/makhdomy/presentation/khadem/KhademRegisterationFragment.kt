@@ -1,6 +1,7 @@
 package com.khedma.makhdomy.presentation.khadem
 
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.khedma.makhdomy.MainActivity
 import com.khedma.makhdomy.R
-import com.khedma.makhdomy.databinding.FragmentKhademLoginBinding
 import com.khedma.makhdomy.databinding.FragmentKhademRegisterationBinding
 import com.khedma.makhdomy.domain.model.Khadem
 import com.khedma.makhdomy.presentation.utils.KHADEM_CODE
@@ -18,9 +18,6 @@ import com.khedma.makhdomy.presentation.utils.hide
 import com.khedma.makhdomy.presentation.utils.makeInVisible
 import com.khedma.makhdomy.presentation.utils.show
 import com.khedma.makhdomy.presentation.utils.showToast
-import com.khedma.makhdomy.presentation.utils.toJson
-import com.khedma.makhdomy.presentation.utils.validatePhoneNum
-import com.khedma.makhdomy.presentation.utils.writePreferences
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -80,6 +77,7 @@ class KhademRegisterationFragment : Fragment() {
     private fun clearFieldsErrors() {
         binding.apply {
             khademNameField.helperText = null
+            gmailField.helperText = null
             passwordField.helperText = null
             confirmationPasswordField.helperText = null
             khademCodeField.helperText = null
@@ -143,7 +141,7 @@ class KhademRegisterationFragment : Fragment() {
         if (binding.gmailField.editText!!.text.isEmpty()) {
             binding.gmailField.helperText = getString(R.string.email_err_msg)
             isValid = false
-        } else if (!binding.gmailField.editText!!.text.contains("@gmail.com")) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.gmailField.editText!!.text ).matches()) {
             binding.gmailField.helperText = getString(R.string.not_correct_email_msg)
             isValid = false
         }

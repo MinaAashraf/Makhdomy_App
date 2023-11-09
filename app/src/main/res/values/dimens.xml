@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="very_small">@dimen/_9ssp</dimen>
-    <dimen name="small">@dimen/_11ssp</dimen>
-    <dimen name="medium">@dimen/_13ssp</dimen>
-    <dimen name="semi_large">@dimen/_14ssp</dimen>
-    <dimen name="large">@dimen/_15ssp</dimen>
-    <dimen name="verry_large">@dimen/_25ssp</dimen>
+    <dimen name="very_small">@dimen/_12ssp</dimen>
+    <dimen name="small">@dimen/_14ssp</dimen>
+    <dimen name="medium">@dimen/_15ssp</dimen>
+    <dimen name="semi_large">@dimen/_17ssp</dimen>
+    <dimen name="large">@dimen/_18ssp</dimen>
+    <dimen name="verry_large">@dimen/_28ssp</dimen>
     <dimen name="btn_height">@dimen/_50sdp</dimen>
 </resources>

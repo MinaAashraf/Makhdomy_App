@@ -17,7 +17,7 @@ import com.khedma.makhdomy.R
 import com.khedma.makhdomy.databinding.FragmentMakhdommenListBinding
 import com.khedma.makhdomy.presentation.utils.hide
 import com.khedma.makhdomy.presentation.utils.show
-import com.khedma.makhdomy.presentation.utils.showToast
+import com.khedma.makhdomy.presentation.utils.showDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -135,20 +135,18 @@ class MakhdommenListFragment : Fragment(), MakhdommenAdapter.OnItemClick {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            android.R.id.home->{
-                findNavController().popBackStack()
-                true
-            }
-            R.id.send_icon -> {
-                showToast(requireContext(), "send")
-                true
-            }
-
             R.id.receive_icon -> {
-                if (viewModel.loading.value == null || viewModel.loading.value == false)
-                    viewModel.receiveMakhdommenFromRemote(requireContext())
+                if (viewModel.loading.value == null || viewModel.loading.value == false) {
+                    showDialog(
+                        requireContext(), getString(R.string.server_data_receive_title),
+                        getString(R.string.server_data_receive_message)
+                    ) {
+                        viewModel.receiveMakhdommenFromRemote(requireContext())
+                    }
+                }
                 true
             }
 

@@ -37,9 +37,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class MakhdomDetailsFragment : Fragment(), PhoneSelectionAdapter.OnClickListener {
 
     private val binding by lazy { FragmentMakhdomDetailsBinding.inflate(layoutInflater) }
+
     private val viewModel: MakhdomViewModel by activityViewModels()
+
     private val args: MakhdomDetailsFragmentArgs by navArgs()
+
     private lateinit var makhdom: Makhdom
+
     private val phonesList: MutableList<Pair<String, String>> = mutableListOf()
 
     private val phonesAdapter by lazy {
@@ -58,6 +62,7 @@ class MakhdomDetailsFragment : Fragment(), PhoneSelectionAdapter.OnClickListener
         (requireActivity() as MainActivity).supportActionBar?.apply {
             setDisplayShowHomeEnabled(true)
             setDisplayHomeAsUpEnabled(true) // Optional: Show the Up button
+
         }
         requireActivity().title = getString(R.string.details_toolbar_title)
         setHasOptionsMenu(true)
