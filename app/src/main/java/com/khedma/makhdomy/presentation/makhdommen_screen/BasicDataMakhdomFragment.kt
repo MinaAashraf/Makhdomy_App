@@ -1,21 +1,14 @@
 package com.khedma.makhdomy.presentation.makhdommen_screen
 
 import android.app.DatePickerDialog
-import android.content.ContentResolver
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Canvas
-import android.graphics.ImageDecoder
-import android.graphics.Matrix
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +25,6 @@ import com.khedma.makhdomy.databinding.FragmentBasicDataMakhdomBinding
 import com.khedma.makhdomy.domain.model.Makhdom
 import com.khedma.makhdomy.presentation.utils.hide
 import com.khedma.makhdomy.presentation.utils.show
-import com.khedma.makhdomy.presentation.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -148,58 +140,6 @@ class BasicDataMakhdomFragment : Fragment() {
             }
         }
 
-    private fun getBitmapFromUri(imageUri: Uri): Bitmap? {
-        var bitmap: Bitmap? = null
-        val contentResolver: ContentResolver = requireActivity().contentResolver
-        try {
-            bitmap = if (Build.VERSION.SDK_INT < 28) {
-                MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
-            } else {
-                val source: ImageDecoder.Source =
-                    ImageDecoder.createSource(contentResolver, imageUri)
-                ImageDecoder.decodeBitmap(source)
-            }
-            bitmap = Bitmap.createScaledBitmap(
-                bitmap!!,
-                (bitmap.width * 0.3).toInt(),
-                (bitmap.height * 0.3).toInt(),
-                true
-            )
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        Log.d("bitmap", bitmap.toString())
-
-        return bitmap
-    }
-
-    private fun resizeBitmap(bitmap: Bitmap?, newWidth: Int, newHeight: Int): Bitmap? {
-        if (bitmap == null)
-            return bitmap
-        // Calculate the scaling factors for width and height
-        val widthScale = newWidth.toFloat() / bitmap.width
-        val heightScale = newHeight.toFloat() / bitmap.height
-
-        // Calculate the scale factor while maintaining the aspect ratio
-        val scaleFactor = minOf(widthScale, heightScale)
-
-        // Calculate the new dimensions based on the aspect ratio
-        val scaledWidth = (bitmap.width * scaleFactor).toInt()
-        val scaledHeight = (bitmap.height * scaleFactor).toInt()
-
-        // Create a Matrix to perform the scaling
-        val matrix = Matrix()
-        matrix.postScale(scaleFactor, scaleFactor)
-
-        // Create a new Bitmap with the desired dimensions
-
-        var resizedBitmap = Bitmap.createBitmap(scaledWidth, scaledHeight, Bitmap.Config.ARGB_8888)
-        // Create a Canvas and draw the scaled Bitmap onto the new Bitmap
-        val canvas = Canvas(resizedBitmap)
-        canvas.drawBitmap(bitmap, matrix, null)
-
-        return resizedBitmap
-    }
 
     private fun decodeSampledBitmapFromResource(
         imageUri: Uri,

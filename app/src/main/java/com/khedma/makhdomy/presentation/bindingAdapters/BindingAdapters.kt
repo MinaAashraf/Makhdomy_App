@@ -1,7 +1,10 @@
 package com.khedma.makhdomy.presentation.bindingAdapters
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -19,6 +22,13 @@ fun bindImg(imgView: ImageView, bitmap: Bitmap?) {
     bitmap?.let {
         imgView.setImageBitmap(it)
     } ?: run { imgView.setImageResource(R.drawable.profile_img) }
+}
+
+@BindingAdapter("img_src_dark")
+fun bindDarkModeImg(imgView: ImageView, bitmap: Bitmap?) {
+    bitmap?.let {
+        imgView.setImageBitmap(it)
+    } ?: run { imgView.setImageResource(R.drawable.user) }
 }
 
 @BindingAdapter("address")
@@ -67,7 +77,11 @@ fun bindComputerDealingInitialVisibilityDependingOnRadioBtn(
     inputLayout: TextInputLayout,
     hasComputer: Boolean = false
 ) {
-    inputLayout.visibility = if (hasComputer) View.VISIBLE else View.GONE
+     if (hasComputer)
+        inputLayout.show()
+     else
+         inputLayout.hide()
+
 }
 
 @BindingAdapter("sync_icon")
@@ -100,5 +114,59 @@ fun bindBrothersList(textView: TextView, brothers: List<Brother>?) {
         textView.show()
     }
 }
+
+@BindingAdapter("class_id")
+fun bindClassPhaseAutoCompleteField(
+    textView: AutoCompleteTextView,
+    classId: Int?,
+    ) {
+    classId?.let {
+        if (it < 0)
+            return
+        val classIndex = classId - 1
+        textView.setText(textView.context.resources.getStringArray(R.array.classes_names)[classIndex])
+        textView.setAdapter(
+            createClassNamesDropDownListAdapter(
+                textView.context,
+                textView.context.resources.getStringArray(R.array.classes_names)
+            )
+        )
+    }
+
+}
+
+@BindingAdapter("life_level")
+fun bindLifeLevelsAutoCompleteField(
+    textView: AutoCompleteTextView,
+    lifeLevel: String?,
+) {
+    lifeLevel?.let {
+        if (it.isEmpty())
+            return
+        textView.setText(it)
+        textView.setAdapter(
+            createClassNamesDropDownListAdapter(
+                textView.context,
+                textView.context.resources.getStringArray(R.array.life_levels)
+            )
+        )
+    }
+}
+
+
+private fun createClassNamesDropDownListAdapter(
+    context: Context,
+    list: Array<String>
+): ArrayAdapter<String> {
+    return ArrayAdapter(
+        context,
+        androidx.transition.R.layout.support_simple_spinner_dropdown_item,
+        list
+    )
+}
+
+
+
+
 
 

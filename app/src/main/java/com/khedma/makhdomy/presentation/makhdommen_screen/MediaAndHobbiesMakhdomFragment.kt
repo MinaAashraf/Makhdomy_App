@@ -58,7 +58,7 @@ class MediaAndHobbiesMakhdomFragment : Fragment() {
         viewModel.preparedMakhdom.apply {
             this.hasComputer = hasComputerOrInternet
             this.hobbiesAndPrizes = favouriteHobbiesAndPrizes
-            this.computerDealing = computerDealing
+            this.computerDealing = if (hasComputerOrInternet) computerDealing else ""
         }
     }
 

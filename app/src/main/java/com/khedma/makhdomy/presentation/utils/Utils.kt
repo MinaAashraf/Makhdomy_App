@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Bitmap
-import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputLayout
@@ -43,7 +42,13 @@ fun validatePhoneNum(phoneField: TextInputLayout, context: Context): Boolean {
     if (phoneNum.isEmpty()) {
         phoneField.helperText = context.getString(R.string.phone_empty_error_msg)
         isValid = false
-    } else if (!Patterns.PHONE.matcher(phoneNum).matches()) {
+    } else if (phoneNum.length != 11 || (phoneNum.substring(0, 3) != "010" && phoneNum.substring(
+            0,
+            3
+        ) != "011"
+                && phoneNum.substring(0, 3) != "012"
+                && phoneNum.substring(0, 3) != "015")
+    ) {
         phoneField.helperText = context.getString(R.string.phone_wrong_err_msg)
         isValid = false
     }
@@ -72,13 +77,15 @@ fun writePreferences(context: Context, key: String, value: String) {
     preferences!!.edit().putString(key, value).apply()
 }
 
-fun showToast(context: Context, msg: String) {
-    Toast.makeText(context, msg, Toast.LENGTH_SHORT)
+fun showToast(context: Context, msg: String, toastDuration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(context, msg, toastDuration)
         .show()
 }
 
 fun fromJson(json: String): Khadem {
-    return Gson().fromJson(json, object : TypeToken<Khadem>() {}.type)
+    if (json.isNotEmpty())
+        return Gson().fromJson(json, object : TypeToken<Khadem>() {}.type)
+    return Khadem()
 }
 
 fun toJson(khadem: Khadem): String = Gson().toJson(khadem)

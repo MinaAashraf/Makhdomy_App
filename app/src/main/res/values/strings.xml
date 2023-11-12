@@ -115,11 +115,11 @@
     <string name="login_label">تسجيل دخول</string>
     <string name="new_account_label">عمل حساب جديد</string>
     <string name="start_label">دخــول</string>
-    <string name="auth_err_msg">هناك مشكلةِ ما .. تأكد من اتصالك بالانترنت!</string>
+    <string name="auth_err_msg">هناك مشكلةِ ما. تأكد من اتصالك بالإنترنت! و تأكد ألا يكون بريدك الالكتروني مستخدم من قبل!</string>
     <string name="email_err_msg">يجب ادخال بريدك الإلكتروني!</string>
     <string name="not_correct_email_msg">البريد الإلكتروني غير صحيح!</string>
     <string name="password_err_msg">يجب ادخال الرقم السري!</string>
-    <string name="wrong_email_or_password_err">تأكد من البريد الالكتروني و الرقم السري!</string>
+    <string name="wrong_email_or_password_err">هناك مشكلةِ ما. تأكد من البريد الإلكتروني أو الرقم السري، وتأكد من اتصالك بالإنترنت!</string>
     <string name="server_data_receive_title">استقبال البيانات من السيرفر</string>
     <string name="server_data_receive_message">هل تريد استقبال البيانات من السيرفر وتخزينها علي جهازك؟</string>
     <string name="forget_password_label">نسيت الرقم السري؟</string>
@@ -131,6 +131,8 @@
     <string name="dont_have_account_label">ليس لديك حساب؟</string>
     <string name="cancel_label">إلغاء</string>
     <string name="ok_label">تأكيد</string>
+    <string name="log_out_dialog_msg">هل تريد الخروج من حسابك؟</string>
+    <string name="log_out_dialog_title">خروج</string>
     <string-array name="classes_names">
         <item>اولى ابتدائي</item>
         <item>ثانية ابتدائي</item>

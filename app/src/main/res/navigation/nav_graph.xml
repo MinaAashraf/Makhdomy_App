@@ -10,8 +10,7 @@
         android:label="البيانات الأساسية">
         <action
             android:id="@+id/action_basicDataMakhdomFragment_to_addressMakhdomFragment"
-            app:destination="@id/addressMakhdomFragment"
-            />
+            app:destination="@id/addressMakhdomFragment" />
         <argument
             android:name="makhdom_id"
             android:defaultValue="-1"
@@ -23,8 +22,7 @@
         android:label="العنوان">
         <action
             android:id="@+id/action_addressMakhdomFragment_to_phoneDataFragment"
-            app:destination="@id/phoneDataFragment"
-            />
+            app:destination="@id/phoneDataFragment" />
         />
     </fragment>
     <fragment
@@ -41,8 +39,7 @@
         android:label="البيانات الروحية">
         <action
             android:id="@+id/action_spiritualMakhdomFragment_to_mediaAndHobbiesMakhdomFragment"
-            app:destination="@id/mediaAndHobbiesMakhdomFragment"
-            />
+            app:destination="@id/mediaAndHobbiesMakhdomFragment" />
         />
     </fragment>
     <fragment
@@ -51,8 +48,7 @@
         android:label="بيانات الميديا">
         <action
             android:id="@+id/action_mediaAndHobbiesMakhdomFragment_to_healthAndCharacterMakhdomFragment"
-            app:destination="@id/healthAndCharacterMakhdomFragment"
-            />
+            app:destination="@id/healthAndCharacterMakhdomFragment" />
         />
     </fragment>
     <fragment
@@ -61,8 +57,7 @@
         android:label="البيانات الصحية">
         <action
             android:id="@+id/action_healthAndCharacterMakhdomFragment_to_makhdomDetailsFragment"
-            app:destination="@id/makhdomReviewsFragment"
-            />
+            app:destination="@id/makhdomReviewsFragment" />
         />
     </fragment>
     <fragment
@@ -75,13 +70,16 @@
         android:label="مخـدومي">
         <action
             android:id="@+id/action_makhdommenListFragment_to_basicDataMakhdomFragment"
-            app:destination="@id/basicDataMakhdomFragment"
-            />
+            app:destination="@id/basicDataMakhdomFragment" />
         />
         <action
             android:id="@+id/action_makhdommenListFragment_to_makhdomDetailsFragment"
-            app:destination="@id/makhdomDetailsFragment"
-            />
+            app:destination="@id/makhdomDetailsFragment" />
+        <action
+            android:id="@+id/action_makhdommenListFragment_to_khademRegisterationFragment"
+            app:destination="@id/khademRegisterationFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
         />
     </fragment>
     <fragment
@@ -94,8 +92,7 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_makhdomDetailsFragment_to_basicDataMakhdomFragment"
-            app:destination="@id/basicDataMakhdomFragment"
-            />
+            app:destination="@id/basicDataMakhdomFragment" />
         />
     </fragment>
     <fragment
@@ -110,7 +107,7 @@
         android:id="@+id/splashFragment"
         android:name="com.khedma.makhdomy.presentation.SplashFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_makhdommenListFragment"
             app:destination="@id/makhdommenListFragment"
@@ -120,13 +117,12 @@
             android:id="@+id/action_splashFragment_to_khademRegisterationFragment"
             app:destination="@id/khademRegisterationFragment"
             app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true"
-            />
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/brothersDataFragment"
         android:name="com.khedma.makhdomy.presentation.makhdommen_screen.BrothersDataFragment"
-        android:label="BrothersDataFragment" >
+        android:label="BrothersDataFragment">
         <action
             android:id="@+id/action_brothersDataFragment_to_spiritualMakhdomFragment"
             app:destination="@id/spiritualMakhdomFragment" />
@@ -134,39 +130,34 @@
     <fragment
         android:id="@+id/khademLoginFragment2"
         android:name="com.khedma.makhdomy.presentation.khadem.KhademLoginFragment"
-        android:label="KhademLoginFragment" >
+        android:label="KhademLoginFragment">
         <action
             android:id="@+id/action_khademLoginFragment2_to_khademRegisterationFragment"
             app:destination="@id/khademRegisterationFragment"
             app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true"
-            />
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_khademLoginFragment2_to_makhdommenListFragment"
             app:destination="@id/makhdommenListFragment"
             app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true"
-            />
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/khademRegisterationFragment"
         android:name="com.khedma.makhdomy.presentation.khadem.KhademRegisterationFragment"
         android:label="KhademRegisterationFragment"
         app:popUpTo="@id/nav_graph"
-        app:popUpToInclusive="true"
-        >
+        app:popUpToInclusive="true">
         <action
             android:id="@+id/action_khademRegisterationFragment_to_khademLoginFragment2"
             app:destination="@id/khademLoginFragment2"
             app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true"
-            />
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_khademRegisterationFragment_to_makhdommenListFragment"
             app:destination="@id/makhdommenListFragment"
             app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true"
-            />
+            app:popUpToInclusive="true" />
     </fragment>
 
 

@@ -13,183 +13,145 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:layoutDirection="rtl"
-        android:orientation="vertical">
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_40sdp">
+            android:layoutDirection="rtl"
+            android:padding="@dimen/_40sdp"
+            tools:context=".presentation.makhdommen_screen.BasicDataMakhdomFragment">
+
+            <ImageView
+                android:id="@+id/picture_view"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:scaleType="centerCrop"
+                app:img_src_dark="@{makhdom.picture}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/name_field"
+                android:id="@+id/name_text_field"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_40sdp"
                 app:helperTextEnabled="true"
                 app:helperTextTextColor="@color/red"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/picture_view">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/brother_name_label"
+                    android:hint="@string/name_label"
                     android:inputType="textPersonName"
+                    android:text="@{makhdom.name}"
                     android:textSize="@dimen/small" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/type_field"
+                android:id="@+id/className_field"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 app:helperTextEnabled="true"
                 app:helperTextTextColor="@color/red"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/name_field">
+                app:layout_constraintTop_toBottomOf="@id/name_text_field">
 
                 <AutoCompleteTextView
-                    android:id="@+id/type_auto_complete"
+                    android:id="@+id/class_name_auto_complete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
+                    android:hint="@string/class_label"
                     android:cursorVisible="false"
                     android:focusable="false"
-                    android:hint="@string/type_label"
                     android:inputType="none"
-                    android:textSize="@dimen/small" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/age_field"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:helperTextEnabled="true"
-                app:helperTextTextColor="@color/red"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/type_field">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:hint="@string/age_label"
-                    android:inputType="number"
-
+                    class_id="@{makhdom.classId}"
                     android:textSize="@dimen/small" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/study_field"
+                android:id="@+id/birthDate_field"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:helperTextEnabled="true"
-                app:helperTextTextColor="@color/red"
+                android:layout_marginTop="@dimen/_15sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/age_field">
+                app:layout_constraintTop_toBottomOf="@id/className_field">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:hint="@string/study_label"
+                    android:hint="@string/birth_date_label"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:inputType="none"
+                    android:text="@{makhdom.birthDate}"
+                    android:textSize="@dimen/small" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/birthLocation_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/birthDate_field">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/birth_location_label"
                     android:inputType="text"
+                    android:text="@{makhdom.birthLocation}"
                     android:textSize="@dimen/small" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
-
-            <TextView
-                android:id="@+id/save_brother_btn"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_45sdp"
-                android:layout_marginTop="@dimen/_14sdp"
-                android:background="@drawable/border_background"
-                android:gravity="center"
-                android:paddingTop="@dimen/_5sdp"
-                android:paddingBottom="@dimen/_5sdp"
-                android:text="@string/save_label"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/small"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/study_field"
-
-                />
-
-            <com.khedma.makhdomy.presentation.utils.ExpandableHeightGridView
-                android:id="@+id/brothers_grid"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:numColumns="auto_fit"
-                android:orientation="horizontal"
-                android:scrollbars="none"
-                android:verticalSpacing="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/save_brother_btn" />
-
 
             <Button
                 android:id="@+id/next_page_btn"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_50sdp"
+                android:layout_height="@dimen/btn_height"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:text="@string/next_page_label"
                 android:textSize="@dimen/small"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@id/last_page_btn"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/brothers_grid" />
-
-
-            <Button
-                android:id="@+id/last_page_btn"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:backgroundTint="@color/grey"
-                android:text="@string/last_page_label"
-                android:textSize="@dimen/small"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/next_page_btn"
-                app:layout_constraintTop_toTopOf="@+id/next_page_btn" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/birthLocation_field" />
 
             <Button
                 android:id="@+id/save_exit_btn"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/btn_height"
-                android:layout_marginTop="@dimen/_14sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:text="@string/save_exit_label"
                 android:textSize="@dimen/small"
                 android:textStyle="bold"
+                android:visibility="gone"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/grey"
-                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/next_page_btn" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </ScrollView>
 

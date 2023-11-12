@@ -21,7 +21,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/light_blue"
             android:padding="@dimen/_40sdp">
 
             <com.google.android.material.textfield.TextInputLayout

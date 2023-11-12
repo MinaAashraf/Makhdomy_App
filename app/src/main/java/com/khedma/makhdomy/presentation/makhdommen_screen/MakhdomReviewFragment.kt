@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.khedma.makhdomy.R
 import com.khedma.makhdomy.databinding.FragmentMakhdomReviewBinding
+import com.khedma.makhdomy.presentation.khadem.KhademViewModel
 import com.khedma.makhdomy.presentation.utils.fromJson
 import com.khedma.makhdomy.presentation.utils.readFromPreferences
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,6 +22,7 @@ class MakhdomReviewFragment : Fragment() {
 
     private val binding by lazy { FragmentMakhdomReviewBinding.inflate(layoutInflater) }
     private val viewModel: MakhdomViewModel by activityViewModels()
+    private val khademViewModel: KhademViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,8 +42,13 @@ class MakhdomReviewFragment : Fragment() {
 
     private fun setUpSaveBtn() {
         binding.saveBtn.setOnClickListener {
-            val currentKhadem = fromJson(readFromPreferences(requireContext(),getString(R.string.khadem_key))!!)
-            viewModel.preparedMakhdom.khademName = currentKhadem.name
+            try {
+                val currentKhadem =
+                    fromJson(readFromPreferences(requireContext(), getString(R.string.khadem_key))?:"")
+                viewModel.preparedMakhdom.khademName = currentKhadem.name
+            } catch (e: Exception) {
+                Log.d("save err: ", e.message.toString())
+            }
 
             if (viewModel.updatingState && viewModel.preparedMakhdom.isSynchronized)
                 viewModel.updateMakhdom()

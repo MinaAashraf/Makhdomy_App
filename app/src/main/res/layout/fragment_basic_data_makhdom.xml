@@ -18,7 +18,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/light_blue"
             android:layoutDirection="rtl"
             android:padding="@dimen/_40sdp"
             tools:context=".presentation.makhdommen_screen.BasicDataMakhdomFragment">
@@ -76,7 +75,7 @@
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:inputType="none"
-                    android:text="@{makhdom.className}"
+                    class_id="@{makhdom.classId}"
                     android:textSize="@dimen/small" />
 
             </com.google.android.material.textfield.TextInputLayout>

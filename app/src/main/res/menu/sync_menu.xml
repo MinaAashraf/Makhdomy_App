@@ -5,8 +5,15 @@
     <item
         android:id="@+id/receive_icon"
         android:icon="@drawable/receive_icon"
-        android:title="استلام"
-        app:showAsAction="ifRoom"
+        android:title="تنزيل البيانات من السيرفر"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/log_out_icon"
+        android:icon="@drawable/logout_icon"
+        android:title="خروج"
+        app:showAsAction="never"
         />
 
 </menu>

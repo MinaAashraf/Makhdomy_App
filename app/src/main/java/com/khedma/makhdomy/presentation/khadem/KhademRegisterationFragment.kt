@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -120,7 +121,7 @@ class KhademRegisterationFragment : Fragment() {
                     else {
                         binding.saveBtn.show()
                         binding.progressBar.hide()
-                        showToast(requireContext(), getString(R.string.auth_err_msg))
+                        showToast(requireContext(), getString(R.string.auth_err_msg),Toast.LENGTH_LONG)
                     }
                 }
 

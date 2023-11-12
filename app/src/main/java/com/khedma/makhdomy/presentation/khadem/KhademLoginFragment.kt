@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -96,7 +97,7 @@ class KhademLoginFragment : Fragment() {
             passwordResetBinding.emailField.helperText = getString(R.string.email_err_msg)
             return
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            binding.gmailField.helperText = getString(R.string.not_correct_email_msg)
+            passwordResetBinding.emailField.helperText = getString(R.string.not_correct_email_msg)
             return
         }
         viewModel.resetPassword(requireContext(), email)
@@ -121,7 +122,7 @@ class KhademLoginFragment : Fragment() {
                     else {
                         binding.saveBtn.show()
                         binding.progressBar.hide()
-                        showToast(requireContext(), getString(R.string.wrong_email_or_password_err))
+                        showToast(requireContext(), getString(R.string.wrong_email_or_password_err),Toast.LENGTH_LONG)
                     }
                 }
 

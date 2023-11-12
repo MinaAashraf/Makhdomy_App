@@ -125,7 +125,7 @@ class KhademViewModel @Inject constructor(
 
     private val _passwordResetLoading = MutableLiveData<Boolean?>(null)
     val passwordResetLoading: LiveData<Boolean?> = _passwordResetLoading
-     var resetMailSendResultMessage  : String? = null
+    var resetMailSendResultMessage: String? = null
 
     fun resetPassword(context: Context, email: String) {
         _passwordResetLoading.value = true
@@ -136,6 +136,10 @@ class KhademViewModel @Inject constructor(
             _passwordResetLoading.postValue(false)
             resetMailSendResultMessage = context.getString(R.string.reset_link_err)
         }
+    }
+
+    fun logOut() {
+        firebaseAuth.signOut()
     }
 
 }

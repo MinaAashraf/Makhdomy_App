@@ -9,17 +9,18 @@
             type="com.khedma.makhdomy.domain.model.Makhdom" />
     </data>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layoutDirection="rtl"
             android:padding="@dimen/_40sdp"
-            android:background="@color/light_blue"
             tools:context=".presentation.makhdommen_screen.HealthAndCharacterMakhdomFragment">
 
             <com.google.android.material.textfield.TextInputLayout
@@ -110,6 +111,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </layout>
