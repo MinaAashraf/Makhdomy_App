@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layoutDirection="rtl"
             android:padding="@dimen/_40sdp"
+            android:background="@color/light_blue"
             tools:context=".presentation.makhdommen_screen.MakhdomReviewFragment">
 
             <Button

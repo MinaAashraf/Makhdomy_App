@@ -23,6 +23,7 @@
             android:paddingBottom="@dimen/_15sdp"
             android:paddingStart="@dimen/_45sdp"
             android:paddingEnd="@dimen/_45sdp"
+            android:background="@color/light_blue"
             tools:context=".presentation.makhdommen_screen.AddressMakhdomFragment">
 
             <com.google.android.material.textfield.TextInputLayout

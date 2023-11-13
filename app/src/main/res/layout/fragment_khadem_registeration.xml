@@ -20,6 +20,7 @@
             android:paddingStart="@dimen/_45sdp"
             android:paddingTop="@dimen/_15sdp"
             android:paddingEnd="@dimen/_45sdp"
+            android:background="@color/light_blue"
             android:paddingBottom="@dimen/_15sdp">
 
             <com.google.android.material.textfield.TextInputLayout
