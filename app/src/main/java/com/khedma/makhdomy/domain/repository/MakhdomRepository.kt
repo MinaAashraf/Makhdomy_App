@@ -27,7 +27,7 @@ interface MakhdomRepository  {
     suspend fun updateMakhdomLocally(makhdom: Makhdom)
     suspend fun updateMakhdomRemotely(makhdom: Makhdom)
 
-    suspend fun readMakhdomenFromRemote (makhdommenKeys : List<String>) : Result<String>
+    suspend fun readMakhdomenFromRemote (khademKey: String) : Result<String>
 
     suspend fun addKhadem(khadem: Khadem): Result<String>
 

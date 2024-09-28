@@ -42,7 +42,7 @@
 
             <TextView
                 android:id="@+id/name_text"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_40sdp"
                 android:text="@{makhdom.name}"
@@ -51,6 +51,8 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/class_name_text"
                 app:layout_constraintStart_toEndOf="@id/picture_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="start"
                 app:layout_constraintTop_toTopOf="@+id/picture_view" />
 
             <TextView
@@ -253,7 +255,7 @@
                         android:text="@{address.anotherAddressData}"
                         android:textColor="@color/grey"
                         isEmpty="@{address.anotherAddressData}"
-                        android:textSize="@dimen/small"
+                        android:textSize="@dimen/very_small"
                         android:gravity="start"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"

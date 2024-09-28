@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.khedma.makhdomy.R
 import com.khedma.makhdomy.domain.model.Brother
 import com.khedma.makhdomy.domain.model.FilterType
+import com.khedma.makhdomy.domain.model.Khadem
 import com.khedma.makhdomy.domain.model.Makhdom
 import com.khedma.makhdomy.domain.onFailure
 import com.khedma.makhdomy.domain.onSuccess
@@ -149,7 +150,7 @@ class MakhdomViewModel @Inject constructor(
 
     fun receiveMakhdommenFromRemote(context: Context) {
         _loading.value = true
-        val khadem =
+        val khadem : Khadem =
             fromJson(readFromPreferences(context, context.getString(R.string.khadem_key))!!)
         viewModelScope.launch(Dispatchers.IO) {
             // check if my local data is already uploaded
@@ -162,7 +163,7 @@ class MakhdomViewModel @Inject constructor(
                 return@launch
             }
 
-            receiveMakhdommenFromRemote.execute(khadem.makhdomeenIds).onSuccess {
+            receiveMakhdommenFromRemote.execute(khadem.key!!).onSuccess {
                 _loading.postValue(false)
                 /*withContext(Dispatchers.Main) {
                     showToast(context, it)

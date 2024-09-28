@@ -8,6 +8,6 @@ import javax.inject.Inject
 
 
 class ReceiveMakhdommenFromRemote @Inject constructor(private val makhdomRepository: MakhdomRepository) {
-    suspend fun execute(keys: List<String>): Result<String> =
-        makhdomRepository.readMakhdomenFromRemote(keys)
+    suspend fun execute(khademKey:String): Result<String> =
+        makhdomRepository.readMakhdomenFromRemote(khademKey)
 }

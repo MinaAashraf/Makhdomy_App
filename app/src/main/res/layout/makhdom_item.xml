@@ -36,14 +36,17 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
                 android:text="@{makhdom.name}"
-                android:textSize="@dimen/medium"
+                android:gravity="start"
+                android:textSize="@dimen/small"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/picture_view"
+                app:layout_constraintEnd_toStartOf="@id/sync_icon"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
@@ -54,6 +57,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="@dimen/_15sdp"
                 sync_icon="@{makhdom}"
+                android:id="@+id/sync_icon"
                 />
 
 

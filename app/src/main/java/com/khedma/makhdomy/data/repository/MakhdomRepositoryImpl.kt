@@ -51,21 +51,24 @@ class MakhdomRepositoryImpl @Inject constructor(
         makhdomLocalDataSource.addMakhdom(makhdom.mapToLocalMakhdom())
     }
 
-    override suspend fun readMakhdomenFromRemote(makhdommenKeys: List<String>): Result<String> {
-        makhdomRemoteDataSource.readMakhdmenByKeys(makhdommenKeys).onSuccess {
-            val makhdommen: List<Makhdom> = it.map { it.mapToLocalMakhdom() }
-            makhdomLocalDataSource.clear()
-            val idsList = makhdomLocalDataSource.addMakhdommen(makhdommen)
-            updateBitmapPictures(makhdommen,idsList)
-            return Result.Success("تم استقبال البيانات بنجاح")
-        }.onFailure {
-            return Result.Failure(Throwable("لا يوجد بيانات"))
+    override suspend fun readMakhdomenFromRemote(khademKey: String): Result<String> {
+        khademRemoteDataSource.readKhadem(khademKey).onSuccess { khadem : Khadem->
+            writePreferences(context, context.getString(R.string.khadem_key), toJson(khadem))
+            makhdomRemoteDataSource.readMakhdmenByKeys(khadem.makhdomeenIds).onSuccess {
+                val makhdommen: List<Makhdom> = it.map { it.mapToLocalMakhdom() }
+                makhdomLocalDataSource.clear()
+                val idsList = makhdomLocalDataSource.addMakhdommen(makhdommen)
+                updateBitmapPictures(makhdommen, idsList)
+                return Result.Success("تم استقبال البيانات بنجاح")
+            }.onFailure {
+                return Result.Failure(Throwable("لا يوجد بيانات"))
+            }
         }
         return Result.Failure(Throwable("لا يوجد بيانات"))
     }
 
     private suspend fun updateBitmapPictures(makhdommen: List<Makhdom>, idsList: List<Long>) {
-        makhdommen.forEachIndexed() {index,makhdom->
+        makhdommen.forEachIndexed() { index, makhdom ->
             makhdom.id = idsList[index].toInt()
             makhdom.getBitmapFromUrl(context)
             makhdomLocalDataSource.updateMakhdom(makhdom)
